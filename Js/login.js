@@ -1,7 +1,7 @@
 /* Immediately-invoked Function Expressions */
 (function() {
 
-
+    //---------------------------------------------------LOG IN---------------------------------------------------
     const loginForm = document.querySelector('#loginForm');
     
     // Submit-EventListener på form
@@ -29,7 +29,7 @@
         // Hitta det anv objekt som har samma email och lösen som anv. input
         const validateUser = user => user.email === email && user.password === password;
 
-        // find() Retunerar det första arr-elementet som uppfyller villkor - annars undefined
+        // find() Retunerar det första arr-elementet som uppfyller villkor, i vårt fall ett anv-obj - annars undefined
         console.log(registeredUsers.find(validateUser));
         
         // find() Retunerar det första arr-elementet som uppfyller villkor - annars undefined
@@ -45,15 +45,22 @@
             // Under signedInUser
             localStorage.setItem("signedInUser", JSON.stringify(user))
 
+            //todo! Vad händer vid lyckat inlogg
+
+
         } else {
 
             // Annars körs denna kod
             console.log("login not ok");
-            
+
+            //todo! Vad händer vid misslyckat inlogg
         }
 
         
     }
+
+    //-------------------------------------------------REGISTER USER---------------------------------------------------
+    
 
 
 
