@@ -3,12 +3,13 @@
 
     //---------------------------------------------------LOG IN---------------------------------------------------
     const loginForm = document.querySelector('#loginForm');
+    let registerUserForm;
     
     // Submit-EventListener på form
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Hämtar valuet från users inlogg-försök
+        // Hämtar valuet från userns inlogg-försök
         const loginEmail = document.querySelector('#loginEmail').value;
         const loginPWD = document.querySelector('#loginPWD').value;
 
@@ -16,7 +17,6 @@
         loginValidation(loginEmail,loginPWD)
 
     });
-
 
     function loginValidation(email, password) {
 
@@ -47,22 +47,18 @@
 
             //todo! Slussa anv vidare vid lyckat inlogg
 
-
         } else {
 
             // Annars körs denna kod
             console.log("login not ok");
 
             //todo! Vad händer vid misslyckat inlogg?
-        }
 
-        
+        }        
     }
     //--------------------------------------------RENDER REGISTER NEW USER VIEW---------------------------------------------------
 
     const registerUserLink  = document.querySelector('#registerUserLink');
-    console.log(registerUserLink);
-
 
     registerUserLink.addEventListener("click", () => {
         const registerFormContainer = document.querySelector(".register-form-container");
@@ -94,18 +90,18 @@
             <button class="btn btn-danger" type="submit">Sign up</button>
         </form>
         `
+        registerUserForm = document.querySelector('#registerUser');
+        console.log(registerUserForm);
+
     })
-
+    
     //--------------------------------------------REGISTER NEW USER---------------------------------------------------
-
-    const registerUserForm = document.querySelector('#registerUser');
-
+    
     // Om en user existerar i local - Hämta datan och assigna till userArr
     // Om user ej existerar i local - assigna tom arr till userArr
     let userArr = localStorage.getItem("registeredUsers") ? JSON.parse(localStorage.getItem("registeredUsers")) : [];
-    
     console.log("userArr", userArr);
-
+    
     // Submit-EventListener på form
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -179,5 +175,4 @@
     // });
 
 })()
-
 
