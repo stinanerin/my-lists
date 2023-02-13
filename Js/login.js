@@ -60,9 +60,50 @@
     }
 
     //-------------------------------------------------REGISTER USER---------------------------------------------------
+
+
+    const registerUserForm = document.querySelector('#registerUser');
+
+    // Om en user existerar i local - Hämta datan och assigna till userArr
+    // Om user ej existerar i local - assigna tom arr till userArr
+    let userArr = localStorage.getItem("registeredUsers") ? JSON.parse(localStorage.getItem("registeredUsers")) : [];
     
+    console.log("userArr", userArr);
 
+    // Submit-EventListener på form
+    registerUserForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
+        // Hämtar valuet från users inlogg-försök
+        const fullName = document.querySelector('#FLName').value;
+        console.log(fullName);
+
+        const email = document.querySelector('#email').value;
+        console.log(email);
+
+        const PWD = document.querySelector('#PWD').value;
+        console.log(PWD);
+    
+        // Villkor för every()-metod
+        // Kollar så anv. email ej är samma som en redan reggad anv.
+        const checkUser = user => user.email !== email;
+
+        // every() retunerar true / false
+        console.log(userArr.every(checkUser));
+
+        if(userArr.every(checkUser)) {
+
+            // Om user email ej finns reggad sedan tidigare --> Skapa ny user i local storage
+            createUser(fullName, email, PWD)
+
+        } else {
+
+            //todo! Något felmeddelande mot användare måste vi displaya
+
+            console.log("mejlen finns redan reggad");
+
+        }    
+    });
 
 })()
 
