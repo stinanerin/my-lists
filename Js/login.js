@@ -45,7 +45,7 @@
             // Under signedInUser
             localStorage.setItem("signedInUser", JSON.stringify(user))
 
-            //todo! Vad händer vid lyckat inlogg
+            //todo! Slussa anv vidare vid lyckat inlogg
 
 
         } else {
@@ -53,14 +53,51 @@
             // Annars körs denna kod
             console.log("login not ok");
 
-            //todo! Vad händer vid misslyckat inlogg
+            //todo! Vad händer vid misslyckat inlogg?
         }
 
         
     }
+    //--------------------------------------------RENDER REGISTER NEW USER VIEW---------------------------------------------------
+
+    const registerUserLink  = document.querySelector('#registerUserLink');
+    console.log(registerUserLink);
+
+
+    registerUserLink.addEventListener("click", () => {
+        const registerFormContainer = document.querySelector(".register-form-container");
+        const loginUserFormContainer = document.querySelector('.log-in-form-container');
+
+        loginUserFormContainer.style.display = "none"
+
+        registerFormContainer.innerHTML = `
+        <form id="registerUser">
+            <h2>Register</h2>
+
+            <div class="form-group">
+                <input class="form-control" id="FLName" type="text" placeholder="Full Name"  />
+            </div>
+                
+            <div class="form-group">
+                <input class="form-control" id="email" type="email" placeholder="Email" required/>
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" id="PWD" type="password" placeholder="********" />
+            </div>
+
+            <div class="form-group">
+                <input class="form-control" id="confPWD" type="password" placeholder="Confirm Password" />
+            </div>
+
+            <button class="btn btn-danger" type="submit">Sign up</button>
+        </form>
+        `
+          
+    })
+
 
     //--------------------------------------------REGISTER NEW USER---------------------------------------------------
-
 
     const registerUserForm = document.querySelector('#registerUser');
 
@@ -71,7 +108,7 @@
     console.log("userArr", userArr);
 
     // Submit-EventListener på form
-    registerUserForm.addEventListener("submit", (e) => {
+    registerUserForm && registerUserForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
         // Hämtar valuet från users inlogg-försök
@@ -84,8 +121,7 @@
         const PWD = document.querySelector('#PWD').value;
         console.log(PWD);
     
-        // Villkor för every()-metod
-        // Kollar så anv. email ej är samma som en redan reggad anv.
+        // Villkor för every()-metodKollar så anv. email ej är samma som en redan reggad anv.
         const checkUser = user => user.email !== email;
 
         // every() retunerar true / false
@@ -99,13 +135,11 @@
         } else {
 
             //todo! Något felmeddelande mot användare måste vi displaya
-
             console.log("mejlen finns redan reggad");
 
         } 
 
     });
-
 
     function createUser (fullName, email, PWD) {
 
