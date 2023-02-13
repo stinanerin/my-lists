@@ -105,6 +105,34 @@
         }    
     });
 
+
+    function createUser (fullName, email, PWD) {
+
+        // Skapar anv-obj med anv-input
+        const userObj = {
+    
+            fullName: fullName,
+            email: email,
+            password: PWD,
+    
+        }
+        
+        // Pushar in den nya anv till userArr
+        userArr.push(userObj);
+    
+        console.log(userArr);
+    
+        // Lagrar uppdaterade userArr i local storage
+        localStorage.setItem("registeredUsers", JSON.stringify(userArr));
+    
+        // Sätter användaren som "inloggad" i local storage
+        localStorage.setItem("signedInUser", JSON.stringify(userObj))
+    
+        //todo! Här måste anändaren komma till list.html - ej fixat
+               
+
+    }
+
 })()
 
 
