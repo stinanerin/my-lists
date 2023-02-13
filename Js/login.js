@@ -59,7 +59,7 @@
         
     }
 
-    //-------------------------------------------------REGISTER USER---------------------------------------------------
+    //--------------------------------------------REGISTER NEW USER---------------------------------------------------
 
 
     const registerUserForm = document.querySelector('#registerUser');
@@ -102,7 +102,8 @@
 
             console.log("mejlen finns redan reggad");
 
-        }    
+        } 
+
     });
 
 
@@ -130,8 +131,20 @@
     
         //todo! Här måste anändaren komma till list.html - ej fixat
                
-
     }
+
+    //-------------------------------------------------LOG OUT---------------------------------------------------
+
+    // 
+    // logoutBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    
+    //     localStorage.removeItem("signedInUser");
+    
+    //     //todo! Byt vy till inloggnignsvyn
+    
+    
+    // });
 
 })()
 
