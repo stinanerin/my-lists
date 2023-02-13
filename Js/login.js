@@ -72,10 +72,11 @@
 
         registerFormContainer.innerHTML = `
         <form id="registerUser">
+
             <h2>Register</h2>
 
             <div class="form-group">
-                <input class="form-control" id="FLName" type="text" placeholder="Full Name"  />
+                <input class="form-control" id="FLName" type="text" placeholder="Full Name" required/>
             </div>
                 
             <div class="form-group">
@@ -83,19 +84,17 @@
             </div>
 
             <div class="form-group">
-                <input class="form-control" id="PWD" type="password" placeholder="********" />
+                <input class="form-control" id="PWD" type="password" placeholder="********" required/>
             </div>
 
             <div class="form-group">
-                <input class="form-control" id="confPWD" type="password" placeholder="Confirm Password" />
+                <input class="form-control" id="confPWD" type="password" placeholder="Confirm Password" required/>
             </div>
 
             <button class="btn btn-danger" type="submit">Sign up</button>
         </form>
         `
-          
     })
-
 
     //--------------------------------------------REGISTER NEW USER---------------------------------------------------
 
