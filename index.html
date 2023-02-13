@@ -17,8 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italiana&display=swap" rel="stylesheet">
     
     <!-- JS: KOM IHÅG! DEFER -->
-    
-        <script defer src="/Js/index.js"></script>
+    <script defer src="/Js/index.js"></script>
 
 
 </head>
@@ -28,6 +27,29 @@
         
     </header>
     <main>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="userName">Username
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">@</div>
+                    </div>
+                        <input class="form-control" id="loginUsername" type="text" placeholder="Username"/>
+                    </div>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPWD">Password
+                    <input class="form-control" id="loginPWD" type="password" placeholder="*********"/>
+                </label>
+            </div>
+
+            <button class="btn btn-danger" type="submit">Sign in</button>
+            
+        </form>
         
     </main>
 
