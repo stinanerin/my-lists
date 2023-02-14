@@ -1,6 +1,8 @@
 
 (function() {
+    const recProductsList = document.querySelector("#recProductsList")
 
+    //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
     const getProducts = async function() {
         // Await keyword
             // Stoppar JS.motorn att assigna värdet till response variabeln tills löftet har resolved
@@ -30,8 +32,24 @@
     
     getProducts()
         // Om datan kan levereras ritar vi ut produkterna i DOM:en 
-        .then(data => console.log("Resolved:", data))
+        .then(data => drawRecProd(data))
         .catch(err => console.log("Rejected:", err.message));
 
 
+    //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
+
+    function drawRecProd(arr) {
+
+        arr.forEach((elem) => {
+            recProductsList.innerHTML += `
+            <li>
+                <i class="${elem.image}"></i>
+                <h3>${elem.title}</h3>   
+            </li>
+            `
+        })
+
+    }
+
 })()
+
