@@ -1,0 +1,68 @@
+[
+    {
+        "title": "Bread",
+        "image": "fa-solid fa-bread-slice", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Lemon",
+        "image": "fa-solid fa-lemon", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Bacon",
+        "image": "fa-solid fa-bacon", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Fish",
+        "image": "fa-solid fa-fish", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Wine",
+        "image": "fa-solid fa-wine-bottle", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Pizza",
+        "image": "fa-solid fa-pizza-slice", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Carrot",
+        "image": "fa-solid fa-carrot", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Egg",
+        "image": "fa-solid fa-egg", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Shrimp",
+        "image": "fa-solid fa-shrimp", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Cookie",
+        "image": "fa-solid fa-cookie", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Apple",
+        "image": "fa-solid fa-apple-whole", 
+        "checked": false,
+        "qty": 0
+    }
+  ]
