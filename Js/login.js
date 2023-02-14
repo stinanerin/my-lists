@@ -164,15 +164,17 @@
 
     //-------------------------------------------------LOG OUT---------------------------------------------------
 
-    // 
-    // logoutBtn.addEventListener('click', (e) => {
-    //     e.preventDefault();
+    const logoutBtn = document.querySelector("#logoutBtn");
+    console.log(logoutBtn);
+
+    logoutBtn && logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
     
-    //     localStorage.removeItem("signedInUser");
+        localStorage.removeItem("signedInUser");
     
-    //     //todo! Byt vy till inloggnignsvyn
+        //todo! Byt vy till inloggnignsvyn
     
-    // });
+    });
 
 })()
 
