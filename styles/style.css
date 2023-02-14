@@ -86,10 +86,10 @@
     align-items: end;
     margin-right: 16px;
   }
-  ul {
+  .recommendationUl {
     padding-left: 0;
   }
-  ul div li {
+  .recommendationUl li {
     list-style-type: none;
   }
 }/*# sourceMappingURL=style.css.map */

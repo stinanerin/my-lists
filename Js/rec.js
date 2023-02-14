@@ -3,6 +3,7 @@
     const recProductsList = document.querySelector("#recProdContainer")
 
     //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
+    
     const getProducts = async function() {
         // Await keyword
             // Stoppar JS.motorn att assigna värdet till response variabeln tills löftet har resolved
