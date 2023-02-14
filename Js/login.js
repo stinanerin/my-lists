@@ -76,7 +76,7 @@
                 <div class="form-group">
                     <input class="form-control input" id="FLName" type="text" placeholder="Full Name" required/>
                 </div>
-            <!-- Email-->
+                <!-- Email-->
                 <div class="form-group">
                     <input class="form-control input" id="email" type="email" placeholder="Email" required/>
                 </div>
