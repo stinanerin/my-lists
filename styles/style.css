@@ -81,4 +81,7 @@
     align-items: end;
     margin-right: 16px;
   }
+  * {
+    background-color: pink;
+  }
 }/*# sourceMappingURL=style.css.map */
