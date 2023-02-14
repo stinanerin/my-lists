@@ -1,6 +1,6 @@
 
 (function() {
-    const recProductsList = document.querySelector("#recProductsList")
+    const recProductsList = document.querySelector("#recProdContainer")
 
     //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
     const getProducts = async function() {
@@ -42,10 +42,12 @@
 
         arr.forEach((elem) => {
             recProductsList.innerHTML += `
-            <li>
-                <i class="${elem.image}"></i>
-                <h3>${elem.title}</h3>   
-            </li>
+            <div class="col-auto text-center ">
+                <li>
+                    <i class="${elem.image}"></i>
+                    <h3 class="subheading">${elem.title}</h3>
+                </li>
+            </div>
             `
         })
 
