@@ -67,8 +67,8 @@
         loginUserFormContainer.style.display = "none"
 
         registerFormContainer.innerHTML = `
-        <form id="registerUser">
-
+        <form class="container" id="registerUser">
+            <!--! Ta bort -->
             <h2>Register</h2>
 
             <div class="form-group">
