@@ -1,8 +1,10 @@
 
 .recommendationUl {
     padding-left: 0; 
-    li {
+    .rec-product {
         list-style-type: none;
-        
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

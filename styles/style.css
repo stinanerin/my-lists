@@ -89,7 +89,10 @@
   .recommendationUl {
     padding-left: 0;
   }
-  .recommendationUl li {
+  .recommendationUl .rec-product {
     list-style-type: none;
+  }
+  .recommendationUl .rec-product:hover {
+    cursor: pointer;
   }
 }/*# sourceMappingURL=style.css.map */

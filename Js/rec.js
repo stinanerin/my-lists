@@ -37,22 +37,55 @@
         .catch(err => console.log("Rejected:", err.message));
 
 
-    //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
+    //--------------------------------------------------- Ritar ut products.json ---------------------------------------------------
 
     function drawRecProd(arr) {
 
         arr.forEach((elem) => {
             recProductsList.innerHTML += `
             <div class="col-auto text-center ">
-                <li>
+                <li class="rec-product">
                     <i class="${elem.image}"></i>
                     <h3 class="subheading">${elem.title}</h3>
                 </li>
             </div>
             `
+            addItem()
         })
 
+        // Flytta ut sen
+
+        
+        
     }
+    
+    function addItem() {
+        const allRecProducts = document.querySelectorAll(".rec-product");
+        console.log(allRecProducts);
+
+        allRecProducts.forEach((item, index) => {
+            item.addEventListener("click", () => {
+
+                console.log("clicked");
+                console.log(item);
+                console.log(index);
+
+            })
+        })
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 })()
 
