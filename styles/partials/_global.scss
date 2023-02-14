@@ -28,22 +28,24 @@ h1 {
 }
 
 .fa-brands, .fa-solid {
-    color: #000;
+    color: $p-black;
 }
 
 .separator {
     width: 100%;
     display: block;
-    border-top: 1px solid #000;
+    border-top: 1px solid $p-black;
 }
 
+/* Röda knapparna */
 .btn {
     border-radius: 10px;
     background-color: $btn;
     padding: 10px 68px;
-    color: #fff;
+    color: $p-white;
 }
 
+/*  */
 .input {
     border-radius: 20px;
     padding: 24px 10px;

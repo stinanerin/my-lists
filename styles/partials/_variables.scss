@@ -1,13 +1,31 @@
 // Fonter
 $heading-primary: "Italiana", serif;
 $heading-secondary: "Inria Serif", serif;
-$font-paragraph: sans-serif;
 
-// Breakpoints - Bootstrap - Kolla om det stämmer
+
+// Breakpoints - Bootstrap - mobile first
 $md: "width >= 768px";
 $lg: "width >= 992px";
 $xl: "width >= 1200px";
 
-// Färger - 5 Primary
+//Exempel mediaQ som använder breakpoint-variabel
+/* @media ($md) {
+        Koden som appliceras när skärmen är 768px eller större, dumt exempel--> 
+        background-color: pink;
+    }
+*/
+
+// Färger
 $link: #18007A;
 $btn: #C66060;
+// 50 shades of grey
+$grey-300: #D9D9D9;
+$grey-400: hsla(0, 0%, 41%, 35%);
+$grey-500: hsla(0, 0%, 0%, 37%);
+$grey-700: #686868;
+// Persistant
+$p-black: #000;
+$p-white: #fff;
+
+
+
