@@ -1,4 +1,54 @@
+
+/* --------------------------- RADERA ----------------------------*/
+
 h1 {
 
     font-family: $heading-primary;
 }
+
+/* Stödhjul */
+
+// * {
+//     outline: 1px solid blue;
+//     main {
+//         outline: 3px solid red;
+
+//     }
+// }
+
+/* --------------------------- RADERA: SLUT----------------------------*/
+
+/* ---- Förslag globala komponenter som jag tror är återanvändnignsbara - eller blir det om projektet växer-------*/
+
+.link {
+    color: $link;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.fa-brands, .fa-solid {
+    color: $p-black;
+}
+
+.separator {
+    width: 100%;
+    display: block;
+    border-top: 1px solid $p-black;
+}
+
+/* Röda knapparna */
+.btn {
+    border-radius: 10px;
+    background-color: $btn;
+    padding: 10px 68px;
+    color: $p-white;
+}
+
+/*  */
+.input {
+    border-radius: 20px;
+    padding: 24px 10px;
+}
+
+
