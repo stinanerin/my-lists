@@ -24,7 +24,7 @@ async function createList() {
 
 
     createListAccordion(namn, listLength);
-
+    console.log(localStorageArr);
 }
 
 // funktion som hämtar en lista från API utifrån ett ID
