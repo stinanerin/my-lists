@@ -128,7 +128,7 @@ function createListAccordion(listname, listlength) {
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
-    let toggleDiv = event.target.parentElement.nextSibling;
+    let toggleDiv = event.target.parentElement.parentElement.nextSibling;
     toggleDiv.classList.toggle("hidden")
 }
 
