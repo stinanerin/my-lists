@@ -62,14 +62,10 @@
 
     registerUserLink.addEventListener("click", () => {
 
-        const registerFormContainer = document.querySelector(".register-form-container");
-        const loginUserFormContainer = document.querySelector('.log-in-form-container');
+        // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
+        document.querySelector(".register-form-container").classList.toggle("hide");
 
-        loginUserFormContainer.classList.toggle("hide");
-
-        registerFormContainer.classList.toggle("hide");
-        
-        
+        document.querySelector('.log-in-form-container').classList.toggle("hide");
         
     })
     
@@ -82,6 +78,7 @@
     
     registerUserForm = document.querySelector('#registerUser');
     console.log(registerUserForm);
+
     
     // Submit-EventListener på form
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
