@@ -1,4 +1,5 @@
 /* Immediately-invoked Function Expressions */
+
 (function() {
 
     //---------------------------------------------------LOG IN---------------------------------------------------
@@ -65,7 +66,7 @@
         // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
         document.querySelector(".register-form-container").classList.toggle("hidden");
 
-        document.querySelector('.log-in-form-container').classList.toggle("hidden");
+        document.querySelector(".log-in-form-container").classList.toggle("hidden");
         
     })
     
@@ -86,7 +87,6 @@
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
         e.preventDefault();
         console.log("We inside addeventlistener");
-
 
         // Hämtar valuet från users inlogg-försök
         const fullName = document.querySelector('#FLName').value;
@@ -127,6 +127,7 @@
             fullName: fullName,
             email: email,
             password: PWD,
+            userList: [],
     
         }
         
@@ -140,12 +141,14 @@
     
         // Sätter användaren som "inloggad" i local storage
         localStorage.setItem("signedInUser", JSON.stringify(userObj));
-    
+
         //todo! Här måste anändaren komma till list.html - ej fixat
                
     }
 
-    
+
+
+
 
 })()
 

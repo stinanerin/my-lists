@@ -37,7 +37,6 @@
         .then(data => drawRecProd(data))
         .catch(err => console.log("Rejected:", err.message));
 
-
     //--------------------------------------------------- Ritar ut products.json ---------------------------------------------------
 
     function drawRecProd(arr) {
@@ -64,7 +63,7 @@
     //! Samt hur ska vi peka på ikon + titel från den klickade li-taggen
     function addItem() {
         const allRecProducts = document.querySelectorAll(".rec-product");
-        console.log(allRecProducts);
+        // console.log(allRecProducts);
 
         allRecProducts.forEach((item, index) => {
             item.addEventListener("click", () => {
