@@ -20,8 +20,11 @@
   .link:hover {
     cursor: pointer;
   }
+  .hide {
+    display: none;
+  }
   .fa-brands,
-  .fa-solid {
+.fa-solid {
     color: #000;
   }
   .separator {

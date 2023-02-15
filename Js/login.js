@@ -61,44 +61,12 @@
     const registerUserLink  = document.querySelector('#registerUserLink');
 
     registerUserLink.addEventListener("click", () => {
-        const registerFormContainer = document.querySelector(".register-form-container");
-        const loginUserFormContainer = document.querySelector('.log-in-form-container');
 
-        loginUserFormContainer.style.display = "none"
+        // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
+        document.querySelector(".register-form-container").classList.toggle("hide");
 
-        registerFormContainer.innerHTML = `
-        <form class="container " id="registerUser">
-            <!--! Ta bort -->
-            <h2>Register</h2>
-
-            <div class="row gy-3">
-                <!-- Name-->
-                <div class="form-group">
-                    <input class="form-control input" id="FLName" type="text" placeholder="Full Name" required/>
-                </div>
-                <!-- Email-->
-                <div class="form-group">
-                    <input class="form-control input" id="email" type="email" placeholder="Email" required/>
-                </div>
-                <!-- Password-->
-                <div class="form-group">
-                    <input class="form-control input" id="PWD" type="password" placeholder="********" required/>
-                </div>
-                <!-- Conf. password-->
-                <div class="form-group">
-                    <input class="form-control input" id="confPWD" type="password" placeholder="Confirm Password" required/>
-                </div>
-                <!-- Submit btn-->
-                <div class="d-flex justify-content-center">
-                    <button class="btn" type="submit">Sign up</button>
-                </div>
-            </div>
-
-        </form>
-        `
-        registerUserForm = document.querySelector('#registerUser');
-        console.log(registerUserForm);
-
+        document.querySelector('.log-in-form-container').classList.toggle("hide");
+        
     })
     
     //--------------------------------------------REGISTER NEW USER---------------------------------------------------
@@ -107,6 +75,10 @@
     // Om user ej existerar i local - assigna tom arr till userArr
     let userArr = localStorage.getItem("registeredUsers") ? JSON.parse(localStorage.getItem("registeredUsers")) : [];
     console.log("userArr", userArr);
+    
+    registerUserForm = document.querySelector('#registerUser');
+    console.log(registerUserForm);
+
     
     // Submit-EventListener på form
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
