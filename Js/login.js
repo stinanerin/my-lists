@@ -67,34 +67,7 @@
         loginUserFormContainer.style.display = "none"
 
         registerFormContainer.innerHTML = `
-        <form class="container " id="registerUser">
-            <!--! Ta bort -->
-            <h2>Register</h2>
-
-            <div class="row gy-3">
-                <!-- Name-->
-                <div class="form-group">
-                    <input class="form-control input" id="FLName" type="text" placeholder="Full Name" required/>
-                </div>
-                <!-- Email-->
-                <div class="form-group">
-                    <input class="form-control input" id="email" type="email" placeholder="Email" required/>
-                </div>
-                <!-- Password-->
-                <div class="form-group">
-                    <input class="form-control input" id="PWD" type="password" placeholder="********" required/>
-                </div>
-                <!-- Conf. password-->
-                <div class="form-group">
-                    <input class="form-control input" id="confPWD" type="password" placeholder="Confirm Password" required/>
-                </div>
-                <!-- Submit btn-->
-                <div class="d-flex justify-content-center">
-                    <button class="btn" type="submit">Sign up</button>
-                </div>
-            </div>
-
-        </form>
+        
         `
         registerUserForm = document.querySelector('#registerUser');
         console.log(registerUserForm);
