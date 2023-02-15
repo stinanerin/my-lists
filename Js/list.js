@@ -17,14 +17,28 @@ async function createList() {
             listname: listname,
         }),
     });
+
+
     const { list } = await res.json();
-    localStorageArr.push(list._id);
-    let namn = list.listname;
-    let listLength = list.itemList.length;
+    
+
+    //!Sofias kod
+    // localStorageArr.push(list._id);
+    // let namn = list.listname;
+    // let listLength = list.itemList.length;
 
 
-    createListAccordion(namn, listLength);
-    console.log(localStorageArr);
+    // createListAccordion(namn, listLength);
+    // console.log(localStorageArr);
+    //! Slut sofias kod
+
+
+    id = list._id
+    console.log(id);
+
+
+    return id
+
 }
 
 // funktion som hämtar en lista från API utifrån ett ID
@@ -81,4 +95,14 @@ function toggleArrow(event) {
     toggleDiv.classList.toggle("hidden")
 }
 
-createNewListBtn.addEventListener("click", createList);
+createNewListBtn.addEventListener("click", (e) => {
+    
+    createList().then(id => {
+        console.log("id i eventListener", id);
+
+        updateUserListArr(id)
+
+    
+    });
+
+}) 
