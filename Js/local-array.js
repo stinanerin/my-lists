@@ -1,4 +1,4 @@
-// //!--------------------------------------------Local storage Arry med ID:n---------------------------------------------------
+//!--------------------------------------------Local storage Array med ID:n---------------------------------------------------
  function updateUserListArr(id) {
 
      console.log("hej från local-array.js");
@@ -15,7 +15,6 @@
      console.log("Found it ", regArr.find(findActiveUserInRegUsers));
      
      console.log(regArr.find(findActiveUserInRegUsers).userList);
-     
      
      const activeUserListArr = regArr.find(findActiveUserInRegUsers).userList;
      

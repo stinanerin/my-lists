@@ -42,16 +42,16 @@ const recProductsList = document.querySelector("#recProdContainer")
         arr.forEach((elem) => {
             recProductsList.innerHTML += `
             <div class="col-auto text-center ">
-                <li class="rec-product">
+                <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
                     <i class="${elem.image}"></i>
                     <h3 class="subheading">${elem.title}</h3>
                 </li>
             </div>
             `
-            // Initerar en addItem funktion för varje knapp så de är sammanlänkade i JS mototrns minne(tror det är så det funkar)
-            addItem()
         })
-
+        
+        // Initerar en addItem funktion för varje knapp så de är sammanlänkade i JS mototrns minne(tror det är så det funkar)
+        addItem()
         // Flytta ut sen
 
     }
@@ -60,16 +60,21 @@ const recProductsList = document.querySelector("#recProdContainer")
     //! Ej klar - newItem-funktion funegrar ej
     //! Samt hur ska vi peka på ikon + titel från den klickade li-taggen
     function addItem() {
+
+        console.log('Add listener')
+
         const allRecProducts = document.querySelectorAll(".rec-product");
         // console.log(allRecProducts);
 
         allRecProducts.forEach((item, index) => {
+
             item.addEventListener("click", () => {
-                newItem()
+
+                newItem(item.dataset.title, item.dataset.icon)
                 // Här tänker jag att vi kör funktion som lägger till ny product i api:et men ni kan ändra
 
                 console.log("clicked");
-                console.log(item);
+                console.log(item.dataset.title);
                 console.log(index);
 
             })
@@ -93,14 +98,19 @@ const recProductsList = document.querySelector("#recProdContainer")
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                title: "bacon",
-                // image: icon, - Kom på en lösning
+                title: title,
+                image: icon,
                 qty: 1,
                 checked: false
             }),
           }
         );
-        //! Förstår ej varjför måste skriva så { }
+
+        //! Förstår ej varför måste skriva så { }
         const { list } = await res.json();
+
+        console.log(list);
+
+        console.log({list});
         
     }
