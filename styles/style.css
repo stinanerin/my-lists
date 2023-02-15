@@ -13,6 +13,11 @@
   }
   /* Stödhjul */
   /* --------------------------- RADERA: SLUT----------------------------*/
+  /* --------------------------- Headings ------------------------------ */
+  .subheading {
+    font-family: "Inria Serif", serif;
+    font-size: 10px;
+  }
   /* ---- Förslag globala komponenter som jag tror är återanvändnignsbara - eller blir det om projektet växer-------*/
   .link {
     color: #18007A;
@@ -122,5 +127,14 @@
     flex-direction: column;
     align-items: end;
     margin-right: 16px;
+  }
+  .recommendationUl {
+    padding-left: 0;
+  }
+  .recommendationUl .rec-product {
+    list-style-type: none;
+  }
+  .recommendationUl .rec-product:hover {
+    cursor: pointer;
   }
 }/*# sourceMappingURL=style.css.map */

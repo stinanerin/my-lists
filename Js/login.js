@@ -63,9 +63,9 @@
     registerUserLink.addEventListener("click", () => {
 
         // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
-        document.querySelector(".register-form-container").classList.toggle("hide");
+        document.querySelector(".register-form-container").classList.toggle("hidden");
 
-        document.querySelector('.log-in-form-container').classList.toggle("hide");
+        document.querySelector('.log-in-form-container').classList.toggle("hidden");
         
     })
     
@@ -75,14 +75,18 @@
     // Om user ej existerar i local - assigna tom arr till userArr
     let userArr = localStorage.getItem("registeredUsers") ? JSON.parse(localStorage.getItem("registeredUsers")) : [];
     console.log("userArr", userArr);
+    // console.log("userArr", userArr[0].password);
     
     registerUserForm = document.querySelector('#registerUser');
     console.log(registerUserForm);
 
     
     // Submit-EventListener på form
+    
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        console.log("We inside addeventlistener");
+
 
         // Hämtar valuet från users inlogg-försök
         const fullName = document.querySelector('#FLName').value;
@@ -94,7 +98,7 @@
         const PWD = document.querySelector('#PWD').value;
         console.log(PWD);
     
-        // Villkor för every()-metodKollar så anv. email ej är samma som en redan reggad anv.
+        // Villkor för every()-metod Kollar så anv. email ej är samma som en redan reggad anv.
         const checkUser = user => user.email !== email;
 
         // every() retunerar true / false
@@ -115,6 +119,7 @@
     });
 
     function createUser (fullName, email, PWD) {
+        console.log("We are in create user func");
 
         // Skapar anv-obj med anv-input
         const userObj = {
@@ -134,7 +139,7 @@
         localStorage.setItem("registeredUsers", JSON.stringify(userArr));
     
         // Sätter användaren som "inloggad" i local storage
-        localStorage.setItem("signedInUser", JSON.stringify(userObj))
+        localStorage.setItem("signedInUser", JSON.stringify(userObj));
     
         //todo! Här måste anändaren komma till list.html - ej fixat
                

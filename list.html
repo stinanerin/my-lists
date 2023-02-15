@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,14 +27,35 @@
 
     <!-- JS: KOM IHÅG! DEFER -->
     <script src="/Js/logout.js" defer></script>
+    <script src="/Js/rec.js" defer></script>
     <script src="/Js/list.js" defer></script>
+
+    
+    
   </head>
   <body>
+
     <header>
       <h1>Shopping List</h1>
-
-      <button id="createNewList" class="btn">+ Create New List</button>
+    
     </header>
-    <main></main>
+    
+    <main>
+      
+      <button id="createNewList" class="btn">+ Create New List</button>
+        
+        <ul class="recommendationUl">
+            <h2 class="subheading">Recommended for you</h2>
+
+                <div class="row gy-5" id="recProdContainer">
+                    
+                    <!-- Här renderas "recommended products" som li-taggar -->
+                    
+                </div>
+        </ul>
+
+    </main>
+
+
   </body>
 </html>
