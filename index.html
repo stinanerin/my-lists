@@ -26,7 +26,7 @@
 <body>
     <!--! Bör denna vara i header -->
     <div>
-        <img class="img-fluid" src="/images/master_piece.png" alt="">           
+        <img class="img-fluid" src="/images/list.jpg" alt="">           
     </div>
 
     <main>
@@ -34,10 +34,11 @@
         <div  class="login-main pt-5">
 
             <div class="log-in-form-container ">
-                <form class="container" id="loginForm">
-                    <!--! Ta bort -->
-                    <!-- <h2>Log in</h2> -->
+                <!-- Form -->
 
+
+                <form class="container" id="loginForm">
+                    
                     <div class="row gy-3 ">
                         <div class="form-group ">
                             <input class="form-control input" id="loginEmail" type="email" placeholder="Enter email" required/>
@@ -54,6 +55,7 @@
                     </div>
             
                 </form>
+                
                 <div class="container">
                     <div class="container">
 
@@ -100,9 +102,36 @@
             
             </div>
 
-            <div class="register-form-container">
+            <div class="register-form-container hide">
 
-                <!-- Här renderas registreringsformuläret -->
+                <form class="container" id="registerUser">
+                    <!--! Ta bort -->
+                    <h2>Register</h2>
+        
+                    <div class="row gy-3">
+                        <!-- Name-->
+                        <div class="form-group">
+                            <input class="form-control input" id="FLName" type="text" placeholder="Full Name" required/>
+                        </div>
+                        <!-- Email-->
+                        <div class="form-group">
+                            <input class="form-control input" id="email" type="email" placeholder="Email" required/>
+                        </div>
+                        <!-- Password-->
+                        <div class="form-group">
+                            <input class="form-control input" id="PWD" type="password" placeholder="********" required/>
+                        </div>
+                        <!-- Conf. password-->
+                        <div class="form-group">
+                            <input class="form-control input" id="confPWD" type="password" placeholder="Confirm Password" required/>
+                        </div>
+                        <!-- Submit btn-->
+                        <div class="d-flex justify-content-center">
+                            <button class="btn" type="submit">Sign up</button>
+                        </div>
+                    </div>
+        
+                </form>
             
             </div>
             
