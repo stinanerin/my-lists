@@ -68,6 +68,7 @@
         allRecProducts.forEach((item, index) => {
             item.addEventListener("click", () => {
                 newItem()
+                // Här tänker jag att vi kör funktion som lägger till ny product i api:et men ni kan ändra
 
                 console.log("clicked");
                 console.log(item);
@@ -84,7 +85,8 @@
     async function newItem() {
         
         console.log("we are here");
-
+        
+        //fetch() funkar ej
         const res = await fetch(
           `https://nackademin-item-tracker.herokuapp.com/lists/63eb9b5813a30465c1e2de99/items`,
           {
@@ -105,51 +107,9 @@
         
     }
 
-    // --------------------------------------------------- Skapar ny lista från input-fält ---------------------------------------------------
 
-    const createListBtn = document.querySelector('#createList');
-    console.log(createListBtn);
-
-    // Skapa en ny lista utifrån ett listnamn
-    async function createList(name) {
-        const listname = name;
-
-        const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                listname: listname,
-            }),
-        });
-        //! Varför skriver man så med { }
-        const { list } = await res.json();
-
-        // ID:et till den nyss skapade listan --> vill putta in i local storage
-        console.log(list._id);
-
-       
-    
-        
-
-
-
-    }
-
-    // Knapp som kör funktionen "skapa lista"
-    createListBtn.addEventListener("click", () => {
-        let newListName  = document.querySelector('#newListName').value;
-        console.log(newListName);
-
-        createList(newListName);
-
-    });
     
 
-
-
- //! --------------------------------------------------- SLUT: Skapar ny lista från input-fält ---------------------------------------------------
 
 
 

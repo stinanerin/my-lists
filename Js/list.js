@@ -1,6 +1,6 @@
 const createNewListBtn = document.querySelector("#createNewList");
 
-//test array
+//test array . hämta från local storage
 let localStorageArr = ["63eb95e613a30465c1e2de96", "63eb95e913a30465c1e2de97", "63eb95ef13a30465c1e2de98"]
 
 
