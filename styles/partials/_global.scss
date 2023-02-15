@@ -1,9 +1,7 @@
-
 /* --------------------------- RADERA ----------------------------*/
 
 h1 {
-
-    font-family: $heading-primary;
+  font-family: $heading-primary;
 }
 
 /* Stödhjul */
@@ -21,34 +19,74 @@ h1 {
 /* ---- Förslag globala komponenter som jag tror är återanvändnignsbara - eller blir det om projektet växer-------*/
 
 .link {
-    color: $link;
-    &:hover {
-        cursor: pointer;
-    }
+  color: $link;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.fa-brands, .fa-solid {
-    color: $p-black;
+.fa-brands,
+.fa-solid {
+  color: $p-black;
 }
 
 .separator {
-    width: 100%;
-    display: block;
-    border-top: 1px solid $p-black;
+  width: 100%;
+  display: block;
+  border-top: 1px solid $p-black;
 }
 
 /* Röda knapparna */
 .btn {
-    border-radius: 10px;
-    background-color: $btn;
-    padding: 10px 68px;
-    color: $p-white;
+  border-radius: 10px;
+  background-color: $btn;
+  padding: 10px 68px;
+  color: $p-white;
 }
 
 /*  */
 .input {
-    border-radius: 20px;
-    padding: 24px 10px;
+  border-radius: 20px;
+  padding: 24px 10px;
 }
 
+/* klasser för accordion. bör ses över*/
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+}
 
+.text-wrapper {
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.list-accordion {
+  background: $grey-300;
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 50rem;
+}
+
+.list-accordian-open {
+  background-color: $p-white;
+  max-width: 50rem;
+
+  padding: 1rem;
+  /* border: 1px solid; */
+}
+
+.hidden {
+  display: none;
+}
+
+.image {
+  background-color: $grey-400;
+  height: 100px;
+  width: 100px;
+  border-radius: 1rem;
+}
