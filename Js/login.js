@@ -61,17 +61,16 @@
     const registerUserLink  = document.querySelector('#registerUserLink');
 
     registerUserLink.addEventListener("click", () => {
+
         const registerFormContainer = document.querySelector(".register-form-container");
         const loginUserFormContainer = document.querySelector('.log-in-form-container');
 
-        loginUserFormContainer.style.display = "none"
+        loginUserFormContainer.classList.toggle("hide");
 
-        registerFormContainer.innerHTML = `
+        registerFormContainer.classList.toggle("hide");
         
-        `
-        registerUserForm = document.querySelector('#registerUser');
-        console.log(registerUserForm);
-
+        
+        
     })
     
     //--------------------------------------------REGISTER NEW USER---------------------------------------------------
@@ -80,6 +79,9 @@
     // Om user ej existerar i local - assigna tom arr till userArr
     let userArr = localStorage.getItem("registeredUsers") ? JSON.parse(localStorage.getItem("registeredUsers")) : [];
     console.log("userArr", userArr);
+    
+    registerUserForm = document.querySelector('#registerUser');
+    console.log(registerUserForm);
     
     // Submit-EventListener på form
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
