@@ -1,8 +1,8 @@
 //CSS-layers
 // Då VSC inte stödjer syntaxen fultl ut än så kommer det finnas två error i problems-taben
-    // "unknown at rule @layer" x antalet layers vi använder i scss-fil & den autogenererade style.css filen
-    // "semicolon expected"
-    // "{ expected"
+// "unknown at rule @layer" x antalet layers vi använder i scss-fil & den autogenererade style.css filen
+// "semicolon expected"
+// "{ expected"
 
 // Vi lägger prioritering för lager av specificity - Från lägst till högst specificitet
 @layer bootstrap, special-styles;
@@ -13,13 +13,13 @@ layer(bootstrap);
 
 // Vi importerar scss-filerna , där variabler och mixins importeras först så de finns tillgängliga i alla andra filer
 @layer special-styles {
-    @import "./partials/variables";
-    @import "./partials/mixins";
-    @import "./partials/global";
-    @import "./partials/header";
-    @import "./partials/buttons";
-    @import "./partials/login";
-    @import "./partials/profile";
-    @import "./partials/rec-products";
-    
-};
+  @import "./partials/variables";
+  @import "./partials/mixins";
+  @import "./partials/global";
+  @import "./partials/header";
+  @import "./partials/buttons";
+  @import "./partials/login";
+  @import "./partials/profile";
+  @import "./partials/rec-products";
+  @import "./partials/articles";
+} ;

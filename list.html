@@ -30,12 +30,8 @@
     <script src="/Js/rec.js" defer></script>
     <script src="/Js/list.js" defer></script>
     <script src="/Js/local-array.js" defer></script>
-
-    
-    
   </head>
   <body>
-
     <header>
       <div class="header"></div>
       <div class="header">
@@ -47,26 +43,47 @@
         <a href="account.html">
           <i class="fa-regular fa-user header"></i>
         </a>
-          <i class="fa-solid fa-arrow-right-from-bracket header" id="logoutBtn"></i>
+        <i
+          class="fa-solid fa-arrow-right-from-bracket header"
+          id="logoutBtn"
+        ></i>
       </div>
     </header>
-    
+
     <main>
-      
       <button id="createNewList" class="btn">+ Create New List</button>
-        
-        <ul class="recommendationUl">
-            <h2 class="subheading">Recommended for you</h2>
 
-                <div class="row gy-5" id="recProdContainer">
-                    
-                  <!-- Här renderas "recommended products" som li-taggar  -->
-                    
-                </div>
-        </ul>
+      <ul class="recommendationUl">
+        <h2 class="subheading">Recommended for you</h2>
 
+        <div class="row gy-5" id="recProdContainer">
+          <!-- Här renderas "recommended products" som li-taggar  -->
+        </div>
+      </ul>
     </main>
+    <!-- struktur för artiklar -->
+    <div class="producteItem">
+      <div class="iconTitleWrapper">
+        <div class="itemIcon">
+          <i class="fa-solid fa-bread-slice" alt="Bread"></i>
+        </div>
+        <h4 class="titleItems">Bread</h4>
+      </div>
 
-
+      <div class="counterCheckboxWrapper">
+        <div class="counter">
+          <i class="fa-solid fa-plus"></i>
+          <span>1</span>
+          <!-- span för framtida ökning eller minskning av produkt-->
+          <i class="fa-solid fa-minus"></i>
+        </div>
+        <input
+          type="checkbox"
+          name="doneCheckbox"
+          class="doneCheckbox"
+          id="doneCheckbox"
+        />
+      </div>
+    </div>
   </body>
 </html>
