@@ -2,6 +2,7 @@
 (function() {
     const recProductsList = document.querySelector("#recProdContainer")
 
+
     //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
     
     const getProducts = async function() {

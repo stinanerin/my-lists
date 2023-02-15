@@ -1,3 +1,12 @@
+/* body */
+body{
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
 /* styling för profilbild och centrerat innehåll */
 .profile{
     display: flex;
@@ -29,4 +38,10 @@
     margin-right: 16px;     
 } 
   
-
+/* footer */
+footer {
+    position: sticky;
+    top: 100%;
+    border-top-right-radius: 5%;
+    border-top-left-radius: 5%;
+}

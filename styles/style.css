@@ -10,6 +10,7 @@
   /* --------------------------- RADERA ----------------------------*/
   h1, h2, h3, h4 {
     font-family: "Italiana", serif;
+    margin: 0;
   }
   /* Stödhjul */
   /* --------------------------- RADERA: SLUT----------------------------*/
@@ -29,7 +30,7 @@
     display: none;
   }
   .fa-brands,
-.fa-solid {
+  .fa-solid {
     color: #000;
   }
   .separator {
@@ -87,6 +88,31 @@
     border: 1px solid;
     border-radius: 1rem;
   }
+  header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: no-wrap;
+    background-color: #D9D9D9;
+    padding: 32px 16px;
+  }
+  header div.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-wrap: no-wrap;
+    min-width: 20%;
+  }
+  header div.header a {
+    text-decoration: none;
+    color: black;
+  }
+  header div.header i.header {
+    margin: 4px;
+    cursor: pointer;
+  }
   .login-main {
     background-color: #D9D9D9;
     border-radius: 50px 50px 0 0;
@@ -99,6 +125,12 @@
   }
   .login-main p {
     margin: 0;
+  }
+  /* body */
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   /* styling för profilbild och centrerat innehåll */
   .profile {
@@ -138,3 +170,11 @@
     cursor: pointer;
   }
 }/*# sourceMappingURL=style.css.map */
+
+/* footer */
+footer {
+  position: sticky;
+  top: 100%;
+  border-top-right-radius: 5%;
+  border-top-left-radius: 5%;
+}

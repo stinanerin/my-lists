@@ -32,10 +32,19 @@
   </head>
   <body>
 
-    <!-- la till mapp för iconer och en div för att lägga in loggut img -->
+    <header>
+      <div class="header"></div>
+      <div class="header"></div>
+      <div class="header">
+          <i class="fa-solid fa-arrow-right-from-bracket header" id="logoutBtn"></i>
+      </div>
+    </header>
 
-    <div class="loggOut"> 
-        <img src="icons/logout (1).svg" alt="loggout icon"> 
+    <!-- la till mapp för iconer och en div för att lägga in loggut img -->
+    <div class="loggOut">
+      <a id="logoutBtn" href="index.html" aria-label="Log out button">
+        <img src="icons/logout (1).svg" alt="Log out icon" />
+      </a>
     </div>
     <!-- Här skapar jag en exempel bild med img som sedan ska vara fil så du kan ladda upp bild och en p-tagg för namn och eftenamn -->
     <div class="profile">
@@ -65,8 +74,11 @@
           id="listCollapse"
           class="accordion-collapse collapse"
           aria-labelledby="listHeading"
-          data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">list</div>
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <a href="list.html">List</a>
+          </div>
         </div>
       </div>
 
@@ -148,5 +160,13 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
     ></script>
+        <!-- footer-->
+        <footer class="bg-secondary py-5 mt-5">
+            <div class="container text-light text-center">
+                <i class="fas fa-home"></i>
+                <p class="display-5 mb-3"> Lorem ipsum dolor sit amet.</p>
+                <small class="text-white-50"> &copy; Copyright by Team-D. All rights reserved</small>
+            </div>
+        </footer>
   </body>
 </html>

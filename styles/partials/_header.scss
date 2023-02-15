@@ -1,0 +1,17 @@
+header {
+    @include flex (row, space-between, center);
+    background-color: $grey-300;
+    padding: 32px 16px;
+        div.header {
+            @include flex (row, flex-end, flex-start);
+            min-width: 20%;
+                a {
+                    text-decoration: none;
+                    color: black;
+                }
+                i.header {
+                    margin: 4px;
+                    cursor: pointer;
+                }
+        }
+}
