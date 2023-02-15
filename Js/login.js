@@ -168,19 +168,7 @@
                
     }
 
-    //-------------------------------------------------LOG OUT---------------------------------------------------
-
-    const logoutBtn = document.querySelector("#logoutBtn");
-    console.log(logoutBtn);
-
-    logoutBtn && logoutBtn.addEventListener('click', (e) => {
-        e.preventDefault();
     
-        localStorage.removeItem("signedInUser");
-    
-        //todo! Byt vy till inloggnignsvyn
-    
-    });
 
 })()
 
