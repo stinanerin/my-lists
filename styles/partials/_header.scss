@@ -1,0 +1,10 @@
+header.header {
+    @include flex (row, space-between, center);
+    background-color: red;
+    height: 200px;
+        div.blue {
+            height: 100px;
+            width: 100px;
+            background: blue;
+        }
+}
