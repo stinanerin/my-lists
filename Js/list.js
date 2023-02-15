@@ -19,6 +19,11 @@ async function createList() {
     });
     const { list } = await res.json();
     localStorageArr.push(list._id);
+    let namn = list.listname;
+    let listLength = list.itemList.length;
+
+
+    createListAccordion(namn, listLength);
 
 }
 
