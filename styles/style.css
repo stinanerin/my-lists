@@ -29,7 +29,7 @@
     display: none;
   }
   .fa-brands,
-.fa-solid {
+  .fa-solid {
     color: #000;
   }
   .separator {
@@ -86,6 +86,25 @@
   .arrow-btn {
     border: 1px solid;
     border-radius: 1rem;
+  }
+  header.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: no-wrap;
+    background-color: red;
+    height: 200px;
+  }
+  header.header div.blue {
+    height: 100px;
+    width: 100px;
+    background: blue;
+  }
+  header.header div.green {
+    height: 100px;
+    width: 100px;
+    background: green;
   }
   .login-main {
     background-color: #D9D9D9;
