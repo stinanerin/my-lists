@@ -85,6 +85,7 @@ function createListAccordion(listname, listlength) {
     divRecomendationBar.classList.add("row", "gy-5");
     divRecomendationBar.setAttribute("id", "recProdContainer");
 
+
     recommendationUL.append(h2, divRecomendationBar)
 
     toggleBtn.addEventListener("click", toggleArrow);
