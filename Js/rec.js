@@ -50,21 +50,24 @@
                 </li>
             </div>
             `
+            // Initerar en addItem funktion för varje knapp så de är sammanlänkade i JS mototrns minne(tror det är så det funkar)
             addItem()
         })
 
         // Flytta ut sen
 
-        
-        
     }
-    
+    //--------------------------------------------------- Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista  ---------------------------------------------------
+
+    //! Ej klar - newItem-funktion funegrar ej
+    //! Samt hur ska vi peka på ikon + titel från den klickade li-taggen
     function addItem() {
         const allRecProducts = document.querySelectorAll(".rec-product");
         console.log(allRecProducts);
 
         allRecProducts.forEach((item, index) => {
             item.addEventListener("click", () => {
+                newItem()
 
                 console.log("clicked");
                 console.log(item);
@@ -73,12 +76,80 @@
             })
         })
 
+    }
+
+    //--------------------------------------------------- API funktion som lägger till klickat item i lista  ---------------------------------------------------
+
+    //! OBS! Denna del funkar ej
+    async function newItem() {
+        
+        console.log("we are here");
+
+        const res = await fetch(
+          `https://nackademin-item-tracker.herokuapp.com/lists/63eb9b5813a30465c1e2de99/items`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: "bacon",
+                // image: icon, - Kom på en lösning
+                qty: 1,
+                checked: false
+            }),
+          }
+        );
+        //! Förstår ej varjför måste skriva så { }
+        const { list } = await res.json();
+        
+    }
+
+    // --------------------------------------------------- Skapar ny lista från input-fält ---------------------------------------------------
+
+    const createListBtn = document.querySelector('#createList');
+    console.log(createListBtn);
+
+    // Skapa en ny lista utifrån ett listnamn
+    async function createList(name) {
+        const listname = name;
+
+        const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                listname: listname,
+            }),
+        });
+        //! Varför skriver man så med { }
+        const { list } = await res.json();
+
+        // ID:et till den nyss skapade listan --> vill putta in i local storage
+        console.log(list._id);
+
+       
+    
+        
+
+
 
     }
 
+    // Knapp som kör funktionen "skapa lista"
+    createListBtn.addEventListener("click", () => {
+        let newListName  = document.querySelector('#newListName').value;
+        console.log(newListName);
+
+        createList(newListName);
+
+    });
+    
 
 
 
+ //! --------------------------------------------------- SLUT: Skapar ny lista från input-fält ---------------------------------------------------
 
 
 
