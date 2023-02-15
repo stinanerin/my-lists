@@ -20,6 +20,9 @@
   .link:hover {
     cursor: pointer;
   }
+  .hide {
+    display: none;
+  }
   .fa-brands,
 .fa-solid {
     color: #000;
