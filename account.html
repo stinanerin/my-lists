@@ -41,9 +41,10 @@
     </header>
 
     <!-- la till mapp för iconer och en div för att lägga in loggut img -->
-
-    <div class="loggOut"> 
-        <img src="icons/logout (1).svg" alt="loggout icon"> 
+    <div class="loggOut">
+      <a id="logoutBtn" href="index.html" aria-label="Log out button">
+        <img src="icons/logout (1).svg" alt="Log out icon" />
+      </a>
     </div>
     <!-- Här skapar jag en exempel bild med img som sedan ska vara fil så du kan ladda upp bild och en p-tagg för namn och eftenamn -->
     <div class="profile">
@@ -73,8 +74,11 @@
           id="listCollapse"
           class="accordion-collapse collapse"
           aria-labelledby="listHeading"
-          data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">list</div>
+          data-bs-parent="#accordionFlushExample"
+        >
+          <div class="accordion-body">
+            <a href="list.html">List</a>
+          </div>
         </div>
       </div>
 
