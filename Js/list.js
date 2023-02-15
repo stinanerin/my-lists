@@ -27,6 +27,7 @@ async function createList() {
     console.log(localStorageArr);
 }
 
+
 // funktion som hämtar en lista från API utifrån ett ID
 async function getListByID(listId) {
     let ID = listId
@@ -67,11 +68,26 @@ function createListAccordion(listname, listlength) {
     div.append(toggleBtn);
     document.body.append(toggleDiv);
     let ul = document.createElement("ul");
+
+
+    // recommendation bar
+    let recommendationUL = document.createElement("ul");
+    recommendationUL.classList.add("recommendationUl")
+    
     ul.classList.add("itemList");
-    toggleDiv.append(ul);
+    toggleDiv.append(recommendationUL, ul);
 
-    toggleBtn.addEventListener("click", toggleArrow)
+    let h2 = document.createElement("h2");
+    h2.classList.add("subheading")
+    h2.innerText = "Recommended for you";
 
+    let divRecomendationBar = document.createElement("div");
+    divRecomendationBar.classList.add("row", "gy-5");
+    divRecomendationBar.setAttribute("id", "recProdContainer");
+
+    recommendationUL.append(h2, divRecomendationBar)
+
+    toggleBtn.addEventListener("click", toggleArrow);
 }
 
 
