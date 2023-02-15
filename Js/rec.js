@@ -1,6 +1,4 @@
-
-(function() {
-    const recProductsList = document.querySelector("#recProdContainer")
+const recProductsList = document.querySelector("#recProdContainer")
 
 
     //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
@@ -106,17 +104,3 @@
         const { list } = await res.json();
         
     }
-
-
-    
-
-
-
-
-
-
-
-
-
-})()
-
