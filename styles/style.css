@@ -10,6 +10,7 @@
   /* --------------------------- RADERA ----------------------------*/
   h1, h2, h3, h4 {
     font-family: "Italiana", serif;
+    margin: 0;
   }
   /* Stödhjul */
   /* --------------------------- RADERA: SLUT----------------------------*/
@@ -87,24 +88,30 @@
     border: 1px solid;
     border-radius: 1rem;
   }
-  header.header {
+  header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: no-wrap;
-    background-color: red;
-    height: 200px;
+    background-color: #D9D9D9;
+    padding: 32px 16px;
   }
-  header.header div.blue {
-    height: 100px;
-    width: 100px;
-    background: blue;
+  header div.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-wrap: no-wrap;
+    min-width: 20%;
   }
-  header.header div.green {
-    height: 100px;
-    width: 100px;
-    background: green;
+  header div.header a {
+    text-decoration: none;
+    color: black;
+  }
+  header div.header i.header {
+    margin: 4px;
+    cursor: pointer;
   }
   .login-main {
     background-color: #D9D9D9;
