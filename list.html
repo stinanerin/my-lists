@@ -1,36 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My lists</title>
     <!--  CSS -->
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css" />
 
     <!-- Ikoner -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- Fonter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italiana&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italiana&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- JS: KOM IHÅG! DEFER -->
+    <script src="/Js/logout.js" defer></script>
+    <script src="/Js/rec.js" defer></script>
+    <script src="/Js/list.js" defer></script>
 
     
-</head>
-<body>
-    <header>
-        <h1>Shopping List</h1>
+    
+  </head>
+  <body>
 
-        
+    <header>
+      <h1>Shopping List</h1>
+    
     </header>
+    
     <main>
+      
+      <button id="createNewList" class="btn">+ Create New List</button>
         
+        <ul class="recommendationUl">
+            <h2 class="subheading">Recommended for you</h2>
+
+                <div class="row gy-5" id="recProdContainer">
+                    
+                    <!-- Här renderas "recommended products" som li-taggar -->
+                    
+                </div>
+        </ul>
+
     </main>
 
 
-    
-</body>
+  </body>
 </html>

@@ -17,18 +17,135 @@
     <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italiana&display=swap" rel="stylesheet">
     
     <!-- JS: KOM IHÅG! DEFER -->
-    
-        <script defer src="/Js/index.js"></script>
+    <script src="/Js/index.js" defer></script>
+    <script src="/Js/login.js" defer></script>
+    <script src="/Js/logout.js" defer></script>
 
 
 </head>
 <body>
-    <header>
-        <h1>Shopping List</h1>
-        
-    </header>
+    <!--! Bör denna vara i header -->
+    <div>
+        <img class="img-fluid" src="/images/list.jpg" alt="">           
+    </div>
+
     <main>
+
+        <div  class="login-main pt-5">
+
+            <div class="log-in-form-container ">
+                <!-- Form -->
+
+
+                <form class="container" id="loginForm">
+                    
+                    <div class="row gy-3 ">
+                        <div class="form-group ">
+                            <input class="form-control input" id="loginEmail" type="email" placeholder="Enter email" required/>
+                        </div>
+                        <div class="form-group ">
+                            <input class="form-control input" id="loginPWD" type="password" placeholder="Password" required/>
+                        </div>
+                        <p>Forgot password?</p>
+                    </div>
+
+
+                    <div class="d-flex justify-content-center">
+                        <button class="btn" type="submit">Sign in</button>
+                    </div>
+            
+                </form>
+                
+                <div class="container">
+                    <div class="container">
+
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <span class="separator"></span>
+                            </div>
+
+                            <div class="col-auto text-center">
+                                <p>Or continue with</p>
+                            </div>
+
+                            <div class="col-4 ">
+                                <span class="separator"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Placeholder ikoner -->
+
+                    <div class="container">
+                        <div class="row gy-5">
+                            <div class="col-4 text-center">
+                                <a href="https://www.facebook.com/" aria-label="Log in with Facebook">
+                                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                                </a>              </div>
+                            <div class="col-4 text-center">
+                                <a href="https://www.google.com/" aria-label="Log in with Google">
+                                    <i class="fa-brands fa-google" aria-hidden="true"></i>
+                                </a>              </div>
+                            <div class="col-4 text-center">
+                                <a href="https://www.apple.com/se/" aria-label="Log in with Apple">
+                                    <i class="fa-brands fa-apple" aria-hidden="true"></i>
+                                </a>              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p>Not registered? <span class="link" id="registerUserLink">Register now</span></p>
+                    </div>
+                
+                </div>
+            
+            </div>
+
+            <div class="register-form-container hide">
+
+                <form class="container" id="registerUser">
+                    <!--! Ta bort -->
+                    <h2>Register</h2>
         
+                    <div class="row gy-3">
+                        <!-- Name-->
+                        <div class="form-group">
+                            <input class="form-control input" id="FLName" type="text" placeholder="Full Name" required/>
+                        </div>
+                        <!-- Email-->
+                        <div class="form-group">
+                            <input class="form-control input" id="email" type="email" placeholder="Email" required/>
+                        </div>
+                        <!-- Password-->
+                        <div class="form-group">
+                            <input class="form-control input" id="PWD" type="password" placeholder="********" required/>
+                        </div>
+                        <!-- Conf. password-->
+                        <div class="form-group">
+                            <input class="form-control input" id="confPWD" type="password" placeholder="Confirm Password" required/>
+                        </div>
+                        <!-- Submit btn-->
+                        <div class="d-flex justify-content-center">
+                            <button class="btn" type="submit">Sign up</button>
+                        </div>
+                    </div>
+        
+                </form>
+            
+            </div>
+            
+            <!--! Ska bort sen - för att demonstrera log out funktionalitet från local storage-->
+            <div class="container mt-5">
+                <button id="logoutBtn" class="btn">Log out</button>
+                <a href="list.html">Take me to my lists</a>
+            </div>
+
+
+        </div>
+
+
+
     </main>
 
 </body>
