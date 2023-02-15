@@ -1,6 +1,6 @@
 /* --------------------------- RADERA ----------------------------*/
 
-h1 {
+h1, h2, h3, h4 {
   font-family: $heading-primary;
 }
 
@@ -88,5 +88,10 @@ h1 {
   background-color: $grey-400;
   height: 100px;
   width: 100px;
+  border-radius: 1rem;
+}
+
+.arrow-btn {
+  border: 1px solid;
   border-radius: 1rem;
 }

@@ -8,7 +8,7 @@
       }
   */
   /* --------------------------- RADERA ----------------------------*/
-  h1 {
+  h1, h2, h3, h4 {
     font-family: "Italiana", serif;
   }
   /* Stödhjul */
@@ -73,6 +73,10 @@
     background-color: hsla(0deg, 0%, 41%, 0.35);
     height: 100px;
     width: 100px;
+    border-radius: 1rem;
+  }
+  .arrow-btn {
+    border: 1px solid;
     border-radius: 1rem;
   }
   .login-main {

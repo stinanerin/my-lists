@@ -58,7 +58,7 @@ function createListAccordion(listname, listlength) {
     let toggleDiv = document.createElement("div");
     toggleDiv.classList.add("list-accordian-open", "hidden");
     toggleBtn.innerHTML = `toggle`;
-    // toggleBtn.classList.add("invisible", "list-arrow")
+    toggleBtn.classList.add("arrow-btn")
     div.append(toggleBtn);
     document.body.append(toggleDiv);
     let ul = document.createElement("ul");
