@@ -101,6 +101,11 @@
     width: 100px;
     background: blue;
   }
+  header.header div.green {
+    height: 100px;
+    width: 100px;
+    background: green;
+  }
   .login-main {
     background-color: #D9D9D9;
     border-radius: 50px 50px 0 0;
