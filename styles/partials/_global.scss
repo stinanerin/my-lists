@@ -21,7 +21,7 @@ h1, h2, h3, h4 {
 
 //Kommer ej på bättre namn >:-(
 .subheading {
-
+  
     font-family: $heading-secondary;
     font-size: 10px;
 
@@ -46,6 +46,7 @@ h1, h2, h3, h4 {
 .fa-brands,
 .fa-solid {
   color: $p-black;
+  pointer-events: none;
 }
 
 .separator {
@@ -69,32 +70,13 @@ h1, h2, h3, h4 {
 }
 
 /* klasser för accordion. bör ses över*/
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-.flex-row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.text-wrapper {
-  flex-grow: 1;
-  justify-content: space-between;
-}
 
 .list-accordion {
   background: $grey-300;
-  gap: 1rem;
-  padding: 1rem;
-  max-width: 50rem;
 }
 
 .list-accordian-open {
   background-color: $p-white;
-  max-width: 50rem;
-
-  padding: 1rem;
   /* border: 1px solid; */
 }
 
@@ -103,13 +85,8 @@ h1, h2, h3, h4 {
 }
 
 .image {
-  background-color: $grey-400;
   height: 100px;
   width: 100px;
   border-radius: 1rem;
 }
 
-.arrow-btn {
-  border: 1px solid;
-  border-radius: 1rem;
-}

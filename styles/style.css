@@ -32,6 +32,7 @@
   .fa-brands,
   .fa-solid {
     color: #000;
+    pointer-events: none;
   }
   .separator {
     width: 100%;
@@ -51,41 +52,19 @@
     padding: 24px 10px;
   }
   /* klasser för accordion. bör ses över*/
-  .flex-column {
-    display: flex;
-    flex-direction: column;
-  }
-  .flex-row {
-    display: flex;
-    justify-content: space-between;
-  }
-  .text-wrapper {
-    flex-grow: 1;
-    justify-content: space-between;
-  }
   .list-accordion {
     background: #D9D9D9;
-    gap: 1rem;
-    padding: 1rem;
-    max-width: 50rem;
   }
   .list-accordian-open {
     background-color: #fff;
-    max-width: 50rem;
-    padding: 1rem;
     /* border: 1px solid; */
   }
   .hidden {
     display: none;
   }
   .image {
-    background-color: hsla(0deg, 0%, 41%, 0.35);
     height: 100px;
     width: 100px;
-    border-radius: 1rem;
-  }
-  .arrow-btn {
-    border: 1px solid;
     border-radius: 1rem;
   }
   header {
@@ -160,6 +139,13 @@
     align-items: end;
     margin-right: 16px;
   }
+  /* footer */
+  footer {
+    position: sticky;
+    top: 100%;
+    border-top-right-radius: 5%;
+    border-top-left-radius: 5%;
+  }
   .recommendationUl {
     padding-left: 0;
   }
@@ -170,11 +156,3 @@
     cursor: pointer;
   }
 }/*# sourceMappingURL=style.css.map */
-
-/* footer */
-footer {
-  position: sticky;
-  top: 100%;
-  border-top-right-radius: 5%;
-  border-top-left-radius: 5%;
-}

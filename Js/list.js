@@ -62,50 +62,70 @@ localStorageArr.forEach(id => {
 function createListAccordion(listname, listlength) {
 
     let div = document.createElement("div");
-    div.classList.add("list-accordion", "flex-row");
+    div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
     document.body.append(div);
-    let htmlString = `<div class="image"></div><div class="flex-column text-wrapper"><div class="flex-row"><div class="flex-column"><h2>${listname}</h2><span>${listlength} items</span></div><i class="fa-regular fa-trash-can"></div>`
-    div.innerHTML = htmlString;
+
+    let image = document.createElement("img");
+    image.setAttribute("class", "img-fluid image");
+    image.setAttribute("src", "/images/giorgio-trovato-fczCr7MdE7U-unsplash.jpg")
+
+    let textWrapper = document.createElement("div");
+    textWrapper.classList.add("d-flex", "flex-grow-1", "ms-3", "justify-content-between");
+
+    div.append(image, textWrapper);
+
+    let divText = document.createElement("div");
+    textWrapper.append(divText);
+    divText.innerHTML = `<h2>${listname}</h2><p class="text-secondary">${listlength} items</p>`;
+
+    let buttonDiv = document.createElement("div");
+    buttonDiv.classList.add("d-flex", "flex-column", "justify-content-between")
+    div.append(buttonDiv);
+
+    let trashBtn = document.createElement("button");
+    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent")
+    trashBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
+    buttonDiv.append(trashBtn);
+
     let toggleBtn = document.createElement("button");
+    toggleBtn.classList.add("align-self-end", "rounded", "border", "border-secondary")
+    toggleBtn.innerHTML = `<i class="fa-solid fa-angle-down"></i>`;
+    buttonDiv.append(toggleBtn);
+
     let toggleDiv = document.createElement("div");
-    toggleDiv.classList.add("list-accordian-open", "hidden");
-    toggleBtn.innerHTML = `toggle`;
-    toggleBtn.classList.add("arrow-btn")
-    div.append(toggleBtn);
+    toggleDiv.classList.add("list-accordian-open", "hidden", "p-3", "shadow");
     document.body.append(toggleDiv);
-    let ul = document.createElement("ul");
+
+    toggleBtn.addEventListener("click", toggleArrow);
 
 
-    // recommendation bar
+    //recomendationBar
     let recommendationUL = document.createElement("ul");
     recommendationUL.classList.add("recommendationUl")
-    
-    ul.classList.add("itemList");
-    toggleDiv.append(recommendationUL, ul);
+
+    toggleDiv.append(recommendationUL);
 
     let h2 = document.createElement("h2");
     h2.classList.add("subheading")
     h2.innerText = "Recommended for you";
 
     let divRecomendationBar = document.createElement("div");
-    divRecomendationBar.classList.add("row", "gy-5");
-    divRecomendationBar.setAttribute("id", "recProdContainer");
-
+    divRecomendationBar.classList.add("row", "gy-5", "recProdContainer");
 
     recommendationUL.append(h2, divRecomendationBar)
 
-    toggleBtn.addEventListener("click", toggleArrow);
 }
 
 
-// Funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
+
+//funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
-    let toggleDiv = event.target.parentElement.nextSibling;
+    let toggleDiv = event.target.parentElement.parentElement.nextSibling;
     toggleDiv.classList.toggle("hidden")
 }
 
 createNewListBtn.addEventListener("click", (e) => {
-    
+
     createList().then(id => {
 
         // Anropar funktionen som uppdaterar local-storage-arrayen med användarens precis skapade list-id
