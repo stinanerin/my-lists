@@ -19,6 +19,7 @@ const recProductsList = document.querySelector("#recProdContainer");
         // .json() retunerar ett Promise - reject / resolved - Går ej att spara direkt i en variabel
             // Genom await-keyword inväntar att Promise-objektet blivit resolved
             // Lagrar sen i data-variabeln
+
         const data = await response.json();
         console.log(data);
     
@@ -32,6 +33,8 @@ const recProductsList = document.querySelector("#recProdContainer");
     getProducts()
         // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion drawRecProd(data) som vi skickar med vår produkt-utbud arr i
         .then(data => drawRecProd(data))
+        //! Har bytt ut funktion för test
+        // .then(data => createListAccordion(data))
         //? Annars error meddelande - ska jag ta bort?
         .catch(err => console.log("Rejected:", err.message));
 
@@ -78,10 +81,11 @@ const recProductsList = document.querySelector("#recProdContainer");
 
     //--------------------------------------------------- API funktion som lägger till klickat item i lista  ---------------------------------------------------
 
-    // newItem är en asynkron funktion som tar emot användarens klickade item, med titel och ikon och sparar det i API:et för at tkunna renderas senare
+    // newItem() är en asynkron funktion som tar emot användarens klickade item, med titel och ikon och sparar det i API:et för at tkunna renderas senare
     async function newItem(title, icon) {
         
-        console.log("we are here");
+        console.log("we are here"); 
+        
         
         // Denna funktion lägger till varor i API
         // Beroende på vilken knapp i recommended bar användaren klickat på

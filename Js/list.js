@@ -1,7 +1,12 @@
 const createNewListBtn = document.querySelector("#createNewList");
 
 //test array . hämta från local storage
-let localStorageArr = ["63eb95e613a30465c1e2de96", "63eb95e913a30465c1e2de97", "63eb95ef13a30465c1e2de98"]
+// let localStorageArr = ["63eb95e613a30465c1e2de96", "63eb95e913a30465c1e2de97", "63eb95ef13a30465c1e2de98"];
+
+//! hejs tin du kanske vill ändra detta med sofia
+let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.getItem("signedInUser")):[];
+
+const sigUserList = sigUser.userList;
 
 
 //skapar en lista och pushar in list-id i tillfälligt substitut för localstorage array
@@ -28,9 +33,7 @@ async function createList() {
     id = list._id
     console.log(id);
 
-
     return id
-
 }
 
 
@@ -39,7 +42,7 @@ async function getListByID(listId) {
     let ID = listId
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
     const data = await res.json();
-    console.log(data);
+    console.log("här:", data);
 
     let listname = data.listname;
 
@@ -50,16 +53,23 @@ async function getListByID(listId) {
     createListAccordion(listname, listLength);
 }
 
+function renderLocalStorageListArr(arr) {
 
-// Anropar getListByID för varje id i den array som senare 
-// Kommer vara i local storage (listor kopplade till inloggad användare)
-localStorageArr.forEach(id => {
-    getListByID(id);
-});
+    if(arr) {
+        // Anropar getListByID för varje id i den array som senare 
+        // Kommer vara i local storage (listor kopplade till inloggad användare)
+        arr.forEach(id => {
+            getListByID(id);
+        });
+        
+        console.log("sigUserList", arr);
+    }
 
+}
+renderLocalStorageListArr(sigUserList)
 
 // Funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
-function createListAccordion(listname, listlength) {
+function createListAccordion(listname, listlength, arr) {
 
     let div = document.createElement("div");
     div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
@@ -114,8 +124,29 @@ function createListAccordion(listname, listlength) {
 
     recommendationUL.append(h2, divRecomendationBar)
 
-}
 
+    //!---------------Nytt 
+//     function drawRecProd(arr) {
+//        console.log("hej")
+//        // Här renderas varje item från vårt produktutbud array
+//        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
+//        arr.forEach((elem) => {
+//            divRecomendationBar.innerHTML += `
+//            <div class="col-auto text-center ">
+//                <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
+//                    <i class="${elem.image}"></i>
+//                    <h3 class="subheading">${elem.title}</h3>
+//                </li>
+//            </div>
+//            `
+//        })
+//        // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
+//        addItem()
+//    }
+
+
+    
+}
 
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
