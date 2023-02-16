@@ -5,7 +5,7 @@
 const logoutBtn = document.querySelector("#logoutBtn");
 console.log(logoutBtn);
 
-logoutBtn.addEventListener('click', (e) => {
+logoutBtn && logoutBtn.addEventListener('click', (e) => {
     console.log("we are here");
 
     localStorage.removeItem("signedInUser");
