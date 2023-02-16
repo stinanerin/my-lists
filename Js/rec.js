@@ -1,5 +1,4 @@
-const recProductsList = document.querySelector("#recProdContainer")
-
+const recProductsList = document.querySelector("#recProdContainer");
 
     //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
     
@@ -31,76 +30,86 @@ const recProductsList = document.querySelector("#recProdContainer")
         // Vi behöver .then();
     
     getProducts()
-        // Om datan kan levereras ritar vi ut produkterna i DOM:en 
+        // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion drawRecProd(data) som vi skickar med vår produkt-utbud arr i
         .then(data => drawRecProd(data))
+        //? Annars error meddelande - ska jag ta bort?
         .catch(err => console.log("Rejected:", err.message));
 
     //--------------------------------------------------- Ritar ut products.json ---------------------------------------------------
 
     function drawRecProd(arr) {
 
+        // Här renderas varje item från vårt produktutbud array
+        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
         arr.forEach((elem) => {
             recProductsList.innerHTML += `
             <div class="col-auto text-center ">
-                <li class="rec-product">
+                <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
                     <i class="${elem.image}"></i>
                     <h3 class="subheading">${elem.title}</h3>
                 </li>
             </div>
             `
-            // Initerar en addItem funktion för varje knapp så de är sammanlänkade i JS mototrns minne(tror det är så det funkar)
-            addItem()
         })
-
-        // Flytta ut sen
-
+        // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
+        addItem()
     }
-    //--------------------------------------------------- Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista  ---------------------------------------------------
 
-    //! Ej klar - newItem-funktion funegrar ej
-    //! Samt hur ska vi peka på ikon + titel från den klickade li-taggen
+    //--------- Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ---------
+
     function addItem() {
+        console.log("Add listener")
+        // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
         const allRecProducts = document.querySelectorAll(".rec-product");
         // console.log(allRecProducts);
-
-        allRecProducts.forEach((item, index) => {
+        allRecProducts.forEach((item) => {
             item.addEventListener("click", () => {
-                newItem()
-                // Här tänker jag att vi kör funktion som lägger till ny product i api:et men ni kan ändra
 
-                console.log("clicked");
-                console.log(item);
-                console.log(index);
+                // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
+                // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
+                newItem(item.dataset.title, item.dataset.icon)
+
+                // Här console-loggas vilket item anv. klickat på 
+                console.log(item.dataset.title);
 
             })
         })
-
     }
 
     //--------------------------------------------------- API funktion som lägger till klickat item i lista  ---------------------------------------------------
 
-    //! OBS! Denna del funkar ej
-    async function newItem() {
+    // newItem är en asynkron funktion som tar emot användarens klickade item, med titel och ikon och sparar det i API:et för at tkunna renderas senare
+    async function newItem(title, icon) {
         
         console.log("we are here");
         
-        //fetch() funkar ej
+        // Denna funktion lägger till varor i API
+        // Beroende på vilken knapp i recommended bar användaren klickat på
+            // `https://nackademin-item-tracker.herokuapp.com/lists/${id}/items`,
+
+        //todo! Här måste vi peka på anv specifika lista genom id
+       
         const res = await fetch(
-          `https://nackademin-item-tracker.herokuapp.com/lists/63eb9b5813a30465c1e2de99/items`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title: "bacon",
-                // image: icon, - Kom på en lösning
-                qty: 1,
-                checked: false
-            }),
-          }
+            `https://nackademin-item-tracker.herokuapp.com/lists/63eb95ef13a30465c1e2de98/items`,
+            {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    title: title,
+                    image: icon,
+                    qty: 1,
+                    checked: false
+                }),
+            }
         );
-        //! Förstår ej varjför måste skriva så { }
+
+        //! Förstår ej varför måste skriva så { list }
         const { list } = await res.json();
+
+        console.log(list);
+
+        console.log({ list });
         
     }
