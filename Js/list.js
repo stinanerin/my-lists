@@ -1,12 +1,9 @@
 const createNewListBtn = document.querySelector("#createNewList");
 
-//test array . hämta från local storage
-// let localStorageArr = ["63eb95e613a30465c1e2de96", "63eb95e913a30465c1e2de97", "63eb95ef13a30465c1e2de98"];
-
-//! hejs tin du kanske vill ändra detta med sofia
-let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.getItem("signedInUser")):[];
-
+//! Stina kom ihåg att ändra detta om du vill
+let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.getItem("signedInUser")): [] ;
 const sigUserList = sigUser.userList;
+//! Stina kom ihåg att ändra detta om du vill
 
 
 //skapar en lista och pushar in list-id i tillfälligt substitut för localstorage array
@@ -27,49 +24,69 @@ async function createList() {
 
     let namn = list.listname;
     let listLength = list.itemList.length;
-
-    createListAccordion(namn, listLength);
-
+    
     id = list._id
     console.log(id);
+
+    //! fundera på användning av id för hålla koll listor
+    createListAccordion(namn, listLength);
+
 
     return id
 }
 
 
 // Funktion som hämtar en lista från API utifrån ett ID
-async function getListByID(listId) {
+async function getListByID(listId, recProductList) {
     let ID = listId
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
     const data = await res.json();
+
     console.log("här:", data);
 
     let listname = data.listname;
 
     let listLength = data.itemList.length;
 
-
     // Funktion som skapar en accordion och displayar i browser
-    createListAccordion(listname, listLength);
+    
+    //! fundera på användning av id för hålla koll listor
+    console.log(recProductList);
+    createListAccordion(listname, listLength, recProductList);
+    
 }
 
-function renderLocalStorageListArr(arr) {
+function renderLocalStorageListArr(arr, recProductList) {
 
     if(arr) {
-        // Anropar getListByID för varje id i den array som senare 
-        // Kommer vara i local storage (listor kopplade till inloggad användare)
+        // Anropar getListByID för varje id i inloggade användarens array
         arr.forEach(id => {
-            getListByID(id);
+            getListByID(id, recProductList);
         });
         
         console.log("sigUserList", arr);
     }
 
 }
-renderLocalStorageListArr(sigUserList)
+
+getProducts()
+// Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion drawRecProd(data) som vi skickar med vår produkt-utbud arr i
+// .then(data => drawRecProd(data))
+//! Har bytt ut funktion för test
+.then((data) => { 
+    let listname = "Hej Listname";
+    // console.log(data.listname);
+    let length = 0;
+    createListAccordion(listname, length, data);
+    renderLocalStorageListArr(sigUserList, data);
+})
+
+//? Annars error meddelande - ska jag ta bort?
+    .catch(err => console.log("Rejected:", err.message));
+
 
 // Funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
-function createListAccordion(listname, listlength, arr) {
+function createListAccordion(listname, listlength, recProductList) {
 
     let div = document.createElement("div");
     div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
@@ -125,25 +142,26 @@ function createListAccordion(listname, listlength, arr) {
     recommendationUL.append(h2, divRecomendationBar)
 
 
-    //!---------------Nytt 
-//     function drawRecProd(arr) {
-//        console.log("hej")
-//        // Här renderas varje item från vårt produktutbud array
-//        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
-//        arr.forEach((elem) => {
-//            divRecomendationBar.innerHTML += `
-//            <div class="col-auto text-center ">
-//                <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
-//                    <i class="${elem.image}"></i>
-//                    <h3 class="subheading">${elem.title}</h3>
-//                </li>
-//            </div>
-//            `
-//        })
-//        // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
-//        addItem()
-//    }
-
+//! ---------------Nytt 
+    function drawRecProd(arr) {
+       console.log("hej")
+       // Här renderas varje item från vårt produktutbud array
+       // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
+       arr.forEach((elem) => {
+           divRecomendationBar.innerHTML += `
+           <div class="col-auto text-center ">
+               <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
+                   <i class="${elem.image}"></i>
+                   <h3 class="subheading">${elem.title}</h3>
+               </li>
+           </div>
+           `
+       })
+       // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
+       addItem()
+    }
+    
+    drawRecProd(recProductList);
 
     
 }

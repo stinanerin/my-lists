@@ -1,4 +1,4 @@
-const recProductsList = document.querySelector("#recProdContainer");
+// const recProductsList = document.querySelector("#recProdContainer");
 
     //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
     
@@ -30,33 +30,40 @@ const recProductsList = document.querySelector("#recProdContainer");
     // Då getTodos är async så retunerar den ett promise och kommer inte servera datan - Fast vi retunerar den
         // Vi behöver .then();
     
-    getProducts()
-        // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion drawRecProd(data) som vi skickar med vår produkt-utbud arr i
-        .then(data => drawRecProd(data))
-        //! Har bytt ut funktion för test
-        // .then(data => createListAccordion(data))
-        //? Annars error meddelande - ska jag ta bort?
-        .catch(err => console.log("Rejected:", err.message));
+
+    // getProducts()
+    //     // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion drawRecProd(data) som vi skickar med vår produkt-utbud arr i
+    //     // .then(data => drawRecProd(data))
+    //     //! Har bytt ut funktion för test
+    //     .then((data) => { 
+    //         let listname = "Hej Listname";
+    //         // console.log(data.listname);
+    //         let length = 0;
+    //         createListAccordion(listname, length, data);
+    //     })
+
+    //     //? Annars error meddelande - ska jag ta bort?
+    //     .catch(err => console.log("Rejected:", err.message));
 
     //--------------------------------------------------- Ritar ut products.json ---------------------------------------------------
 
-    function drawRecProd(arr) {
+    // function drawRecProd(arr) {
 
-        // Här renderas varje item från vårt produktutbud array
-        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
-        arr.forEach((elem) => {
-            recProductsList.innerHTML += `
-            <div class="col-auto text-center ">
-                <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
-                    <i class="${elem.image}"></i>
-                    <h3 class="subheading">${elem.title}</h3>
-                </li>
-            </div>
-            `
-        })
-        // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
-        addItem()
-    }
+    //     // Här renderas varje item från vårt produktutbud array
+    //     // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
+    //     arr.forEach((elem) => {
+    //         recProductsList.innerHTML += `
+    //         <div class="col-auto text-center ">
+    //             <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
+    //                 <i class="${elem.image}"></i>
+    //                 <h3 class="subheading">${elem.title}</h3>
+    //             </li>
+    //         </div>
+    //         `
+    //     })
+    //     // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
+    //     addItem()
+    // }
 
     //--------- Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ---------
 
@@ -64,16 +71,19 @@ const recProductsList = document.querySelector("#recProdContainer");
         console.log("Add listener")
         // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
         const allRecProducts = document.querySelectorAll(".rec-product");
+        console.log(allRecProducts);
         // console.log(allRecProducts);
         allRecProducts.forEach((item) => {
+            
             item.addEventListener("click", () => {
-
+                
                 // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
                 // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
                 newItem(item.dataset.title, item.dataset.icon)
-
-                // Här console-loggas vilket item anv. klickat på 
+                
                 console.log(item.dataset.title);
+                console.log(item);
+                // Här console-loggas vilket item anv. klickat på 
 
             })
         })
@@ -83,9 +93,7 @@ const recProductsList = document.querySelector("#recProdContainer");
 
     // newItem() är en asynkron funktion som tar emot användarens klickade item, med titel och ikon och sparar det i API:et för at tkunna renderas senare
     async function newItem(title, icon) {
-        
-        console.log("we are here"); 
-        
+                
         
         // Denna funktion lägger till varor i API
         // Beroende på vilken knapp i recommended bar användaren klickat på
