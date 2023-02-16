@@ -18,20 +18,12 @@ async function createList() {
         }),
     });
 
-
     const { list } = await res.json();
-    
 
-    //!Sofias kod
-    // localStorageArr.push(list._id);
-    // let namn = list.listname;
-    // let listLength = list.itemList.length;
+    let namn = list.listname;
+    let listLength = list.itemList.length;
 
-
-    // createListAccordion(namn, listLength);
-    // console.log(localStorageArr);
-    //! Slut sofias kod
-
+    createListAccordion(namn, listLength);
 
     id = list._id
     console.log(id);
@@ -42,7 +34,7 @@ async function createList() {
 }
 
 
-// funktion som hämtar en lista från API utifrån ett ID
+// Funktion som hämtar en lista från API utifrån ett ID
 async function getListByID(listId) {
     let ID = listId
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
@@ -54,19 +46,19 @@ async function getListByID(listId) {
     let listLength = data.itemList.length;
 
 
-    //funktion som skapar en accordion och displayar i browser
+    // Funktion som skapar en accordion och displayar i browser
     createListAccordion(listname, listLength);
 }
 
 
-//anropar getListByID för varje id i den array som senare 
-//kommer vara i local storage (listor kopplade till inloggad användare)
+// Anropar getListByID för varje id i den array som senare 
+// Kommer vara i local storage (listor kopplade till inloggad användare)
 localStorageArr.forEach(id => {
     getListByID(id);
 });
 
 
-//funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
+// Funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(listname, listlength) {
 
     let div = document.createElement("div");
@@ -106,7 +98,7 @@ function createListAccordion(listname, listlength) {
 }
 
 
-//funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
+// Funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
     let toggleDiv = event.target.parentElement.nextSibling;
     toggleDiv.classList.toggle("hidden")
@@ -115,11 +107,10 @@ function toggleArrow(event) {
 createNewListBtn.addEventListener("click", (e) => {
     
     createList().then(id => {
-        console.log("id i eventListener", id);
 
+        // Anropar funktionen som uppdaterar local-storage-arrayen med användarens precis skapade list-id
         updateUserListArr(id)
 
-    
     });
 
 }) 
