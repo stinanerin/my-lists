@@ -9,6 +9,10 @@
       display: flex;
       align-items: center;
     }
+
+    .iconTitleWrapper{
+      flex-grow: 1;
+    }
   
     .doneCheckbox {
       height: 20px;
@@ -19,6 +23,10 @@
       /*  margin-left: 20px;
       margin-right: 90px; */
     }
+  }
+
+  .list-div {
+    display: flex;
   }
   
   .itemIcon {
@@ -51,3 +59,11 @@
       font-size: 10px;
     }
   }
+
+  ul {
+    padding-left: 0;
+  }
+
+  input[type="checkbox"] {
+    accent-color: #569771;
+}

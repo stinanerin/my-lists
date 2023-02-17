@@ -65,6 +65,8 @@ async function getListByID(listId, recProductList) {
             listItemObject.qty,
             listItemObject.image,
             listItemObject.checked,
+            listItemObject._id,
+            sigUserList._id,
             ul
         );
 
@@ -144,12 +146,25 @@ function createListAccordion(userListObj, recProductList) {
     toggleBtn.addEventListener("click", toggleArrow);
 
     let ul = document.createElement("ul");
+    ul.classList.add("progressList");
+
+    let progressListTitle = document.createElement("h3");
+    progressListTitle.classList.add("inListHeading")
+    progressListTitle.innerText = "In Progress";
+
+    let doneUL = document.createElement("ul");
+    doneUL.classList.add("doneList");
+
+    let doneListTitle = document.createElement("h3");
+    doneListTitle.classList.add("inListHeading");
+    doneListTitle.innerText = "Done";
+
 
     // RecommendationBar
     let recommendationUL = document.createElement("ul");
     recommendationUL.classList.add("recommendationUl")
 
-    toggleDiv.append(recommendationUL, ul);
+    toggleDiv.append(recommendationUL, progressListTitle, ul, doneListTitle, doneUL);
 
     let h2 = document.createElement("h2");
     h2.classList.add("subheading")
@@ -168,9 +183,9 @@ function createListAccordion(userListObj, recProductList) {
     function drawRecProd(arr, id) {
         // console.log("136",arr);
 
-       // Här renderas varje item från vårt produktutbud array
-       // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
-       arr.forEach((elem) => {
+        // Här renderas varje item från vårt produktutbud array
+        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
+        arr.forEach((elem) => {
             //! ta bort rec-product klass när allt klart
             divRecomendationBar.innerHTML += `
            <div class="col-auto text-center ">
@@ -180,7 +195,7 @@ function createListAccordion(userListObj, recProductList) {
                </li>
            </div>`
         })
-       
+
     }
     // console.log("rad152",recProductList);
     drawRecProd(recProductList, listID);
@@ -189,7 +204,7 @@ function createListAccordion(userListObj, recProductList) {
     addItem(divRecomendationBar)
 
 
-    return ul;
+    return [ul, doneUL];
 }
 
 
