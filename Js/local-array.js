@@ -2,7 +2,7 @@
 
 function updateUserListArr(id) {
 
-    // console.log("hej från local-array.js");
+    console.log("hej från local-array.js");
     
     let regArr = JSON.parse(localStorage.getItem("registeredUsers"));
     // console.log("Reg user", regArr);
@@ -22,6 +22,7 @@ function updateUserListArr(id) {
     // console.log(id);
 
     activeUserListArr.push(id)
+    console.log(activeUserListArr);
     
     // console.log("modifierad listarr", activeUserListArr);
     

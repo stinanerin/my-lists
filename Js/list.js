@@ -1,5 +1,8 @@
 const createNewListBtn = document.querySelector("#createNewList");
 
+// Save our productlist here
+let prodcuctList = []
+
 //! Stina kom ihåg att ändra detta om du vill
 let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.getItem("signedInUser")): [] ;
 const sigUserList = sigUser.userList;
@@ -20,14 +23,19 @@ async function createList() {
     });
 
     const { list } = await res.json();
+
     
     // Skickar det precis skapade listobjektet till create acccordian funktion för att rendera ut i browser
-    createListAccordion(list);
+    console.log("25", list);
+    createListAccordion(list, prodcuctList);
     
     // Retunerar id till local storage funktion för att spara en användare skapade listor
     id = list._id
+    console.log(list);
+    console.log("30",id);
 
     return id
+    
 }
 
 
@@ -43,26 +51,25 @@ async function getListByID(listId, recProductList) {
 }
 
 function renderLocalStorageListArr(arr, recProductList) {
+    console.log("recProductList", recProductList);
+    console.log("sigUserList", arr);
 
     if(arr) {
         // Anropar getListByID för varje id i inloggade användarens array
         arr.forEach(id => {
             getListByID(id, recProductList);
-        });
-        
-        console.log("sigUserList", arr);
+        });        
     }
-
 }
 
 fetchProductsJson()
 .then((data) => { 
     // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion drawRecProd(data) som vi skickar med vår produkt-utbud arr i
+    prodcuctList = data
     renderLocalStorageListArr(sigUserList, data);
 })
 .catch(err => console.log("Rejected:", err.message));
 //? Annars error meddelande - ska jag ta bort?
-
 
 // Funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(userListObj, recProductList) {
@@ -73,7 +80,7 @@ function createListAccordion(userListObj, recProductList) {
     // console.log("list längd",listLength);
 
     let listID = userListObj._id;
-    console.log(listID);
+    // console.log(listID);
 
     let div = document.createElement("div");
     div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
@@ -112,7 +119,7 @@ function createListAccordion(userListObj, recProductList) {
 
     toggleBtn.addEventListener("click", toggleArrow);
 
-    //recomendationBar
+    // RecommendationBar
     let recommendationUL = document.createElement("ul");
     recommendationUL.classList.add("recommendationUl")
 
@@ -128,11 +135,12 @@ function createListAccordion(userListObj, recProductList) {
     // Hämtar list id på den nyss renderade listan och sätter det som id på rec-bar
     // Då kan vi se vilken lista anv vill lägga till den klickade produkten i
     divRecomendationBar.setAttribute("id", listID);
-    console.log("id", divRecomendationBar.id);
+    // console.log("id", divRecomendationBar.id);
 
     recommendationUL.append(h2, divRecomendationBar)
 
     function drawRecProd(arr) {
+        console.log("136",arr);
        // Här renderas varje item från vårt produktutbud array
        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
        arr.forEach((elem) => {
@@ -150,9 +158,8 @@ function createListAccordion(userListObj, recProductList) {
        addItem()
 
     }
-    
+    console.log("rad152",recProductList);
     drawRecProd(recProductList);
-
 }
 
 
@@ -163,8 +170,10 @@ function toggleArrow(event) {
 }
 
 createNewListBtn.addEventListener("click", (e) => {
+    console.log("hej");
 
     createList().then(id => {
+        console.log("167", id);
         // Anropar funktionen som uppdaterar local-storage-arrayen med användarens precis skapade list-id
         updateUserListArr(id)
 

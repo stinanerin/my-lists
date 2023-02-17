@@ -24,8 +24,6 @@
         return productListJson;
     
     }
-    
-
 
     //--------- Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ---------
 
@@ -33,7 +31,7 @@
         console.log("Add listener")
          // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
         let allRecProducts = document.querySelectorAll(".rec-product");
-        console.log(allRecProducts);
+        // console.log(allRecProducts);
 
         allRecProducts.forEach((item) => {
             
@@ -44,8 +42,8 @@
                 newItem(item.dataset.title, item.dataset.icon)
                 
                 // Här console-loggas vilket item anv. klickat på 
-                console.log(item.dataset.title);
-                console.log(item);
+                // console.log(item.dataset.title);
+                // console.log(item);
 
             })
         })
