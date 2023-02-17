@@ -11,7 +11,8 @@ När du har skapat ditt dom element så retunera den.
 */
 
 function productListItem(title, qty, image, isChecked, ul) {
-    console.log(isChecked)
+    console.log(isChecked);
+    console.log(ul);
     
     // console.log(title, qty, image);
     // skapar image placeholder med en font awesom icon class innehåll
@@ -32,7 +33,11 @@ function productListItem(title, qty, image, isChecked, ul) {
 
     
     listItemElement.innerHTML = `<div class="producteItem"> <div class="iconTitleWrapper"> <div class="itemIcon"> <i class="${image}"></i> </div> <h4 class="titleItems">${title}</h4> </div> <div class="counterCheckboxWrapper"> <div class="counter"> <i class="fa-solid fa-plus"></i> <span>${qty}</span> <i class="fa-solid fa-minus"></i> </div><input type="checkbox" name="doneCheckbox" class="doneCheckbox" id="doneCheckbox" ${isChecked ? "checked" : " "}/></div> </div>`;
-    ul.appendChild(listItemElement);
+    if (isChecked) {
+        ul[1].appendChild(listItemElement); 
+    } else {
+        ul[0].appendChild(listItemElement);
+    }
     // let counterCheckboxWrapper = document.querySelector(".counterCheckboxWrapper")
     // counterCheckboxWrapper.innerHTML += checkbox;
     // console.log(counterCheckboxWrapper)
