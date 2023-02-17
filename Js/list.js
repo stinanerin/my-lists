@@ -60,11 +60,12 @@ async function getListByID(listId, recProductList) {
         let elem = productListItem(
             listItemObject.title,
             listItemObject.qty,
-            listItemObject.image
+            listItemObject.image,
+            listItemObject.checked,
+            ul
         );
 
         // appenda in i ulen
-        ul.appendChild(elem);
     });
 
 
