@@ -62,6 +62,8 @@ async function getListByID(listId, recProductList) {
             listItemObject.qty,
             listItemObject.image,
             listItemObject.checked,
+            listItemObject._id,
+            sigUserList._id,
             ul
         );
 
@@ -145,7 +147,7 @@ function createListAccordion(userListObj, recProductList) {
 
     let progressListTitle = document.createElement("h3");
     progressListTitle.classList.add("inListHeading")
-    progressListTitle.innerText = "In progress";
+    progressListTitle.innerText = "In Progress";
 
     let doneUL = document.createElement("ul");
     doneUL.classList.add("doneList");

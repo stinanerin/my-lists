@@ -70,6 +70,9 @@
     width: 100px;
     border-radius: 1rem;
   }
+  .image-container {
+    max-height: 800px;
+  }
   header {
     display: flex;
     flex-direction: row;
@@ -169,6 +172,9 @@
     display: flex;
     align-items: center;
   }
+  .producteItem .iconTitleWrapper {
+    flex-grow: 1;
+  }
   .producteItem .doneCheckbox {
     height: 20px;
     width: 20px;
@@ -176,6 +182,9 @@
   .producteItem .titleItems {
     /*  margin-left: 20px;
     margin-right: 90px; */
+  }
+  .list-div {
+    display: flex;
   }
   .itemIcon {
     display: flex;
@@ -202,5 +211,11 @@
   }
   .counter i {
     font-size: 10px;
+  }
+  ul {
+    padding-left: 0;
+  }
+  input[type=checkbox] {
+    accent-color: #569771;
   }
 }/*# sourceMappingURL=style.css.map */
