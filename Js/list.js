@@ -83,7 +83,7 @@ function createListAccordion(listname, listlength) {
     div.append(buttonDiv);
 
     let trashBtn = document.createElement("button");
-    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent")
+    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent", "deleteListBtn")
     trashBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     buttonDiv.append(trashBtn);
 
@@ -114,9 +114,8 @@ function createListAccordion(listname, listlength) {
 
     recommendationUL.append(h2, divRecomendationBar)
 
+    Lina();
 }
-
-
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
