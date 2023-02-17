@@ -26,13 +26,13 @@ async function createList() {
 
 
     // Skickar det precis skapade listobjektet till create acccordian funktion för att rendera ut i browser
-    console.log("25", list);
+    // console.log("25", list);
     createListAccordion(list, prodcuctList);
 
     // Retunerar id till local storage funktion för att spara en användare skapade listor
     id = list._id
-    console.log(list);
-    console.log("30", id);
+    // console.log(list);
+    // console.log("30",id);
 
     return id
 
@@ -71,8 +71,8 @@ async function getListByID(listId, recProductList) {
 }
 
 function renderLocalStorageListArr(arr, recProductList) {
-    console.log("recProductList", recProductList);
-    console.log("sigUserList", arr);
+    // console.log("recProductList", recProductList);
+    // console.log("sigUserList", arr);
 
     if (arr) {
         // Anropar getListByID för varje id i inloggade användarens array
@@ -157,31 +157,32 @@ function createListAccordion(userListObj, recProductList) {
     // Hämtar list id på den nyss renderade listan och sätter det som id på rec-bar
     // Då kan vi se vilken lista anv vill lägga till den klickade produkten i
     divRecomendationBar.setAttribute("id", listID);
-    // console.log("id", divRecomendationBar.id);
+    console.log("id", divRecomendationBar.id);
 
     recommendationUL.append(h2, divRecomendationBar)
 
-    function drawRecProd(arr) {
-        console.log("136", arr);
-        // Här renderas varje item från vårt produktutbud array
-        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
-        arr.forEach((elem) => {
+    function drawRecProd(arr, id) {
+        // console.log("136",arr);
+
+       // Här renderas varje item från vårt produktutbud array
+       // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
+       arr.forEach((elem) => {
             //! ta bort rec-product klass när allt klart
             divRecomendationBar.innerHTML += `
            <div class="col-auto text-center ">
-               <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}">
+               <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}" data-listid="${id}">
                    <i class="${elem.image}"></i>
                    <h3 class="subheading">${elem.title}</h3>
                </li>
            </div>`
         })
-
-        // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
-        addItem()
-
+       
     }
-    console.log("rad152", recProductList);
-    drawRecProd(recProductList);
+    // console.log("rad152",recProductList);
+    drawRecProd(recProductList, listID);
+
+    // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
+    addItem(divRecomendationBar)
 
 
     return ul;
