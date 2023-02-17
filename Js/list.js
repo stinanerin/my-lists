@@ -8,6 +8,8 @@ let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.get
 const sigUserList = sigUser.userList;
 //! Stina kom ihåg att ändra detta om du vill
 
+
+
 // Skapar en ny lista i API:et
 async function createList() {
     const listname = "Add Listname";
@@ -29,7 +31,7 @@ async function createList() {
     // console.log("25", list);
     createListAccordion(list, prodcuctList);
 
-    // Retunerar id till local storage funktion för att spara en användare skapade listor
+    // Retunerar id till local storage funktion för att spara en användares skapade listor
     id = list._id
     // console.log(list);
     // console.log("30",id);
@@ -57,6 +59,7 @@ async function getListByID(listId, recProductList) {
     // loopa igenon varorna
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
+        //! Kan vi ta bort elem?
         let elem = productListItem(
             listItemObject.title,
             listItemObject.qty,

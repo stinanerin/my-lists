@@ -1,8 +1,12 @@
-/* Immediately-invoked Function Expressions */
+/* Immediately-invoked Function Expression */
 
 (function() {
 
+    const URL = location.href;
+    const [BASE_URL] = URL.split("i");
+
     //---------------------------------------------------LOG IN---------------------------------------------------
+    
     const loginForm = document.querySelector('#loginForm');
     let registerUserForm;
     
@@ -46,7 +50,10 @@
             // Under signedInUser
             localStorage.setItem("signedInUser", JSON.stringify(user))
 
-            //todo! Slussa anv vidare vid lyckat inlogg
+            // Slussar anv vidare till list.html
+            // Dock sparas ej nuvarande sida i sessions-historiken - men är ganska bra just nu för då vi ej kollar att en person inte redan är inloggad
+            location.replace(`${BASE_URL}list.html`)
+            
 
         } else {
 
@@ -57,7 +64,8 @@
 
         }        
     }
-    //--------------------------------------------RENDER REGISTER NEW USER VIEW---------------------------------------------------
+
+    //-------------------------------------------- RENDER REGISTER NEW USER VIEW ---------------------------------------------------
 
     const registerUserLink  = document.querySelector('#registerUserLink');
 
@@ -81,9 +89,8 @@
     registerUserForm = document.querySelector('#registerUser');
     console.log(registerUserForm);
 
-    
     // Submit-EventListener på form
-    
+
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
         e.preventDefault();
         console.log("We inside addeventlistener");
@@ -107,7 +114,7 @@
         if(userArr.every(checkUser)) {
 
             // Om user email ej finns reggad sedan tidigare --> Skapa ny user i local storage
-            createUser(fullName, email, PWD)
+            createUser(fullName, email, PWD);
 
         } else {
 
@@ -142,13 +149,9 @@
         // Sätter användaren som "inloggad" i local storage
         localStorage.setItem("signedInUser", JSON.stringify(userObj));
 
-        //todo! Här måste anändaren komma till list.html - ej fixat
-               
+        // Slussar anv vidare till list.html
+        // Dock sparas ej nuvarande sida i sessions-historiken - men är ganska bra just nu för då vi ej kollar att en person inte redan är inloggad
+        location.replace(`${BASE_URL}list.html`)
+
     }
-
-
-
-
-
 })()
-
