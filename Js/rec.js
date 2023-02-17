@@ -81,9 +81,8 @@ async function newItem(title, icon, listID, isChecked) {
         }
     );
 
-    //! Förstår ej varför måste skriva så { list }
-    const { list } = await res.json();
-    console.log(list);
-    console.log(list._id);
+    const list = await res.json();
+    // console.log(list);
+    // console.log(list._id);
 
 }
