@@ -114,7 +114,7 @@ function createListAccordion(userListObj, recProductList) {
 
     let image = document.createElement("img");
     image.setAttribute("class", "img-fluid image");
-    image.setAttribute("src", "/images/giorgio-trovato-fczCr7MdE7U-unsplash.jpg")
+    image.setAttribute("src", "images/giorgio-trovato-fczCr7MdE7U-unsplash.jpg")
 
     let textWrapper = document.createElement("div");
     textWrapper.classList.add("d-flex", "flex-grow-1", "ms-3", "justify-content-between");
