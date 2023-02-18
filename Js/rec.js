@@ -3,33 +3,51 @@
 //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
 
 const fetchProductsJson = async function () {
-    // Await keyword
-    // Stoppar JS.motorn att assigna värdet till response variabeln tills löftet har resolved
 
     const response = await fetch("data/products.json");
-    console.log(response);
+    // console.log(response);
 
-    //! Kanske onödigt så länge filerna finns lokalt o projektet
+    //! Kanske onödigt så länge filerna finns lokalt
     if (response.status !== 200) {
-        // Throw-keyword --> New error object
-        // Om vi kastar ett error inuti en async funktion så blir promiset rejectat och vi hoppar ur funktionen
+
         throw new Error("Cannot fetch the data");
     }
 
     // .json() retunerar ett Promise - reject / resolved - Går ej att spara direkt i en variabel
-    // Genom await-keyword inväntar att Promise-objektet blivit resolved
-    // Lagrar sen i data-variabeln
+    // Inväntar att Promise-objektet blivit resolved
     const productListJson = await response.json();
-    console.log(productListJson);
+    // console.log(productListJson);
 
+    // Retunerar produkt arrayen
     return productListJson;
 
 }
 
-//--------- Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ---------
+//------------------------------------------------ Renderar recommendation bar ---------------------------------------------------
+
+function drawRecProd(listDiv, arr, id) {
+    // Renderar varje item från vårt produktutbud array
+    // Data-attribut används för att enkelt kunna hämta värdena
+
+    // console.log("136",arr);
+
+    arr.forEach((item) => {
+        listDiv.innerHTML += `
+        <div class="col-auto text-center ">
+            <li class="rec-product" data-title="${item.title}" data-icon="${item.image}" data-listid="${id}">
+               <i class="${item.image}"></i>
+               <h3 class="subheading">${item.title}</h3>
+            </li>
+        </div>`
+    })
+
+}
+
+//------------ Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ------------
 
 function addItem(wrapper) {
-    console.log("Add listener")
+    // console.log("Add listener")
+
     // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
     let allRecProducts = wrapper.querySelectorAll(".rec-product");
     // console.log(allRecProducts);
@@ -38,10 +56,11 @@ function addItem(wrapper) {
 
         item.addEventListener("click", () => {
 
+            //! Behövs denna?
+            isChecked = false;
+            
             // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
             // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
-            isChecked = false;
-
             newItem(item.dataset.title, item.dataset.icon, item.dataset.listid, isChecked)
 
             // Här console-loggas vilket item anv. klickat på 
@@ -54,16 +73,12 @@ function addItem(wrapper) {
 
 //--------------------------------------------------- API funktion som lägger till klickat item i lista  ---------------------------------------------------
 
-// newItem() är en asynkron funktion som tar emot användarens klickade item, med titel och ikon och sparar det i API:et för at tkunna renderas senare
+// Denna funktion lägger till varor i API 
+// Beroende på vilken knapp i recommended bar användaren klickat på
 
 async function newItem(title, icon, listID, isChecked) {
-    console.log("59", isChecked)
-
-    // Denna funktion lägger till varor i API
-    // Beroende på vilken knapp i recommended bar användaren klickat på
-    // `https://nackademin-item-tracker.herokuapp.com/lists/${id}/items`,
-
-    //todo! Här måste vi peka på anv specifika lista genom id
+    // Tar emot användarens klickade item, med titel och ikon och sparar det i API:et för att kunna renderas senare
+    // console.log("59", isChecked)
 
     const res = await fetch(
         `https://nackademin-item-tracker.herokuapp.com/lists/${listID}/items`,
