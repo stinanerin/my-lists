@@ -2,8 +2,6 @@
 
 (function() {
 
-    const URL = location.href;
-    const [BASE_URL] = URL.split("i");
 
     //---------------------------------------------------LOG IN---------------------------------------------------
     
@@ -51,9 +49,7 @@
             localStorage.setItem("signedInUser", JSON.stringify(user))
 
             // Slussar anv vidare till list.html
-            // Dock sparas ej nuvarande sida i sessions-historiken - men är ganska bra just nu för då vi ej kollar att en person inte redan är inloggad
-            location.replace(`${BASE_URL}list.html`)
-            
+            redirectUser("list.html")            
 
         } else {
 
@@ -150,8 +146,7 @@
         localStorage.setItem("signedInUser", JSON.stringify(userObj));
 
         // Slussar anv vidare till list.html
-        // Dock sparas ej nuvarande sida i sessions-historiken - men är ganska bra just nu för då vi ej kollar att en person inte redan är inloggad
-        location.replace(`${BASE_URL}list.html`)
+        redirectUser("list.html")            
 
     }
 })()
