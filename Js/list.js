@@ -1,13 +1,23 @@
 const createNewListBtn = document.querySelector("#createNewList");
 
-// Save our productlist here
-let prodcuctList = []
+// localStorage.clear()
 
 //! Stina kom ihåg att ändra detta om du vill
 let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.getItem("signedInUser")) : [];
 const sigUserList = sigUser.userList;
 //! Stina kom ihåg att ändra detta om du vill
 
+// Save our productlist here
+let productList = []
+
+// Anropar asynkron funktion för att hämta JSON produkt fil som JS-arr
+fetchProductsJson()
+    .then((data) => {
+        // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion renderLocalStorageListArr(data) som vi skickar med vår produkt-utbud arr i
+        productList = data
+        renderLocalStorageListArr(sigUserList, productList);
+    })
+    .catch(err => console.log("Rejected:", err.message));
 
 
 // Skapar en ny lista i API:et
@@ -29,7 +39,7 @@ async function createList() {
 
     // Skickar det precis skapade listobjektet till create acccordian funktion för att rendera ut i browser
     // console.log("25", list);
-    createListAccordion(list, prodcuctList);
+    createListAccordion(list, productList);
 
     // Retunerar id till local storage funktion för att spara en användares skapade listor
     id = list._id
@@ -76,26 +86,18 @@ async function getListByID(listId, recProductList) {
 
 }
 
-function renderLocalStorageListArr(arr, recProductList) {
+// Renderar den inloggade användarens sparade listor - om de finns
+function renderLocalStorageListArr(idArr, recProductList) {
     // console.log("recProductList", recProductList);
     // console.log("sigUserList", arr);
 
-    if (arr) {
-        // Anropar getListByID för varje id i inloggade användarens array
-        arr.forEach(id => {
+    if (idArr) {
+        // Anropar getListByID för varje list-id inloggade användarens har sparat
+        idArr.forEach(id => {
             getListByID(id, recProductList);
         });
     }
 }
-
-fetchProductsJson()
-    .then((data) => {
-        // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion drawRecProd(data) som vi skickar med vår produkt-utbud arr i
-        prodcuctList = data
-        renderLocalStorageListArr(sigUserList, data);
-    })
-    .catch(err => console.log("Rejected:", err.message));
-//? Annars error meddelande - ska jag ta bort?
 
 // Funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(userListObj, recProductList) {
@@ -176,31 +178,17 @@ function createListAccordion(userListObj, recProductList) {
     // Hämtar list id på den nyss renderade listan och sätter det som id på rec-bar
     // Då kan vi se vilken lista anv vill lägga till den klickade produkten i
     divRecomendationBar.setAttribute("id", listID);
-    console.log("id", divRecomendationBar.id);
+    // console.log("id", divRecomendationBar.id);
 
     recommendationUL.append(h2, divRecomendationBar)
 
-    function drawRecProd(arr, id) {
-        // console.log("136",arr);
-
-        // Här renderas varje item från vårt produktutbud array
-        // Dataattribut används för att enkelt kunna hämta valuet från icon samt h3-tagg
-        arr.forEach((elem) => {
-            //! ta bort rec-product klass när allt klart
-            divRecomendationBar.innerHTML += `
-           <div class="col-auto text-center ">
-               <li class="rec-product" data-title="${elem.title}" data-icon="${elem.image}" data-listid="${id}">
-                   <i class="${elem.image}"></i>
-                   <h3 class="subheading">${elem.title}</h3>
-               </li>
-           </div>`
-        })
-
-    }
+    
     // console.log("rad152",recProductList);
-    drawRecProd(recProductList, listID);
 
-    // Initerar en addItem() funktion för varje knapp så de är sammanlänkade i JS mototns minne (tror det är så det funkar)
+    // Renderar en redommendation bar till varje list-accordian
+    drawRecProd(divRecomendationBar, recProductList, listID);
+
+    // Initerar addItem() för varje recommendation bar 
     addItem(divRecomendationBar)
 
 
@@ -214,11 +202,14 @@ function toggleArrow(event) {
     toggleDiv.classList.toggle("hidden")
 }
 
+// Vid klick - kör asynkron funktion createList som skapar en ny lista i API:et
 createNewListBtn.addEventListener("click", (e) => {
-    console.log("hej");
+    // console.log("hej");
 
     createList().then(id => {
-        console.log("167", id);
+        // När den är klar, spara nya listans id i den inloggade användarens array med listID:n
+        // console.log("208", id);
+
         // Anropar funktionen som uppdaterar local-storage-arrayen med användarens precis skapade list-id
         updateUserListArr(id)
 

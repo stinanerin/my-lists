@@ -1,7 +1,7 @@
-//!--------------------------------------------Local storage Array med ID:n---------------------------------------------------
+// --------------------------------------------Local storage Array med ID:n---------------------------------------------------
 
-//Funktion för att uppdatera varje användares lista med vederbörandes egna listor
-// Tar emot varje nytt list-id som skapas
+// Funktion för att uppdatera varje användares lista med vederbörandes egna listor
+// Tar emot varje nytt list-id som en anv skapar
 function updateUserListArr(id) {
     
     // Hämtar inloggade anv och reggade anv
@@ -12,7 +12,7 @@ function updateUserListArr(id) {
     const findActiveUserInRegUsers = regUser => regUser.email === sigUser.email;
 
     // Hittar inloggade användarens lista
-    const activeUserListArr = regArr.find(findActiveUserInRegUsers).userList;
+    const activeUserListArr = regArr.find(findActiveUserInRegUsers).userList ;
 
     // Pushar in nya list-ID:et
     activeUserListArr.push(id)
