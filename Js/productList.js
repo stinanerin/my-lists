@@ -41,7 +41,7 @@ function productListItem(listItemObject, ul, sigUserList) {
 
     //sätter "checked" om isChecked är true
     //sätter klass för Fias styling
-    //sätter varans id (i api) som id
+    //sätter varans id (i api) som id="" på element
     input.checked = listItemObject.checked;
     input.classList.add("doneCheckbox");
     // input.setAttribute("id", itemId);
@@ -64,17 +64,19 @@ function productListItem(listItemObject, ul, sigUserList) {
 
     //appendar checkbox i listItemElement (skapat här ovan)
     listItemElement.append(input);
-
-    //lägger en eventlistener på varje checkbox som lyssnar efter förändring
-    //om man klickar i en checkbox så skickas id för listan den ligger i, samt id för själva artikeln till
-    //funktion som ändrar varan till "checked" i API
-    //appendar också i doneList
+    
+    /*
+    Lägger en eventlistener på varje checkbox som lyssnar efter förändring.
+    Om man klickar i en checkbox så skickas id för listan den ligger i, id för 
+    själva artikeln, samt true eller false (beroende på state på item) till funktion som ändrar varan i API
+    appendar också i ny lista */
     input.addEventListener("change", () => {
 
         console.log("rad 74", listItemObject.checked)
-        console.log("du tryckte på en checkbox")
 
-        //här borde man kunna lägga någon typ av if sats för att kunna flytta tillbaka? 
+        // If sats för att kolla om checkboxen som användaren klickat i tillhör ett item som ligger i In Progress eller Done-lista
+        // Om itemet var checkat innan användaren klickade så hamnar det i In Progress-lista och vise versa
+        // Anropar även funktion som ändrar item från checked:true till checked:false i API (och och vise versa)
         if (listItemObject.checked) {
             changeToCheckInAPI(listId, itemId, false);
             progressList.appendChild(listItemElement);
