@@ -134,7 +134,7 @@ function createListAccordion(userListObj, recProductList) {
 
 
     // Funktion som ska ta bort listan från DOM:em, local storage och API:et
-    let Lina = (() => {
+    let trashList = (() => {
         let listAccordion = document.querySelectorAll('div.list-accordion');
 
         listAccordion.forEach(trashcan => {
@@ -150,7 +150,7 @@ function createListAccordion(userListObj, recProductList) {
         });
     });
 
-    Lina();
+    trashList();
 
 }
 
