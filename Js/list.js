@@ -70,15 +70,7 @@ async function getListByID(listId, recProductList) {
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
         //! Kan vi ta bort elem?
-        let elem = productListItem(
-            listItemObject.title,
-            listItemObject.qty,
-            listItemObject.image,
-            listItemObject.checked,
-            listItemObject._id,
-            sigUserList._id,
-            ul
-        );
+        productListItem(listItemObject, ul, sigUserList);
 
         // appenda in i ulen
     });
