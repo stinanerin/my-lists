@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Log in</title>
     <!--  CSS -->
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="styles/style.css">
 
     <!-- Ikoner -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -17,16 +17,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Italiana&display=swap" rel="stylesheet">
     
     <!-- JS: KOM IHÅG! DEFER -->
-    <script src="/Js/index.js" defer></script>
-    <script src="/Js/login.js" defer></script>
-    <script src="/Js/logout.js" defer></script>
+    <script src="Js/index.js" defer></script>
+    <script src="Js/login.js" defer></script>
+    <script src="Js/logout.js" defer></script>
 
 
 </head>
 <body>
     <!--! Bör denna vara i header -->
     <div>
-        <img class="img-fluid" src="/images/list.jpg" alt="">           
+        <img class="img-fluid" src="images/list.jpg" alt="">           
     </div>
 
     <main>
@@ -34,79 +34,81 @@
         <div  class="login-main pt-5">
 
             <div class="log-in-form-container ">
-                <!-- Form -->
 
+                <!-- Login Form -->
 
                 <form class="container" id="loginForm">
-                    
+
                     <div class="row gy-3 ">
+                        <!-- Email -->
                         <div class="form-group ">
                             <input class="form-control input" id="loginEmail" type="email" placeholder="Enter email" required/>
                         </div>
+                        <!-- PWD -->
                         <div class="form-group ">
                             <input class="form-control input" id="loginPWD" type="password" placeholder="Password" required/>
                         </div>
-                        <p>Forgot password?</p>
+                        <p class="text-end">Forgot password?</p>
                     </div>
-
-
-                    <div class="d-flex justify-content-center">
+                    <!-- Submit knapp login -->
+                    <div class="d-flex justify-content-center mt-5">
                         <button class="btn" type="submit">Sign in</button>
                     </div>
             
                 </form>
                 
-                <div class="container">
-                    <div class="container">
+                <div class="container my-5">
 
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <span class="separator"></span>
-                            </div>
+                    <div class="row align-items-center">
 
-                            <div class="col-auto text-center">
-                                <p>Or continue with</p>
-                            </div>
-
-                            <div class="col-4 ">
-                                <span class="separator"></span>
-                            </div>
+                        <div class="col">
+                            <span class="separator"></span>
                         </div>
-                    </div>
 
-
-                    <!-- Placeholder ikoner -->
-
-                    <div class="container">
-                        <div class="row gy-5">
-                            <div class="col-4 text-center">
-                                <a href="https://www.facebook.com/" aria-label="Log in with Facebook">
-                                    <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                                </a>              </div>
-                            <div class="col-4 text-center">
-                                <a href="https://www.google.com/" aria-label="Log in with Google">
-                                    <i class="fa-brands fa-google" aria-hidden="true"></i>
-                                </a>              </div>
-                            <div class="col-4 text-center">
-                                <a href="https://www.apple.com/se/" aria-label="Log in with Apple">
-                                    <i class="fa-brands fa-apple" aria-hidden="true"></i>
-                                </a>              
-                            </div>
+                        <div class="col-auto text-center p-0">
+                            <p>Or continue with</p>
                         </div>
+
+                        <div class="col ">
+                            <span class="separator"></span>
+                        </div>
+
                     </div>
-                    <div class="text-center">
-                        <p>Not registered? <span class="link" id="registerUserLink">Register now</span></p>
-                    </div>
-                
+
                 </div>
+
+                <!-- Placeholder ikoner för inlogg -->
+
+                <div class="container mb-5">
+                    <div class="row gy-5">
+                        <div class="col-4 text-center">
+                            <a href="https://www.facebook.com/" aria-label="Log in with Facebook">
+                                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                            </a>              </div>
+                        <div class="col-4 text-center">
+                            <a href="https://www.google.com/" aria-label="Log in with Google">
+                                <i class="fa-brands fa-google" aria-hidden="true"></i>
+                            </a>              </div>
+                        <div class="col-4 text-center">
+                            <a href="https://www.apple.com/se/" aria-label="Log in with Apple">
+                                <i class="fa-brands fa-apple" aria-hidden="true"></i>
+                            </a>              
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Länk till  -->
+
+                <div class="text-center pb-5">
+                    <p>Not registered? <span class="link" id="registerUserLink">Register now</span></p>
+                </div>
+                
             
             </div>
 
             <div class="register-form-container hidden">
 
                 <form class="container" id="registerUser">
-                    <!--! Ta bort -->
-                    <h2>Register</h2>
         
                     <div class="row gy-3">
                         <!-- Name-->
@@ -126,7 +128,7 @@
                             <input class="form-control input" id="confPWD" type="password" placeholder="Confirm Password" required/>
                         </div>
                         <!-- Submit btn-->
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center my-5">
                             <button class="btn" type="submit">Sign up</button>
                         </div>
                     </div>
@@ -135,11 +137,7 @@
             
             </div>
             
-            <!--! Ska bort sen - för att demonstrera log out funktionalitet från local storage-->
-            <div class="container mt-5">
-                <button id="logoutBtn" class="btn">Log out</button>
-                <a href="list.html">Take me to my lists</a>
-            </div>
+           
 
 
         </div>

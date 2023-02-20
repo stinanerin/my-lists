@@ -1,44 +1,32 @@
-//!--------------------------------------------Local storage Array med ID:n---------------------------------------------------
+// --------------------------------------------Local storage Array med ID:n---------------------------------------------------
 
+// Funktion för att uppdatera varje användares lista med vederbörandes egna listor
+// Tar emot varje nytt list-id som en anv skapar
 function updateUserListArr(id) {
-
-    // console.log("hej från local-array.js");
     
+    // Hämtar inloggade anv och reggade anv
     let regArr = JSON.parse(localStorage.getItem("registeredUsers"));
-    // console.log("Reg user", regArr);
     
     let sigUser = JSON.parse(localStorage.getItem("signedInUser"));
-    console.log("signed in user", sigUser);
     
     const findActiveUserInRegUsers = regUser => regUser.email === sigUser.email;
-    
-        
-    // console.log("Found it ", regArr.find(findActiveUserInRegUsers));
-    
-    // console.log(regArr.find(findActiveUserInRegUsers).userList);
-    
-    const activeUserListArr = regArr.find(findActiveUserInRegUsers).userList;
 
-    // console.log(id);
+    // Hittar inloggade användarens lista
+    const activeUserListArr = regArr.find(findActiveUserInRegUsers).userList ;
 
+    // Pushar in nya list-ID:et
     activeUserListArr.push(id)
     
-    // console.log("modifierad listarr", activeUserListArr);
-    
+    // Uppdaterar inloggade anv och reggade användarens lista med ID:n
     sigUser.userList = activeUserListArr
-        
-    // console.log("sigUser med modifierad listArr", sigUser);
     
-    // hur jag får in det i regArr
     regArr.find(findActiveUserInRegUsers).userList = [...sigUser.userList]
-    
-    console.log("reggade anv array", regArr)
-    
-    // Uppdaterar local storage
+
+    // Uppdaterar local storage med nya listan med ID:n
     localStorage.setItem("signedInUser", JSON.stringify(sigUser));
     localStorage.setItem("registeredUsers", JSON.stringify(regArr));
 
-    
-}     
+}
+
 
 

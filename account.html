@@ -7,7 +7,7 @@
     <title>Account</title>
     
     <!--  CSS -->
-    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="styles/style.css" />
 
     <!-- Ikoner -->
     <link
@@ -27,13 +27,13 @@
     />
 
     <!-- JS: KOM IHÅG! DEFER -->
-    <script src="/Js/logout.js" defer></script>
+    <script src="Js/logout.js" defer></script>
 
   </head>
 
   <body>
 
-    <!-- kommenterat ut pga dubbel header -->
+    <!--! kommenterat ut pga dubbel header -->
     
     <!-- <header>
       <div class="header"></div>
@@ -80,7 +80,7 @@
           data-bs-parent="#accordionFlushExample"
         >
           <div class="accordion-body">
-            <a href="list.html">List</a>
+            <a href="list.html" class="link">List</a>
           </div>
         </div>
       </div>
@@ -166,8 +166,11 @@
         <!-- footer-->
         <footer class="bg-secondary py-5 mt-5">
             <div class="container text-light text-center">
-                <i class="fas fa-home"></i>
-                <p class="display-5 mb-3"> Lorem ipsum dolor sit amet.</p>
+              <a id="listIcon" href="list.html" aria-label="navToList">
+                <i class="fa-solid fa-house"></i> 
+              </a>
+               
+                <p class="display-5 mb-3"></p>
                 <small class="text-white-50"> &copy; Copyright by Team-D. All rights reserved</small>
             </div>
         </footer>

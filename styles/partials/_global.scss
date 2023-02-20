@@ -5,6 +5,9 @@ h1, h2, h3, h4 {
   margin: 0;
 }
 
+.inListHeading {
+  font-size: 1.5rem;
+}
 /* Stödhjul */
 
 // * {
@@ -90,3 +93,6 @@ h1, h2, h3, h4 {
   border-radius: 1rem;
 }
 
+.image-container {
+  max-height:800px;
+}
