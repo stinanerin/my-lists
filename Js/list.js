@@ -132,6 +132,26 @@ function createListAccordion(userListObj, recProductList) {
 
     recommendationUL.append(h2, divRecomendationBar)
 
+
+    // Funktion som ska ta bort listan från DOM:em, local storage och API:et
+    let Lina = (() => {
+        let listAccordion = document.querySelectorAll('div.list-accordion');
+
+        listAccordion.forEach(trashcan => {
+            trashcan.addEventListener('click', (event) => {
+
+                if(event.target.classList.value === 'fa-regular fa-trash-can'){
+                    console.log('you clicked on the trashcan');
+                    // tar bort listan från DOMen
+                    event.target.parentElement.parentElement.parentElement.remove();
+                    // lägg till att ta bort listan från local storage och API
+                }
+            });
+        });
+    });
+
+    Lina();
+
 }
 
 
