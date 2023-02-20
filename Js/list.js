@@ -191,7 +191,7 @@ function createListAccordion(userListObj, recProductList) {
     // console.log("id", divRecomendationBar.id);
 
     recommendationUL.append(h2, divRecomendationBar)
-    
+
     // console.log("rad152",recProductList);
 
     // Renderar en redommendation bar till varje list-accordian
@@ -201,15 +201,15 @@ function createListAccordion(userListObj, recProductList) {
     addItem(divRecomendationBar)
 
 
-    
+
     // Funktion som ska ta bort listan från DOM:em, local storage och API:et
     let trashList = (() => {
         let listAccordion = document.querySelectorAll('div.list-accordion');
-        
+
         listAccordion.forEach(trashcan => {
             trashcan.addEventListener('click', (event) => {
-                
-                if(event.target.classList.value === 'fa-regular fa-trash-can'){
+
+                if (event.target.classList.value === 'fa-regular fa-trash-can') {
                     console.log('you clicked on the trashcan');
                     // tar bort listan från DOMen
                     event.target.parentElement.parentElement.parentElement.remove();
@@ -218,9 +218,9 @@ function createListAccordion(userListObj, recProductList) {
             });
         });
     });
-    
+
     trashList();
-    
+
     return [ul, doneUL];
 }
 
@@ -243,35 +243,35 @@ createNewListBtn.addEventListener("click", (e) => {
 
     });
 
-}) 
+})
 
 // funktion för ändra namn på listan
 function changeListName(target) {
-  let input = document.createElement("input");
-  input.type = "placeholder";
-  input.addEventListener('change', saveNewListName);
-  let parent = target.srcElement.parentElement;
-  parent.replaceChild(input, target.srcElement);
+    let input = document.createElement("input");
+    input.type = "placeholder";
+    input.addEventListener('change', saveNewListName);
+    let parent = target.srcElement.parentElement;
+    parent.replaceChild(input, target.srcElement);
 }
 
 // async funktion för att spara i api:et och återställa
 async function saveNewListName(target) {
-  const newListName =   target.srcElement.value;
-  const listId = target.srcElement.parentElement.id;
-  await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${listId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      listname: newListName,
-    }),
-  });
+    const newListName = target.srcElement.value;
+    const listId = target.srcElement.parentElement.id;
+    await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${listId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            listname: newListName,
+        }),
+    });
 
-  // återställ till original
-  let h2 = document.createElement("h2");
-  h2.addEventListener('click', changeListName);
-  h2.innerHTML = newListName;
-  let parent = target.srcElement.parentElement;
-  parent.replaceChild(h2, target.srcElement);
+    // återställ till original
+    let h2 = document.createElement("h2");
+    h2.addEventListener('click', changeListName);
+    h2.innerHTML = newListName;
+    let parent = target.srcElement.parentElement;
+    parent.replaceChild(h2, target.srcElement);
 }
