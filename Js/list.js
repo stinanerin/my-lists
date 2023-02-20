@@ -142,7 +142,7 @@ function createListAccordion(userListObj, recProductList) {
     div.append(buttonDiv);
 
     let trashBtn = document.createElement("button");
-    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent")
+    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent", "deleteListBtn")
     trashBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     buttonDiv.append(trashBtn);
 
@@ -191,7 +191,6 @@ function createListAccordion(userListObj, recProductList) {
     // console.log("id", divRecomendationBar.id);
 
     recommendationUL.append(h2, divRecomendationBar)
-
     
     // console.log("rad152",recProductList);
 
@@ -202,9 +201,28 @@ function createListAccordion(userListObj, recProductList) {
     addItem(divRecomendationBar)
 
 
+    
+    // Funktion som ska ta bort listan från DOM:em, local storage och API:et
+    let trashList = (() => {
+        let listAccordion = document.querySelectorAll('div.list-accordion');
+        
+        listAccordion.forEach(trashcan => {
+            trashcan.addEventListener('click', (event) => {
+                
+                if(event.target.classList.value === 'fa-regular fa-trash-can'){
+                    console.log('you clicked on the trashcan');
+                    // tar bort listan från DOMen
+                    event.target.parentElement.parentElement.parentElement.remove();
+                    // lägg till att ta bort listan från local storage och API
+                }
+            });
+        });
+    });
+    
+    trashList();
+    
     return [ul, doneUL];
 }
-
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
