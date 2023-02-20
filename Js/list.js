@@ -154,8 +154,6 @@ function createListAccordion(userListObj, recProductList) {
 
 }
 
-
-
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
     let toggleDiv = event.target.parentElement.parentElement.nextSibling;
