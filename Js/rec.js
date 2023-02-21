@@ -40,7 +40,11 @@ function drawRecProd(listDiv, arr, id) {
 
 }
 
-//------------ Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ------------
+
+
+
+//------------ Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista -----------------------------------
+
 // console.log([ul, doneUL]);
 function addItem(wrapper) {
     
@@ -101,7 +105,7 @@ function addItem(wrapper) {
 
 }
 
-//--------------------------------------------------- API funktion som lägger till klickat item i lista  ---------------------------------------------------
+//--------------------------------------------------- API funktion som lägger till klickat item i lista  --------------------------------------
 
 // Denna funktion lägger till varor i API 
 // Beroende på vilken knapp i recommended bar användaren klickat på

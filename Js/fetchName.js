@@ -1,3 +1,7 @@
+
+//--------------------------------------------SKRIVER UT ANVÄNDARENS NAMN PÅ ACCOUNT.HTML---------------------------------------------------
+
+
 //hämtar paragraf från account.html
 let userFullName = document.getElementById("userFullName");
 
@@ -13,6 +17,8 @@ const sigUserFullName = sigUserObj.fullName;
 //ändrar texten i paragraf på account.html
 userFullName.innerText = capitalizeFirstLetter(sigUserFullName);
 
+
+//sätter stor bokstav på förnamnet
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }

@@ -1,26 +1,118 @@
-const createNewListBtn = document.querySelector("#createNewList");
-
 // localStorage.clear()
+
+
+//--------------------------------------------Hämta användarens list-IDn från local storage---------------------------------------------------
+
 
 //! Stina kom ihåg att ändra detta om du vill
 let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.getItem("signedInUser")) : [];
 const sigUserList = sigUser.userList;
 //! Stina kom ihåg att ändra detta om du vill
 
-// Save our productlist here
-let productList = [];
+// console.log(sigUserList);
 
-// Anropar asynkron funktion för att hämta JSON produkt fil som JS-arr
+
+
+
+//--------------------------------------------Hämta vår fasta produktlista och sparar ner i recProductList----------------------------------------
+
+// Save our recProductList here
+let recProductList = [];
+
+// Anropar asynkron funktion för att hämta JSON produkt-fil som JS-arr
 fetchProductsJson()
     .then((data) => {
         // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion renderLocalStorageListArr(data) som vi skickar med vår produkt-utbud arr i
-        productList = data
-        renderLocalStorageListArr(sigUserList, productList);
+        recProductList = data
+        renderLocalStorageListArr(sigUserList);
     })
     .catch(err => console.log("Rejected:", err.message));
 
 
-// Skapar en ny lista i API:et
+
+
+
+
+
+//--------------------------------------------Anropar funktion som hämtar inloggad användares sparade listor------------------------------------------
+
+
+// Renderar den inloggade användarens sparade listor - om de finns
+function renderLocalStorageListArr(idArr) {
+    // console.log("recProductList", recProductList);
+    // console.log("sigUserList", arr);
+
+    if (idArr) {
+        // Anropar getListByID för varje list-id inloggade användarens har sparat
+        idArr.forEach(id => {
+            getListByID(id, recProductList)
+        });
+    }
+}
+
+
+
+
+//--------------------------------------------Hämtar lista/listor från API med hjälp av ID---------------------------------------------------
+
+
+// Funktion som hämtar en lista från API utifrån ett ID lagrat i local storage
+async function getListByID(listId, recProductList) {
+    let ID = listId
+    const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
+    const sigUserList = await res.json();
+
+    // Funktion som skapar en accordion och displayar i browser
+    const ul = createListAccordion(sigUserList, recProductList);
+    // console.log("64", ul);
+
+
+    // hänmta itemList/varor ifrån data från apiet
+    const itemList = sigUserList.itemList;
+
+
+
+    // loopa igenon varorna och skickar in dem i productListItem (skriver ut listorna med varor)
+    itemList.forEach((listItemObject) => {
+        // skapa productListItem elementet med nuvarande objektet
+        productListItem(listItemObject, ul, sigUserList._id);
+
+    });
+}
+
+
+
+
+
+//-------------------------------------------KÖR FUNKTION SOM SKAPAR NY LISTA NÄR ANVÄNDAREN TRYCKER PÅ CREATE NEW LIST BTN---------------------
+
+
+//Hämtar create new list knapp
+const createNewListBtn = document.querySelector("#createNewList");
+
+
+// Vid klick - kör asynkron funktion createList som skapar en ny lista i API:et
+createNewListBtn.addEventListener("click", (e) => {
+    // console.log("hej");
+
+    createList().then(id => {
+        // När den är klar, spara nya listans id i den inloggade användarens array med listID:n
+        // console.log("208", id);
+
+        // Anropar funktionen som uppdaterar local-storage-arrayen med användarens precis skapade list-id
+        updateUserListArr(id)
+
+    });
+
+})
+
+
+
+
+//--------------------------------------------FUNKTION SOM SKAPAR NY LISTA I API----------------------------------------------------------------
+
+
+// Skapar en ny lista i API:et när användaren trycker på Create new list knappen
 async function createList() {
     const listname = "Add Listname";
 
@@ -39,7 +131,7 @@ async function createList() {
 
     // Skickar det precis skapade listobjektet till create acccordian funktion för att rendera ut i browser
     // console.log("25", list);
-    createListAccordion(list, productList);
+    createListAccordion(list, recProductList);
 
     // Retunerar id till local storage funktion för att spara en användares skapade listor
     id = list._id
@@ -50,61 +142,32 @@ async function createList() {
 }
 
 
-// Funktion som hämtar en lista från API utifrån ett ID lagrat i local storage
-async function getListByID(listId, recProductList) {
-    let ID = listId
-    const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
-    const sigUserList = await res.json();
-
-    // Funktion som skapar en accordion och displayar i browser
-    const ul = createListAccordion(sigUserList, recProductList);
-    // console.log("64", ul);
-
-    // fias kod
-    // hänmta itemList/varor ifrån data från apiet
-    const itemList = sigUserList.itemList;
 
 
 
-    // loopa igenon varorna
-    itemList.forEach((listItemObject) => {
-        // skapa productListItem elementet med nuvarande objektet
-        //! Kan vi ta bort elem?
-        productListItem(listItemObject, ul, sigUserList._id);
+//--------------------------------------------Renderar accordions i browser-----------------------------------------------------------------
 
-        // appenda in i ulen
-    });
-}
-
-// Renderar den inloggade användarens sparade listor - om de finns
-function renderLocalStorageListArr(idArr, recProductList) {
-    // console.log("recProductList", recProductList);
-    // console.log("sigUserList", arr);
-
-    if (idArr) {
-        // Anropar getListByID för varje list-id inloggade användarens har sparat
-        idArr.forEach(id => {
-            getListByID(id, recProductList)
-        });
-    }
-}
 
 // Funktion som skapar en accordion från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(userListObj, recProductList) {
+
+    //variabler som ska användas i funktionen
     let listName = userListObj.listname;
-
     let listLength = userListObj.itemList.length;
-
     let listID = userListObj._id;
 
+
+    //huvuddiven som allt ska ligga i
     let div = document.createElement("div");
     div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
     document.body.append(div);
 
+    //bilden 
     let image = document.createElement("img");
     image.setAttribute("class", "img-fluid image");
     image.setAttribute("src", "images/giorgio-trovato-fczCr7MdE7U-unsplash.jpg")
 
+    //osynlig div att lägga textelementen i (för flex/layout) 
     let textWrapper = document.createElement("div");
     textWrapper.classList.add("d-flex", "flex-grow-1", "ms-3", "justify-content-between");
 
@@ -114,7 +177,7 @@ function createListAccordion(userListObj, recProductList) {
     divText.id = listID;
     textWrapper.append(divText);
 
-    // Använder appendChild för att jag annars inte kunde använda target i event listener
+    // Skapar listans rubrik och undertext
     let h2Element = document.createElement('h2');
     h2Element.addEventListener('click', changeListName);
     h2Element.innerHTML = `${listName}`;
@@ -124,26 +187,35 @@ function createListAccordion(userListObj, recProductList) {
     divText.appendChild(h2Element);
     divText.appendChild(pElement);
 
+    //skapar en osynlig div att lägga trashcan och toggelknapp i (för flex/layout) 
     let buttonDiv = document.createElement("div");
     buttonDiv.classList.add("d-flex", "flex-column", "justify-content-between")
     div.append(buttonDiv);
 
+
+    //trashcan
     let trashBtn = document.createElement("button");
     trashBtn.classList.add("align-self-start", "border-0", "bg-transparent", "deleteListBtn")
     trashBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     buttonDiv.append(trashBtn);
 
+    //pil-knapp som togglar div
     let toggleBtn = document.createElement("button");
     toggleBtn.classList.add("align-self-end", "rounded", "border", "border-secondary")
     toggleBtn.innerHTML = `<i class="fa-solid fa-angle-down"></i>`;
     buttonDiv.append(toggleBtn);
 
+
+    //diven som togglar mellan synlig och osynlig
     let toggleDiv = document.createElement("div");
     toggleDiv.classList.add("list-accordian-open", "hidden", "p-3", "shadow");
     document.body.append(toggleDiv);
 
+    //lägger till eventlistener på toggle-knapp som anropar funktion
     toggleBtn.addEventListener("click", toggleArrow);
 
+
+    // Skapar listorna som varorna ska appendas i, samt rubriker
     let ul = document.createElement("ul");
     ul.classList.add("progressList");
 
@@ -176,15 +248,21 @@ function createListAccordion(userListObj, recProductList) {
 
     // console.log("rad152",recProductList);
 
-    // Renderar en redommendation bar till varje list-accordian
+
+
+
+    // ---------------------Funktioner som körs inne i accordion-funktion--------------------------
+
+
+    // Renderar en redommendation bar till varje list-accordion
     drawRecProd(divRecomendationBar, recProductList, listID);
 
     // Initerar addItem() för varje recommendation bar 
-    addItem(divRecomendationBar)
+    addItem(divRecomendationBar);
 
 
 
-    // Funktion som ska ta bort listan från DOM:em, local storage och API:et
+    // Funktion som ska ta bort listan från DOM:em, local storage och API:et (ej klar)
     let trashList = (() => {
         let listAccordion = document.querySelectorAll('div.list-accordion');
 
@@ -203,8 +281,16 @@ function createListAccordion(userListObj, recProductList) {
 
     trashList();
 
+    //returnerar progress listan och done listan så att dessa kan användas utanför funktionen
     return [ul, doneUL];
 }
+
+
+
+
+
+//--------------------------------------------TOGGLA ACCORDION STÄNGD/ÖPPEN-----------------------------------------------------------------
+
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
@@ -212,20 +298,11 @@ function toggleArrow(event) {
     toggleDiv.classList.toggle("hidden")
 }
 
-// Vid klick - kör asynkron funktion createList som skapar en ny lista i API:et
-createNewListBtn.addEventListener("click", (e) => {
-    // console.log("hej");
 
-    createList().then(id => {
-        // När den är klar, spara nya listans id i den inloggade användarens array med listID:n
-        // console.log("208", id);
 
-        // Anropar funktionen som uppdaterar local-storage-arrayen med användarens precis skapade list-id
-        updateUserListArr(id)
 
-    });
+//--------------------------------------------ANVÄNDAREN KAN LÄGGA TILL EGET NAMN PÅ LISTA---------------------------------------------------
 
-})
 
 // funktion för ändra namn på listan
 function changeListName(target) {
@@ -236,7 +313,9 @@ function changeListName(target) {
     parent.replaceChild(input, target.srcElement);
 }
 
-// async funktion för att spara i api:et och återställa
+
+
+// async funktion för att spara nytt namn i api:et och återställa utseende
 async function saveNewListName(target) {
     const newListName = target.srcElement.value;
     const listId = target.srcElement.parentElement.id;
