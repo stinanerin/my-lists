@@ -8,7 +8,7 @@ const sigUserList = sigUser.userList;
 //! Stina kom ihåg att ändra detta om du vill
 
 // Save our productlist here
-let productList = []
+let productList = [];
 
 // Anropar asynkron funktion för att hämta JSON produkt fil som JS-arr
 fetchProductsJson()
@@ -47,11 +47,10 @@ async function createList() {
     // console.log("30",id);
 
     return id
-
 }
 
 
-// Funktion som hämtar en lista från API utifrån ett ID
+// Funktion som hämtar en lista från API utifrån ett ID lagrat i local storage
 async function getListByID(listId, recProductList) {
     let ID = listId
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
@@ -59,6 +58,7 @@ async function getListByID(listId, recProductList) {
 
     // Funktion som skapar en accordion och displayar i browser
     const ul = createListAccordion(sigUserList, recProductList);
+    // console.log("64", ul);
 
     // fias kod
     // hänmta itemList/varor ifrån data från apiet
@@ -70,12 +70,10 @@ async function getListByID(listId, recProductList) {
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
         //! Kan vi ta bort elem?
-        productListItem(listItemObject, ul, sigUserList);
+        productListItem(listItemObject, ul, sigUserList._id);
 
         // appenda in i ulen
     });
-
-
 }
 
 // Renderar den inloggade användarens sparade listor - om de finns
@@ -86,21 +84,18 @@ function renderLocalStorageListArr(idArr, recProductList) {
     if (idArr) {
         // Anropar getListByID för varje list-id inloggade användarens har sparat
         idArr.forEach(id => {
-            getListByID(id, recProductList);
+            getListByID(id, recProductList)
         });
     }
 }
 
-// Funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
+// Funktion som skapar en accordion från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(userListObj, recProductList) {
     let listName = userListObj.listname;
-    // console.log("listName",listName);
 
     let listLength = userListObj.itemList.length;
-    // console.log("list längd",listLength);
 
     let listID = userListObj._id;
-    // console.log(listID);
 
     let div = document.createElement("div");
     div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
@@ -176,11 +171,6 @@ function createListAccordion(userListObj, recProductList) {
 
     let divRecomendationBar = document.createElement("div");
     divRecomendationBar.classList.add("row", "gy-5", "recProdContainer");
-
-    // Hämtar list id på den nyss renderade listan och sätter det som id på rec-bar
-    // Då kan vi se vilken lista anv vill lägga till den klickade produkten i
-    divRecomendationBar.setAttribute("id", listID);
-    // console.log("id", divRecomendationBar.id);
 
     recommendationUL.append(h2, divRecomendationBar)
 

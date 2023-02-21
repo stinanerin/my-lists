@@ -16,7 +16,6 @@ const fetchProductsJson = async function () {
     // .json() retunerar ett Promise - reject / resolved - Går ej att spara direkt i en variabel
     // Inväntar att Promise-objektet blivit resolved
     const productListJson = await response.json();
-    // console.log(productListJson);
 
     // Retunerar produkt arrayen
     return productListJson;
@@ -28,8 +27,6 @@ const fetchProductsJson = async function () {
 function drawRecProd(listDiv, arr, id) {
     // Renderar varje item från vårt produktutbud array
     // Data-attribut används för att enkelt kunna hämta värdena
-
-    // console.log("136",arr);
 
     arr.forEach((item) => {
         listDiv.innerHTML += `
@@ -44,31 +41,64 @@ function drawRecProd(listDiv, arr, id) {
 }
 
 //------------ Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ------------
-
+// console.log([ul, doneUL]);
 function addItem(wrapper) {
-    // console.log("Add listener")
-
+    
     // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
     let allRecProducts = wrapper.querySelectorAll(".rec-product");
     // console.log(allRecProducts);
-
+    
+    
     allRecProducts.forEach((item) => {
-
+        
         item.addEventListener("click", () => {
+            // console.log("Add listener")
+            
+            
+            let ulProgress = wrapper.parentElement.nextElementSibling.nextElementSibling;
+            
+            let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+            
+            // let ulProgress = document.querySelector(".progressList");
+            // let ulDone = document.querySelector(".doneList");
 
+            // console.log("progress", ulProgress);
+            // console.log("done", ulDone);
+        
+        
+            ulArray = [ulProgress, ulDone];
+           
             //! Behövs denna?
             isChecked = false;
             
             // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
             // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
             newItem(item.dataset.title, item.dataset.icon, item.dataset.listid, isChecked)
+            .then((list) => {
+                // console.log(list);
+                
+                let itemList = list.itemList;
 
-            // Här console-loggas vilket item anv. klickat på 
-            console.log(item.dataset.title);
-            // Här console-loggas vilket id listan anv lagt till ett item på är 
-            console.log(item.dataset.listid);
+                const newItem = itemList.findLast(elem => elem)
+
+                // console.log(newItem);
+
+                // skapa productListItem elementet med nuvarande objektet
+                    productListItem(
+                        newItem,
+                        ulArray,                   
+                        list._id,
+                    );
+                    
+            });
+
         })
+            // Här console-loggas vilket item anv. klickat på 
+            // console.log(item.dataset.title);
+            //! Här console-loggas vilket id listan anv lagt till ett item på är 
+            // console.log(item.dataset.listid);
     })
+
 }
 
 //--------------------------------------------------- API funktion som lägger till klickat item i lista  ---------------------------------------------------
@@ -78,7 +108,7 @@ function addItem(wrapper) {
 
 async function newItem(title, icon, listID, isChecked) {
     // Tar emot användarens klickade item, med titel och ikon och sparar det i API:et för att kunna renderas senare
-    // console.log("59", isChecked)
+    // console.log("59", isChecked);
 
     const res = await fetch(
         `https://nackademin-item-tracker.herokuapp.com/lists/${listID}/items`,
@@ -96,8 +126,8 @@ async function newItem(title, icon, listID, isChecked) {
         }
     );
 
-    const list = await res.json();
+    const { list } = await res.json();
     // console.log(list);
     // console.log(list._id);
-
+    return list
 }

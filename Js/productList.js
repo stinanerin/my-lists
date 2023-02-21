@@ -12,17 +12,13 @@ När du har skapat ditt dom element så retunera den.
 
 
 //skickar in listobjektet, en array med progressList och doneList
-function productListItem(listItemObject, ul, sigUserList) {
-
-    // console.log("rad 15", listItemObject.checked);
-
+function productListItem(listItemObject, ul, listId) {
+    
     let progressList = ul[0];
-    let doneList = ul[1]
+    let doneList = ul[1];
 
     let itemId = listItemObject._id
-    let listId = sigUserList._id
 
-    // console.log(title, qty, image, isChecked, itemId, listId, ul);
     // skapar image placeholder med en font awesom icon class innehåll
     const imagePlaceholder = "fa-regular fa-face-sad-cry";
 
@@ -41,10 +37,8 @@ function productListItem(listItemObject, ul, sigUserList) {
 
     //sätter "checked" om isChecked är true
     //sätter klass för Fias styling
-    //sätter varans id (i api) som id="" på element
     input.checked = listItemObject.checked;
     input.classList.add("doneCheckbox");
-    // input.setAttribute("id", itemId);
 
     listItemElement.innerHTML = `
     <div class="iconTitleWrapper">
@@ -55,7 +49,7 @@ function productListItem(listItemObject, ul, sigUserList) {
     <div class="counterCheckboxWrapper">
     <div class="counter"> <i class="fa-solid fa-plus"></i> <span>${listItemObject.qty}</span> <i class="fa-solid fa-minus"></i> </div>`;
 
-    //kollar om item är checked i api och appendar antingen i In progress eller i Done
+    // kollar om item är checked i api och appendar antingen i In progress eller i Done
     if (listItemObject.checked) {
         doneList.appendChild(listItemElement);
     } else {
@@ -72,11 +66,10 @@ function productListItem(listItemObject, ul, sigUserList) {
     appendar också i ny lista */
     input.addEventListener("change", () => {
 
-        console.log("rad 74", listItemObject.checked)
-
         // If sats för att kolla om checkboxen som användaren klickat i tillhör ett item som ligger i In Progress eller Done-lista
         // Om itemet var checkat innan användaren klickade så hamnar det i In Progress-lista och vise versa
         // Anropar även funktion som ändrar item från checked:true till checked:false i API (och och vise versa)
+        
         if (listItemObject.checked) {
             changeToCheckInAPI(listId, itemId, false);
             progressList.appendChild(listItemElement);
@@ -94,7 +87,7 @@ function productListItem(listItemObject, ul, sigUserList) {
 //funktion som ändrar checked från false till true
 //skickar in id till listan som varan ligger i och id till den specifika varan
 async function changeToCheckInAPI(listId, itemId, trueOrFalse) {
-    console.log("list id:", listId, "item id:", itemId)
+    // console.log("list id:", listId, "item id:", itemId)
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${listId}/items/${itemId}`, {
         method: "PUT",
         headers: {
