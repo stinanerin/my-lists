@@ -8,7 +8,7 @@ const sigUserList = sigUser.userList;
 //! Stina kom ihåg att ändra detta om du vill
 
 // Save our productlist here
-let productList = []
+let productList = [];
 
 // Anropar asynkron funktion för att hämta JSON produkt fil som JS-arr
 fetchProductsJson()
@@ -47,11 +47,10 @@ async function createList() {
     // console.log("30",id);
 
     return id
-
 }
 
 
-// Funktion som hämtar en lista från API utifrån ett ID
+// Funktion som hämtar en lista från API utifrån ett ID lagrat i local storage
 async function getListByID(listId, recProductList) {
     let ID = listId
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
@@ -59,6 +58,7 @@ async function getListByID(listId, recProductList) {
 
     // Funktion som skapar en accordion och displayar i browser
     const ul = createListAccordion(sigUserList, recProductList);
+    console.log("64", ul);
 
     // fias kod
     // hänmta itemList/varor ifrån data från apiet
@@ -82,8 +82,6 @@ async function getListByID(listId, recProductList) {
 
         // appenda in i ulen
     });
-
-
 }
 
 // Renderar den inloggade användarens sparade listor - om de finns
@@ -94,7 +92,7 @@ function renderLocalStorageListArr(idArr, recProductList) {
     if (idArr) {
         // Anropar getListByID för varje list-id inloggade användarens har sparat
         idArr.forEach(id => {
-            getListByID(id, recProductList);
+            getListByID(id, recProductList)
         });
     }
 }
@@ -175,11 +173,6 @@ function createListAccordion(userListObj, recProductList) {
     let divRecomendationBar = document.createElement("div");
     divRecomendationBar.classList.add("row", "gy-5", "recProdContainer");
 
-    // Hämtar list id på den nyss renderade listan och sätter det som id på rec-bar
-    // Då kan vi se vilken lista anv vill lägga till den klickade produkten i
-    divRecomendationBar.setAttribute("id", listID);
-    // console.log("id", divRecomendationBar.id);
-
     recommendationUL.append(h2, divRecomendationBar)
 
     
@@ -194,7 +187,6 @@ function createListAccordion(userListObj, recProductList) {
 
     return [ul, doneUL];
 }
-
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
