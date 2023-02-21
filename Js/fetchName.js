@@ -11,4 +11,8 @@ const sigUserFullName = sigUserObj.fullName;
 
 
 //ändrar texten i paragraf på account.html
-userFullName.innerText = sigUserFullName;
+userFullName.innerText = capitalizeFirstLetter(sigUserFullName);
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}

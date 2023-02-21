@@ -16,7 +16,6 @@ const fetchProductsJson = async function () {
     // .json() retunerar ett Promise - reject / resolved - Går ej att spara direkt i en variabel
     // Inväntar att Promise-objektet blivit resolved
     const productListJson = await response.json();
-    // console.log(productListJson);
 
     // Retunerar produkt arrayen
     return productListJson;
@@ -28,8 +27,6 @@ const fetchProductsJson = async function () {
 function drawRecProd(listDiv, arr, id) {
     // Renderar varje item från vårt produktutbud array
     // Data-attribut används för att enkelt kunna hämta värdena
-
-    // console.log("136",arr);
 
     arr.forEach((item) => {
         listDiv.innerHTML += `
@@ -46,29 +43,31 @@ function drawRecProd(listDiv, arr, id) {
 //------------ Initera Eventlistener för varje item för att sedan kunna lägga till i API Lista ------------
 // console.log([ul, doneUL]);
 function addItem(wrapper) {
-    // console.log("Add listener")
-
+    
     // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
     let allRecProducts = wrapper.querySelectorAll(".rec-product");
-    console.log(allRecProducts);
-    // console.log(wrapper.parentElement.nextElementSibling.nextElementSibling);
-
-    
+    // console.log(allRecProducts);
     
     
     allRecProducts.forEach((item) => {
         
         item.addEventListener("click", () => {
+            // console.log("Add listener")
             
             
-            let ul = wrapper.parentElement.nextElementSibling.nextElementSibling;
-            console.log("58", ul);
-        
-        
-            //ta bort?
-            ulArray = [];
-            ulArray.push(ul);
+            let ulProgress = wrapper.parentElement.nextElementSibling.nextElementSibling;
+            
+            let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+            
+            // let ulProgress = document.querySelector(".progressList");
+            // let ulDone = document.querySelector(".doneList");
 
+            // console.log("progress", ulProgress);
+            // console.log("done", ulDone);
+        
+        
+            ulArray = [ulProgress, ulDone];
+           
             //! Behövs denna?
             isChecked = false;
             
@@ -76,30 +75,21 @@ function addItem(wrapper) {
             // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
             newItem(item.dataset.title, item.dataset.icon, item.dataset.listid, isChecked)
             .then((list) => {
-                console.log("Listobjekt",list);
+                // console.log(list);
                 
                 let itemList = list.itemList;
 
-                console.log(itemList);
-
                 const newItem = itemList.findLast(elem => elem)
 
-                console.log(newItem);
-
-                // console.log(wrapper);
+                // console.log(newItem);
 
                 // skapa productListItem elementet med nuvarande objektet
                     productListItem(
-                        newItem.title,
-                        newItem.qty,
-                        newItem.image,
-                        newItem.checked,
-                        newItem._id,
-                        sigUserList._id,
-                        ulArray                   
+                        newItem,
+                        ulArray,                   
+                        list._id,
                     );
                     
-                    // appenda in i ulen
             });
 
         })

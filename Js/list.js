@@ -58,7 +58,7 @@ async function getListByID(listId, recProductList) {
 
     // Funktion som skapar en accordion och displayar i browser
     const ul = createListAccordion(sigUserList, recProductList);
-    console.log("64", ul);
+    // console.log("64", ul);
 
     // fias kod
     // hänmta itemList/varor ifrån data från apiet
@@ -70,7 +70,7 @@ async function getListByID(listId, recProductList) {
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
         //! Kan vi ta bort elem?
-        productListItem(listItemObject, ul, sigUserList);
+        productListItem(listItemObject, ul, sigUserList._id);
 
         // appenda in i ulen
     });
@@ -89,16 +89,13 @@ function renderLocalStorageListArr(idArr, recProductList) {
     }
 }
 
-// Funktion som skapar array från lista i API. Skriver ut i brower (förlåt för ful)
+// Funktion som skapar en accordion från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(userListObj, recProductList) {
     let listName = userListObj.listname;
-    // console.log("listName",listName);
 
     let listLength = userListObj.itemList.length;
-    // console.log("list längd",listLength);
 
     let listID = userListObj._id;
-    // console.log(listID);
 
     let div = document.createElement("div");
     div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
