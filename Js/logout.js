@@ -1,3 +1,4 @@
+
 //-------------------------------------------------LOG OUT---------------------------------------------------
 
 // Alla element som ska rensa signed in user i local storage behöver #logoutBtn som id

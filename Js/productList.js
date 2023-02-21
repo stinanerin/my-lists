@@ -2,18 +2,24 @@
 /* 
 KORTET: Gör en funktion som skapar en html-sträng att lägga in i li elementet : Klar!
 Skapa en funktion som tar emot tre input parametrar
-    - qty (Quantity)
-    - name
-    - icon
+    - listitem objekt (varje varas objekt)
+    - array med progress list och done list
+    - listans ID
 Denna funktion skapar ett dom element,
 en kopia productListItem diven där du ersätter namn, ikon och mängd med de värden från input.
 När du har skapat ditt dom element så retunera den.
 */
 
 
-//skickar in listobjektet, en array med progressList och doneList
+
+//--------------------------------------------SKRIVER UT LISTAN INUTI ACCORDION---------------------------------------------------
+
+
+//skickar in listobjektet, en array som innehåller progressList och doneList, samt listans id
 function productListItem(listItemObject, ul, listId) {
     
+    // console.log(listItemObject)
+
     let progressList = ul[0];
     let doneList = ul[1];
 
@@ -35,8 +41,9 @@ function productListItem(listItemObject, ul, listId) {
     let input = document.createElement("input");
     input.type = "checkbox";
 
-    //sätter "checked" om isChecked är true
-    //sätter klass för Fias styling
+
+    //sätter "checked" på checkbox om isChecked är true
+    //sätter klass för styling
     input.checked = listItemObject.checked;
     input.classList.add("doneCheckbox");
 
@@ -61,9 +68,11 @@ function productListItem(listItemObject, ul, listId) {
     
     /*
     Lägger en eventlistener på varje checkbox som lyssnar efter förändring.
-    Om man klickar i en checkbox så skickas id för listan den ligger i, id för 
-    själva artikeln, samt true eller false (beroende på state på item) till funktion som ändrar varan i API
-    appendar också i ny lista */
+    Om man klickar i en checkbox så skickas följande till funktion som ändrar varan i API:
+    - id för listan den ligger i
+    - id för själva artikeln
+    - true eller false (beroende på state på item) 
+    appendar också i ny lista och ändrar checked i html element */
     input.addEventListener("change", () => {
 
         // If sats för att kolla om checkboxen som användaren klickat i tillhör ett item som ligger i In Progress eller Done-lista
@@ -83,6 +92,10 @@ function productListItem(listItemObject, ul, listId) {
 
 }
 
+
+
+
+//--------------------------------------------UPPDATERAR ITEM I API---------------------------------------------------
 
 //funktion som ändrar checked från false till true
 //skickar in id till listan som varan ligger i och id till den specifika varan
