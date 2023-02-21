@@ -28,6 +28,7 @@
 
     <!-- JS: KOM IHÅG! DEFER -->
     <script src="Js/logout.js" defer></script>
+    <script src="Js/fetchName.js" defer></script>
 
   </head>
 
@@ -55,7 +56,7 @@
         src="http://www.fotografjannis.se/wp-content/uploads/2020/11/Headshot-profilbild-CV-bild-portratt-2-819x1024.jpg"
         alt="profile picture of Harald"
       />
-      <p>First and last name</p>
+      <p id="userFullName">First and last name</p>
     </div>
 
     <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -70,7 +71,7 @@
             aria-expanded="false"
             aria-controls="listCollapse"
           >
-            My List
+          <i class="fa-solid fa-list me-3"></i> My List
           </button>
         </h2>
         <div
@@ -96,7 +97,7 @@
             aria-expanded="false"
             aria-controls="membersCollapse"
           >
-            My groups/Members
+          <i class="fa-solid fa-users me-3"></i> My groups/Members
           </button>
         </h2>
         <div
@@ -120,7 +121,7 @@
             aria-expanded="false"
             aria-controls="notificationsCollapse"
           >
-            Notifications
+          <i class="fa-solid fa-bell me-3"></i>Notifications
           </button>
         </h2>
         <div
@@ -144,7 +145,7 @@
             aria-expanded="false"
             aria-controls="settingsCollapse"
           >
-            Settings
+          <i class="fa-solid fa-gear me-3"></i>Settings
           </button>
         </h2>
         <div
@@ -166,8 +167,11 @@
         <!-- footer-->
         <footer class="bg-secondary py-5 mt-5">
             <div class="container text-light text-center">
-                <i class="fas fa-home"></i>
-                <p class="display-5 mb-3"> Lorem ipsum dolor sit amet.</p>
+              <a id="listIcon" href="list.html" aria-label="navToList">
+                <i class="fa-solid fa-house fa-2xl text-light"></i> 
+              </a>
+               
+                <p class="display-5 mb-3"></p>
                 <small class="text-white-50"> &copy; Copyright by Team-D. All rights reserved</small>
             </div>
         </footer>

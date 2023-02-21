@@ -33,7 +33,7 @@
     display: none;
   }
   .fa-brands,
-.fa-solid {
+  .fa-solid {
     color: #000;
     pointer-events: none;
   }
@@ -70,8 +70,11 @@
     width: 100px;
     border-radius: 1rem;
   }
-  .image-container {
-    max-height: 800px;
+  .imageContainer {
+    max-height: 50vh;
+  }
+  .heroImage {
+    width: 100%;
   }
   header {
     display: flex;
@@ -147,7 +150,6 @@
   }
   /* footer */
   footer {
-    position: -webkit-sticky;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -169,7 +171,7 @@
     padding: 16px;
   }
   .producteItem .iconTitleWrapper,
-.producteItem .counterCheckboxWrapper {
+  .producteItem .counterCheckboxWrapper {
     display: flex;
     align-items: center;
   }

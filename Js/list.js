@@ -70,15 +70,7 @@ async function getListByID(listId, recProductList) {
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
         //! Kan vi ta bort elem?
-        let elem = productListItem(
-            listItemObject.title,
-            listItemObject.qty,
-            listItemObject.image,
-            listItemObject.checked,
-            listItemObject._id,
-            sigUserList._id,
-            ul
-        );
+        productListItem(listItemObject, ul, sigUserList);
 
         // appenda in i ulen
     });
@@ -122,15 +114,25 @@ function createListAccordion(userListObj, recProductList) {
     div.append(image, textWrapper);
 
     let divText = document.createElement("div");
+    divText.id = listID;
     textWrapper.append(divText);
-    divText.innerHTML = `<h2>${listName}</h2><p class="text-secondary">${listLength} items</p>`;
+
+    // Använder appendChild för att jag annars inte kunde använda target i event listener
+    let h2Element = document.createElement('h2');
+    h2Element.addEventListener('click', changeListName);
+    h2Element.innerHTML = `${listName}`;
+    let pElement = document.createElement('p');
+    pElement.className = "text-secondary";
+    pElement.innerHTML = `${listLength} items`;
+    divText.appendChild(h2Element);
+    divText.appendChild(pElement);
 
     let buttonDiv = document.createElement("div");
     buttonDiv.classList.add("d-flex", "flex-column", "justify-content-between")
     div.append(buttonDiv);
 
     let trashBtn = document.createElement("button");
-    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent")
+    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent", "deleteListBtn")
     trashBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     buttonDiv.append(trashBtn);
 
@@ -175,7 +177,6 @@ function createListAccordion(userListObj, recProductList) {
 
     recommendationUL.append(h2, divRecomendationBar)
 
-    
     // console.log("rad152",recProductList);
 
     // Renderar en redommendation bar till varje list-accordian
@@ -184,6 +185,26 @@ function createListAccordion(userListObj, recProductList) {
     // Initerar addItem() för varje recommendation bar 
     addItem(divRecomendationBar)
 
+
+
+    // Funktion som ska ta bort listan från DOM:em, local storage och API:et
+    let trashList = (() => {
+        let listAccordion = document.querySelectorAll('div.list-accordion');
+
+        listAccordion.forEach(trashcan => {
+            trashcan.addEventListener('click', (event) => {
+
+                if (event.target.classList.value === 'fa-regular fa-trash-can') {
+                    console.log('you clicked on the trashcan');
+                    // tar bort listan från DOMen
+                    event.target.parentElement.parentElement.parentElement.remove();
+                    // lägg till att ta bort listan från local storage och API
+                }
+            });
+        });
+    });
+
+    trashList();
 
     return [ul, doneUL];
 }
@@ -207,4 +228,35 @@ createNewListBtn.addEventListener("click", (e) => {
 
     });
 
-}) 
+})
+
+// funktion för ändra namn på listan
+function changeListName(target) {
+    let input = document.createElement("input");
+    input.type = "placeholder";
+    input.addEventListener('change', saveNewListName);
+    let parent = target.srcElement.parentElement;
+    parent.replaceChild(input, target.srcElement);
+}
+
+// async funktion för att spara i api:et och återställa
+async function saveNewListName(target) {
+    const newListName = target.srcElement.value;
+    const listId = target.srcElement.parentElement.id;
+    await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${listId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            listname: newListName,
+        }),
+    });
+
+    // återställ till original
+    let h2 = document.createElement("h2");
+    h2.addEventListener('click', changeListName);
+    h2.innerHTML = newListName;
+    let parent = target.srcElement.parentElement;
+    parent.replaceChild(h2, target.srcElement);
+}
