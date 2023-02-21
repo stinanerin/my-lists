@@ -80,9 +80,11 @@ function productListItem(listItemObject, ul, sigUserList) {
         if (listItemObject.checked) {
             changeToCheckInAPI(listId, itemId, false);
             progressList.appendChild(listItemElement);
+            listItemObject.checked = false
         } else {
             changeToCheckInAPI(listId, itemId, true);
             doneList.appendChild(listItemElement);
+            listItemObject.checked = true
         }
     })
 
