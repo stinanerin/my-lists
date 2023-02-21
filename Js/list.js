@@ -9,22 +9,22 @@ let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.get
 const sigUserList = sigUser.userList;
 //! Stina kom ihåg att ändra detta om du vill
 
-// console.log(sigUserList);
+console.log("sigUserList rad 12, användarens sparade listor", sigUserList);
 
 
 
 
 //--------------------------------------------Hämta vår fasta produktlista och sparar ner i recProductList----------------------------------------
 
-// Save our recProductList here
+// skapar array för produktlista som man kommer åt globalt
 let recProductList = [];
 
 // Anropar asynkron funktion för att hämta JSON produkt-fil som JS-arr
 fetchProductsJson()
     .then((data) => {
-        // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktion renderLocalStorageListArr(data) som vi skickar med vår produkt-utbud arr i
+        // Om datan kan levereras ritar vi ut produkterna i DOM:en genom funktionen renderLocalStorageListArr()
         recProductList = data
-        renderLocalStorageListArr(sigUserList);
+        renderLocalStorageListArr();
     })
     .catch(err => console.log("Rejected:", err.message));
 
@@ -34,18 +34,18 @@ fetchProductsJson()
 
 
 
-//--------------------------------------------Anropar funktion som hämtar inloggad användares sparade listor------------------------------------------
+//--------------------------------------------Anropar funktion som hämtar inloggad användares sparade listor från API en och en--------------------
 
 
 // Renderar den inloggade användarens sparade listor - om de finns
-function renderLocalStorageListArr(idArr) {
+function renderLocalStorageListArr() {
     // console.log("recProductList", recProductList);
     // console.log("sigUserList", arr);
 
-    if (idArr) {
+    if (sigUserList) {
         // Anropar getListByID för varje list-id inloggade användarens har sparat
-        idArr.forEach(id => {
-            getListByID(id, recProductList)
+        sigUserList.forEach(id => {
+            getListByID(id)
         });
     }
 }
@@ -53,29 +53,31 @@ function renderLocalStorageListArr(idArr) {
 
 
 
-//--------------------------------------------Hämtar lista/listor från API med hjälp av ID---------------------------------------------------
+//--------------------------------------------Funktion som hämtar lista från API med hjälp av ID---------------------------------------------------------
 
 
 // Funktion som hämtar en lista från API utifrån ett ID lagrat i local storage
-async function getListByID(listId, recProductList) {
+async function getListByID(listId) {
     let ID = listId
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${ID}`);
-    const sigUserList = await res.json();
+    const sigUserObject = await res.json();
+    // console.log("sigUserObject rad 64", sigUserObject);
+
 
     // Funktion som skapar en accordion och displayar i browser
-    const ul = createListAccordion(sigUserList, recProductList);
-    // console.log("64", ul);
+    const ul = createListAccordion(sigUserObject, recProductList);
+    // console.log("69", ul);
 
 
     // hänmta itemList/varor ifrån data från apiet
-    const itemList = sigUserList.itemList;
+    const itemList = sigUserObject.itemList;
 
 
 
     // loopa igenon varorna och skickar in dem i productListItem (skriver ut listorna med varor)
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
-        productListItem(listItemObject, ul, sigUserList._id);
+        productListItem(listItemObject, ul, sigUserObject._id);
 
     });
 }
@@ -84,7 +86,7 @@ async function getListByID(listId, recProductList) {
 
 
 
-//-------------------------------------------KÖR FUNKTION SOM SKAPAR NY LISTA NÄR ANVÄNDAREN TRYCKER PÅ CREATE NEW LIST BTN---------------------
+//-------------------------------------------KÖR FUNKTION SOM SKAPAR NY LISTA NÄR ANVÄNDAREN TRYCKER PÅ CREATE NEW LIST BTN-------------------------
 
 
 //Hämtar create new list knapp
@@ -109,7 +111,7 @@ createNewListBtn.addEventListener("click", (e) => {
 
 
 
-//--------------------------------------------FUNKTION SOM SKAPAR NY LISTA I API----------------------------------------------------------------
+//--------------------------------------------FUNKTION SOM SKAPAR NY LISTA I API och anropar funktion som skriver ut accordion i browser----------------
 
 
 // Skapar en ny lista i API:et när användaren trycker på Create new list knappen

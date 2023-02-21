@@ -12,6 +12,12 @@
         "qty": 0
     },
     {
+        "title": "Candy",
+        "image": "fa-solid fa-candy-cane", 
+        "checked": false,
+        "qty": 0
+    },
+    {
         "title": "Bacon",
         "image": "fa-solid fa-bacon", 
         "checked": false,
@@ -62,6 +68,12 @@
     {
         "title": "Apple",
         "image": "fa-solid fa-apple-whole", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Pepper",
+        "image": "fa-solid fa-pepper-hot", 
         "checked": false,
         "qty": 0
     }
