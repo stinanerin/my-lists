@@ -244,7 +244,7 @@ function createListAccordion(userListObj, recProductList) {
     h2.innerText = "Recommended for you";
 
     let divRecomendationBar = document.createElement("div");
-    divRecomendationBar.classList.add("row", "gy-5", "recProdContainer");
+    divRecomendationBar.classList.add("recProdContainer", "d-flex", "justify-content-between", "p-3");
 
     recommendationUL.append(h2, divRecomendationBar)
 
