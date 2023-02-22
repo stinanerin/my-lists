@@ -36,7 +36,7 @@
     display: none;
   }
   .fa-brands,
-.fa-solid {
+  .fa-solid {
     color: #000;
     pointer-events: none;
   }
@@ -149,14 +149,11 @@
     min-height: 47px;
   }
   #userFullName {
-    font-size: 1.2rem;
-    font-weight: 200;
     margin-bottom: 2rem;
   }
   /* footer */
   footer {
     background-color: hsl(210deg, 4%, 53%);
-    position: -webkit-sticky;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -186,7 +183,7 @@
     padding: 16px;
   }
   .producteItem .iconTitleWrapper,
-.producteItem .counterCheckboxWrapper {
+  .producteItem .counterCheckboxWrapper {
     display: flex;
     align-items: center;
   }
