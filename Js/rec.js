@@ -58,11 +58,12 @@ function addItem(wrapper) {
         item.addEventListener("click", () => {
             // console.log("Add listener")
             
+            // console.log(item);
             
             let ulProgress = wrapper.parentElement.nextElementSibling.nextElementSibling;
             
             let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
-            
+            //! Stina fråga Jonas
             // let ulProgress = document.querySelector(".progressList");
             // let ulDone = document.querySelector(".doneList");
 
