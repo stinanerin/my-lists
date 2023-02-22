@@ -155,11 +155,8 @@
   }
   /* footer */
   footer {
-<<<<<<< HEAD
-    position: -webkit-sticky;
-=======
     background-color: hsl(210deg, 4%, 53%);
->>>>>>> 40a5c8c98c36dfdd1eb87732079a7afae1efce9f
+    position: -webkit-sticky;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
