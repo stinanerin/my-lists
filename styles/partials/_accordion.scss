@@ -2,14 +2,29 @@
 
 .list-accordion {
     background: $grey-200;
+    // border-radius: 1rem 1rem 0 0;
   }
   
   .list-accordian-open {
     background-color: $togglediv-bg;
     /* border: 1px solid; */
+    border-radius: 0 0 1rem 1rem;
+    padding: 1rem;  
+    transition: max-height 3s ease-out !important;
+    max-height: 5000px;
+    overflow: hidden;
+
   }
   
   .hidden {
+    // display: none;
+    max-height: 0px;
+    padding:0px;
+    overflow: hidden;
+    transition: max-height 0s ease-out !important;
+    
+  }
+  .hide {
     display: none;
   }
   
@@ -21,4 +36,19 @@
 
   .fa-trash-can {
     color: $p-black;
+  }
+
+  #listsContainer{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .toggleBtn {
+    background-color: rgba(0,0,0,0);
+  }
+
+
+  .arrow {
+    max-width: 17px;
+    pointer-events: none;
   }

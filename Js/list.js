@@ -162,6 +162,7 @@ function createListAccordion(userListObj, recProductList) {
 
     // huvuddiv för accorian och accordian-open
     let wrapperDiv = document.createElement('div');
+    wrapperDiv.classList.add("wrapperDiv");
     listsContainer.append(wrapperDiv);
 
     //huvuddiven som allt ska ligga i
@@ -210,14 +211,14 @@ function createListAccordion(userListObj, recProductList) {
 
     //pil-knapp som togglar div
     let toggleBtn = document.createElement("button");
-    toggleBtn.classList.add("align-self-end", "rounded", "border", "border-secondary")
+    toggleBtn.classList.add("align-self-end", "rounded", "border", "border-secondary", "toggleBtn")
     toggleBtn.innerHTML = `<i class="fa-solid fa-angle-down"></i>`;
     buttonDiv.append(toggleBtn);
 
 
     //diven som togglar mellan synlig och osynlig
     let toggleDiv = document.createElement("div");
-    toggleDiv.classList.add("list-accordian-open", "hidden", "p-3", "shadow");
+    toggleDiv.classList.add("list-accordian-open", "hidden", "shadow");
     wrapperDiv.append(toggleDiv);
 
     //lägger till eventlistener på toggle-knapp som anropar funktion

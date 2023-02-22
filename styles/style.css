@@ -173,10 +173,11 @@
     cursor: pointer;
   }
   .recProdContainer {
-    max-width: 1000px;
+    max-width: 1200px;
     overflow: auto;
     white-space: nowrap;
   }
+  /* för att styla scrollbar */
   .producteItem {
     display: flex;
     align-items: center;
@@ -241,8 +242,19 @@
   .list-accordian-open {
     background-color: white;
     /* border: 1px solid; */
+    border-radius: 0 0 1rem 1rem;
+    padding: 1rem;
+    transition: max-height 3s ease-out !important;
+    max-height: 5000px;
+    overflow: hidden;
   }
   .hidden {
+    max-height: 0px;
+    padding: 0px;
+    overflow: hidden;
+    transition: max-height 0s ease-out !important;
+  }
+  .hide {
     display: none;
   }
   .image {
@@ -252,5 +264,16 @@
   }
   .fa-trash-can {
     color: #000;
+  }
+  #listsContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .toggleBtn {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .arrow {
+    max-width: 17px;
+    pointer-events: none;
   }
 }/*# sourceMappingURL=style.css.map */

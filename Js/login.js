@@ -68,9 +68,9 @@
     registerUserLink.addEventListener("click", () => {
 
         // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
-        document.querySelector(".register-form-container").classList.toggle("hidden");
+        document.querySelector(".register-form-container").classList.toggle("hide");
 
-        document.querySelector(".log-in-form-container").classList.toggle("hidden");
+        document.querySelector(".log-in-form-container").classList.toggle("hide");
         
     })
     

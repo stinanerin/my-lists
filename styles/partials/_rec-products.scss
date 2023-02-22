@@ -11,7 +11,25 @@
     }
 }
 .recProdContainer {
-    max-width: 1000px;
+    max-width: 1200px;
     overflow: auto;
     white-space: nowrap;
 }
+
+/* för att styla scrollbar */ 
+
+// ::-webkit-scrollbar{
+//     height: 6px;
+//     width: 8px;
+
+//     // background: rgba(0,0,0,0);
+//     background: white;
+// }
+// ::-webkit-scrollbar-thumb:horizontal{
+//     background: #e8d06e;
+//     border-radius: 10px;
+// }
+// ::-webkit-scrollbar-thumb:vertical{
+//     background: rgb(219, 219, 219);
+//     border-radius: 10px;
+// }
