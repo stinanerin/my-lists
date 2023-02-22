@@ -331,6 +331,7 @@ function toggleArrow(event) {
 function changeListName(target) {
     let input = document.createElement("input");
     input.type = "placeholder";
+    input.className = "input-design";
     input.addEventListener('change', saveNewListName);
     let parent = target.srcElement.parentElement;
     parent.replaceChild(input, target.srcElement);
