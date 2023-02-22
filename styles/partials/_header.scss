@@ -8,7 +8,7 @@ header {
             min-width: 20%;
                 a {
                     text-decoration: none;
-                    color: $p-black;
+                    color: $p-white;
                 }
                 i.header {
                     margin: 4px;
@@ -18,8 +18,12 @@ header {
 
     }
     .list-page {
-        background-color: $grey-300;
+        background-color: $header-bg;
     }
     .account-page {
         background-color: rgba(0,0,0,0);
+    }
+
+    .logoutIconWhite{
+        width: 22px;
     }

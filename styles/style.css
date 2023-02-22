@@ -48,7 +48,7 @@
   /* Röda knapparna */
   .btn {
     border-radius: 10px;
-    background-color: #C66060;
+    background-color: #55a2bc;
     padding: 10px 68px;
     color: #fff;
   }
@@ -89,17 +89,20 @@
   }
   header div.header a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
   }
   header div.header i.header {
     margin: 4px;
     cursor: pointer;
   }
   .list-page {
-    background-color: hsl(0deg, 0%, 80%);
+    background-color: #367185;
   }
   .account-page {
     background-color: rgba(0, 0, 0, 0);
+  }
+  .logoutIconWhite {
+    width: 22px;
   }
   .login-main {
     background-color: hsl(0deg, 0%, 80%);
@@ -235,7 +238,7 @@
   }
   /* klasser för accordion */
   .list-accordion {
-    background: hsl(0deg, 0%, 88%);
+    background: linear-gradient(#d7d7d7, #ececec);
   }
   .list-accordian-open {
     background-color: white;
