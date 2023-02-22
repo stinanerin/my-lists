@@ -12,6 +12,12 @@
         "qty": 0
     },
     {
+        "title": "Coffee",
+        "image": "fa-solid fa-mug-hot", 
+        "checked": false,
+        "qty": 0
+    },
+    {
         "title": "Candy",
         "image": "fa-solid fa-candy-cane", 
         "checked": false,
@@ -38,6 +44,24 @@
     {
         "title": "Pizza",
         "image": "fa-solid fa-pizza-slice", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Burger",
+        "image": "fa-solid fa-burger", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Jam",
+        "image": "fa-solid fa-jar", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Cheese",
+        "image": "fa-solid fa-cheese", 
         "checked": false,
         "qty": 0
     },

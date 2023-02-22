@@ -30,8 +30,8 @@ function drawRecProd(listDiv, arr, id) {
 
     arr.forEach((item) => {
         listDiv.innerHTML += `
-        <div class="col-auto text-center ">
-            <li class="rec-product" data-title="${item.title}" data-icon="${item.image}" data-listid="${id}">
+        <div>
+            <li class="rec-product me-3" data-title="${item.title}" data-icon="${item.image}" data-listid="${id}">
                <i class="${item.image}"></i>
                <h3 class="subheading">${item.title}</h3>
             </li>
