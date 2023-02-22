@@ -149,6 +149,8 @@ async function createList() {
 
 //--------------------------------------------Renderar accordions i browser-----------------------------------------------------------------
 
+const listsContainer = document.getElementById("listsContainer");
+
 
 // Funktion som skapar en accordion från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(userListObj, recProductList) {
@@ -160,7 +162,7 @@ function createListAccordion(userListObj, recProductList) {
 
     // huvuddiv för accorian och accordian-open
     let wrapperDiv = document.createElement('div');
-    document.body.append(wrapperDiv);
+    listsContainer.append(wrapperDiv);
 
     //huvuddiven som allt ska ligga i
     let div = document.createElement("div");
@@ -187,7 +189,7 @@ function createListAccordion(userListObj, recProductList) {
     h2Element.addEventListener('click', changeListName);
     h2Element.innerHTML = `${listName}`;
     let pElement = document.createElement('p');
-    pElement.className = "text-secondary";
+    pElement.className = "text-secondary text-start";
     pElement.innerHTML = `${listLength} items`;
     divText.appendChild(h2Element);
     divText.appendChild(pElement);
