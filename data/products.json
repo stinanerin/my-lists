@@ -42,6 +42,12 @@
         "qty": 0
     },
     {
+        "title": "Kaross",
+        "image": "fa-solid fa-car-side", 
+        "checked": false,
+        "qty": 0
+    },
+    {
         "title": "Pizza",
         "image": "fa-solid fa-pizza-slice", 
         "checked": false,
@@ -80,6 +86,12 @@
     {
         "title": "Shrimp",
         "image": "fa-solid fa-shrimp", 
+        "checked": false,
+        "qty": 0
+    },
+    {
+        "title": "Ice cream",
+        "image": "fa-solid fa-ice-cream", 
         "checked": false,
         "qty": 0
     },

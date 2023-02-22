@@ -149,6 +149,8 @@ async function createList() {
 
 //--------------------------------------------Renderar accordions i browser-----------------------------------------------------------------
 
+const listsContainer = document.getElementById("listsContainer");
+
 
 // Funktion som skapar en accordion från lista i API. Skriver ut i brower (förlåt för ful)
 function createListAccordion(userListObj, recProductList) {
@@ -160,7 +162,8 @@ function createListAccordion(userListObj, recProductList) {
 
     // huvuddiv för accorian och accordian-open
     let wrapperDiv = document.createElement('div');
-    document.body.append(wrapperDiv);
+    wrapperDiv.classList.add("wrapperDiv");
+    listsContainer.append(wrapperDiv);
 
     //huvuddiven som allt ska ligga i
     let div = document.createElement("div");
@@ -187,7 +190,7 @@ function createListAccordion(userListObj, recProductList) {
     h2Element.addEventListener('click', changeListName);
     h2Element.innerHTML = `${listName}`;
     let pElement = document.createElement('p');
-    pElement.className = "text-secondary";
+    pElement.className = "text-secondary text-start";
     pElement.innerHTML = `${listLength} items`;
     divText.appendChild(h2Element);
     divText.appendChild(pElement);
@@ -208,14 +211,14 @@ function createListAccordion(userListObj, recProductList) {
 
     //pil-knapp som togglar div
     let toggleBtn = document.createElement("button");
-    toggleBtn.classList.add("align-self-end", "rounded", "border", "border-secondary")
+    toggleBtn.classList.add("align-self-end", "rounded", "border", "border-secondary", "toggleBtn")
     toggleBtn.innerHTML = `<i class="fa-solid fa-angle-down"></i>`;
     buttonDiv.append(toggleBtn);
 
 
     //diven som togglar mellan synlig och osynlig
     let toggleDiv = document.createElement("div");
-    toggleDiv.classList.add("list-accordian-open", "hidden", "p-3", "shadow");
+    toggleDiv.classList.add("list-accordian-open", "hidden", "shadow");
     wrapperDiv.append(toggleDiv);
 
     //lägger till eventlistener på toggle-knapp som anropar funktion
