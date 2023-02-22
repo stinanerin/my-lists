@@ -20,6 +20,7 @@ h1, h2, h3, h4 {
 
 /* --------------------------- RADERA: SLUT----------------------------*/
 
+
 /* --------------------------- Headings ------------------------------ */
 
 //Kommer ej på bättre namn >:-(
@@ -33,6 +34,10 @@ h1, h2, h3, h4 {
 
 /* ---- Förslag globala komponenter som jag tror är återanvändnignsbara - eller blir det om projektet växer-------*/
 
+body {
+  background-color: $body-bg;
+}
+
 .link {
   color: $link;
   &:hover {
@@ -41,9 +46,7 @@ h1, h2, h3, h4 {
 }
 
 .hide {
-
   display: none;
-  
 }
 
 .fa-brands,
@@ -72,29 +75,18 @@ h1, h2, h3, h4 {
   padding: 24px 10px;
 }
 
-/* klasser för accordion. bör ses över*/
-
-.list-accordion {
-  background: $grey-300;
+.input-design {
+  border-radius: 10px;
+  padding:0.2rem;
+  border: 1px solid;
+  background: rgba(0,0,0,0);
 }
 
-.list-accordian-open {
-  background-color: $p-white;
-  /* border: 1px solid; */
-}
 
-.hidden {
-  display: none;
-}
-
-.image {
-  height: 100px;
-  width: 100px;
-  border-radius: 1rem;
-}
 .imageContainer {
   max-height: 50vh;
 }
 .heroImage {
   width:100%
 }
+

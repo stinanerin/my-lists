@@ -158,11 +158,14 @@ function createListAccordion(userListObj, recProductList) {
     let listLength = userListObj.itemList.length;
     let listID = userListObj._id;
 
+    // huvuddiv för accorian och accordian-open
+    let wrapperDiv = document.createElement('div');
+    document.body.append(wrapperDiv);
 
     //huvuddiven som allt ska ligga i
     let div = document.createElement("div");
     div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
-    document.body.append(div);
+    wrapperDiv.append(div);
 
     //bilden 
     let image = document.createElement("img");
@@ -197,7 +200,9 @@ function createListAccordion(userListObj, recProductList) {
 
     //trashcan
     let trashBtn = document.createElement("button");
-    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent", "deleteListBtn")
+    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent", "deleteListBtn");
+    // sätter id för trashBtn till samma id som listan
+    trashBtn.setAttribute('id', listID);
     trashBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
     buttonDiv.append(trashBtn);
 
@@ -211,7 +216,7 @@ function createListAccordion(userListObj, recProductList) {
     //diven som togglar mellan synlig och osynlig
     let toggleDiv = document.createElement("div");
     toggleDiv.classList.add("list-accordian-open", "hidden", "p-3", "shadow");
-    document.body.append(toggleDiv);
+    wrapperDiv.append(toggleDiv);
 
     //lägger till eventlistener på toggle-knapp som anropar funktion
     toggleBtn.addEventListener("click", toggleArrow);
@@ -244,7 +249,7 @@ function createListAccordion(userListObj, recProductList) {
     h2.innerText = "Recommended for you";
 
     let divRecomendationBar = document.createElement("div");
-    divRecomendationBar.classList.add("row", "gy-5", "recProdContainer");
+    divRecomendationBar.classList.add("recProdContainer", "d-flex", "justify-content-between", "p-3");
 
     recommendationUL.append(h2, divRecomendationBar)
 
@@ -269,13 +274,29 @@ function createListAccordion(userListObj, recProductList) {
         let listAccordion = document.querySelectorAll('div.list-accordion');
 
         listAccordion.forEach(trashcan => {
+
             trashcan.addEventListener('click', (event) => {
 
-                if (event.target.classList.value === 'fa-regular fa-trash-can') {
-                    console.log('you clicked on the trashcan');
+                if (event.target.classList.value === 'fa-regular fa-trash-can' && event.target.parentElement.id) {
                     // tar bort listan från DOMen
-                    event.target.parentElement.parentElement.parentElement.remove();
-                    // lägg till att ta bort listan från local storage och API
+                    event.target.parentElement.parentElement.parentElement.parentElement.remove();
+                    // console.log(event.target.parentElement.id);
+                    let deleteID = event.target.parentElement.id;
+                    
+                    //!todo: radera id från local storage
+                    
+                    // ta bort listan från API
+                    async function deleteListFromAPI() {
+
+                        const res = await fetch(
+                            `https://nackademin-item-tracker.herokuapp.com/lists/${deleteID}`,
+                            {
+                              method: "DELETE",
+                            }
+                          );
+                    }
+                    deleteListFromAPI()
+
                 }
             });
         });
@@ -310,6 +331,7 @@ function toggleArrow(event) {
 function changeListName(target) {
     let input = document.createElement("input");
     input.type = "placeholder";
+    input.className = "input-design";
     input.addEventListener('change', saveNewListName);
     let parent = target.srcElement.parentElement;
     parent.replaceChild(input, target.srcElement);

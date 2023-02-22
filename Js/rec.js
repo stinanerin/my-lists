@@ -30,8 +30,8 @@ function drawRecProd(listDiv, arr, id) {
 
     arr.forEach((item) => {
         listDiv.innerHTML += `
-        <div class="col-auto text-center ">
-            <li class="rec-product" data-title="${item.title}" data-icon="${item.image}" data-listid="${id}">
+        <div>
+            <li class="rec-product me-3" data-title="${item.title}" data-icon="${item.image}" data-listid="${id}">
                <i class="${item.image}"></i>
                <h3 class="subheading">${item.title}</h3>
             </li>
@@ -58,11 +58,12 @@ function addItem(wrapper) {
         item.addEventListener("click", () => {
             // console.log("Add listener")
             
+            // console.log(item);
             
             let ulProgress = wrapper.parentElement.nextElementSibling.nextElementSibling;
             
             let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
-            
+            //! Stina fråga Jonas
             // let ulProgress = document.querySelector(".progressList");
             // let ulDone = document.querySelector(".doneList");
 

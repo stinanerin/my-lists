@@ -2,9 +2,16 @@
 .recommendationUl {
     padding-left: 0; 
     .rec-product {
+        font-size: 1.3rem;
         list-style-type: none;
+        text-align: center;
         &:hover {
             cursor: pointer;
         }
     }
+}
+.recProdContainer {
+    max-width: 1000px;
+    overflow: auto;
+    white-space: nowrap;
 }

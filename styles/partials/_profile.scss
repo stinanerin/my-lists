@@ -13,7 +13,6 @@ body{
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 20px;
     
    
     img {
@@ -34,12 +33,21 @@ body{
 .loggOut {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items:end; 
-    margin-right: 16px;     
+    // margin-right: 16px;    
+    min-height: 47px;; 
 } 
+
+#userFullName {
+    font-size: 1.2rem;
+    font-weight: 200;
+    margin-bottom: 2rem;
+}
   
 /* footer */
 footer {
+    background-color: $grey-400;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
