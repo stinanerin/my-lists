@@ -22,10 +22,7 @@ layer(bootstrap);
     @import "./partials/profile";
     @import "./partials/rec-products";
     @import "./partials/articles";
+    @import "./partials/accordion";
     
 };
 
-.input-design {
-    border-radius: 10px;
-    background: rgba(0,0,0,0);
-}

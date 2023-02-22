@@ -1,0 +1,24 @@
+/* klasser för accordion */
+
+.list-accordion {
+    background: $grey-200;
+  }
+  
+  .list-accordian-open {
+    background-color: $togglediv-bg;
+    /* border: 1px solid; */
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .image {
+    height: 100px;
+    width: 100px;
+    border-radius: 1rem;
+  }
+
+  .fa-trash-can {
+    color: $p-black;
+  }
