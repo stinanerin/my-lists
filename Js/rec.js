@@ -60,17 +60,11 @@ function addItem(wrapper) {
             
             // console.log(item);
             
-            let ulProgress = wrapper.parentElement.nextElementSibling.nextElementSibling;
+            // let ulProgress = wrapper.parentElement.nextElementSibling.nextElementSibling;
+            let ulProgress = wrapper.querySelector(".progressList");
             
-            let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
-            //! Stina fråga Jonas
-            // let ulProgress = document.querySelector(".progressList");
-            // let ulDone = document.querySelector(".doneList");
-
-            // console.log("progress", ulProgress);
-            // console.log("done", ulDone);
-        
-        
+            // let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
+            let ulDone = wrapper.querySelector(".doneList");
             ulArray = [ulProgress, ulDone];
            
             //! Behövs denna?
