@@ -7,3 +7,10 @@
     align-items: $align;
     flex-wrap: $wrap;
 }
+
+@mixin animation ($name ,$duration: 1.5s, $fillMode: forwards ) {
+    animation-name: $name;
+    animation-duration: $duration;
+    animation-fill-mode: $fillMode; 
+};
+

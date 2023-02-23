@@ -67,6 +67,10 @@ body {
   background-color: $btn;
   padding: 10px 68px;
   color: $p-white;
+  &:hover {
+    @include animation(switchClr);		
+
+  }
 }
 
 /*  */
@@ -101,3 +105,8 @@ body {
   width:100%
 }
 
+@keyframes switchClr {
+  100% {
+      background-color: $header-bg;
+  };
+};
