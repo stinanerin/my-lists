@@ -285,8 +285,18 @@ function createListAccordion(userListObj, recProductList) {
                     event.target.parentElement.parentElement.parentElement.parentElement.remove();
                     // console.log(event.target.parentElement.id);
                     let deleteID = event.target.parentElement.id;
+
+                    
+                    console.log(sigUser.userList);
+                    console.log(deleteID);
                     
                     //!todo: radera id från local storage
+
+
+
+
+
+
                     
                     // ta bort listan från API
                     async function deleteListFromAPI() {
