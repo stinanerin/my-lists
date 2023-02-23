@@ -3,6 +3,24 @@
 .login-main {
     background-color: $grey-300;
     border-radius: 50px 50px 0 0;
+    .alert-danger {
+        .fa-solid {
+            color: $danger-500;
+        }
+    }
+    .error {
+        &:-webkit-autofill, &:-webkit-autofill:focus, &:focus { 
+            border-color: $danger-500;
+
+            -webkit-text-fill-color: $danger-500;
+            box-shadow: 0 0 0px 1000px $danger-500 inset;
+            -webkit-box-shadow: 0 0 0px 1000px $danger-50 inset;
+            transition: background-color 5000s ease-in-out 0s
+            
+        }
+    
+    }
+    
     .fa-brands {
         font-size: 40px;
     }

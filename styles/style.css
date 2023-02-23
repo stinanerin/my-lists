@@ -36,7 +36,7 @@
     display: none;
   }
   .fa-brands,
-  .fa-solid {
+.fa-solid {
     color: #000;
     pointer-events: none;
   }
@@ -56,6 +56,17 @@
   .input {
     border-radius: 20px;
     padding: 24px 10px;
+  }
+  .input:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #fff inset;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  }
+  .input:-webkit-autofill:focus, .input:focus {
+    border-color: #55a2bc;
+    box-shadow: 0 0 0px 1000px hsla(195deg, 43%, 54%, 0.299) inset;
+    -webkit-box-shadow: 0 0 0px 1000px hsla(195deg, 43%, 54%, 0.299) inset;
+    -webkit-transition: background-color 5000s ease-in-out 0s;
+    transition: background-color 5000s ease-in-out 0s;
   }
   .input-design {
     border-radius: 10px;
@@ -108,6 +119,17 @@
     background-color: hsl(0deg, 0%, 80%);
     border-radius: 50px 50px 0 0;
   }
+  .login-main .alert-danger .fa-solid {
+    color: #b02a37;
+  }
+  .login-main .error:-webkit-autofill, .login-main .error:-webkit-autofill:focus, .login-main .error:focus {
+    border-color: #b02a37;
+    -webkit-text-fill-color: #b02a37;
+    box-shadow: 0 0 0px 1000px #b02a37 inset;
+    -webkit-box-shadow: 0 0 0px 1000px hsl(355deg, 70%, 91%) inset;
+    -webkit-transition: background-color 5000s ease-in-out 0s;
+    transition: background-color 5000s ease-in-out 0s;
+  }
   .login-main .fa-brands {
     font-size: 40px;
   }
@@ -157,6 +179,7 @@
   /* footer */
   footer {
     background-color: hsl(210deg, 4%, 53%);
+    position: -webkit-sticky;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -186,7 +209,7 @@
     padding: 16px;
   }
   .producteItem .iconTitleWrapper,
-  .producteItem .counterCheckboxWrapper {
+.producteItem .counterCheckboxWrapper {
     display: flex;
     align-items: center;
   }

@@ -21,7 +21,7 @@
     <script src="Js/local-array.js" defer></script>
     <script src="Js/login.js" defer></script>
     <script src="Js/logout.js" defer></script>
-    <!--!Denna kastade ett error på index.html i consolen så tog bort den-->
+    <!--! Denna kastade ett error på index.html i consolen så tog bort den-->
     <!--! Verkar funkar fint ändå, annars får vi lägga in någon if-sats om den behöver vara länkad här då den ej hittar dom-elementet-->
     <!-- <script src="Js/fetchName.js" defer></script> -->
 
@@ -40,10 +40,11 @@
         <div  class="login-main pt-5">
 
             <div class="log-in-form-container ">
-
+                
                 <!-- Login Form -->
-
+                
                 <form class="container" id="loginForm">
+                    
 
                     <div class="row gy-3 ">
                         <!-- Email -->
@@ -56,10 +57,17 @@
                         </div>
                         <p class="text-end">Forgot password?</p>
                     </div>
+                    
+                    <!-- Alert message-->
+                    <div class="login-alert-container">
+                        
+                    </div>
+
                     <!-- Submit knapp login -->
                     <div class="d-flex justify-content-center mt-5">
                         <button class="btn" type="submit">Sign in</button>
                     </div>
+
             
                 </form>
                 
@@ -117,22 +125,33 @@
                 <form class="container" id="registerUser">
         
                     <div class="row gy-3">
+                        
                         <!-- Name-->
                         <div class="form-group">
                             <input class="form-control input" id="FLName" type="text" placeholder="Full Name" required/>
                         </div>
+
+                        <!-- Alert message-->
+                        <div class="reg-alert-container m-0">
+                            
+                        </div>
+                        
                         <!-- Email-->
                         <div class="form-group">
-                            <input class="form-control input" id="email" type="email" placeholder="Email" required/>
+                            <input class="form-control input " id="email" type="email" placeholder="Email" required/>
                         </div>
+
                         <!-- Password-->
                         <div class="form-group">
                             <input class="form-control input" id="PWD" type="password" placeholder="********" required/>
                         </div>
+
                         <!-- Conf. password-->
                         <div class="form-group">
                             <input class="form-control input" id="confPWD" type="password" placeholder="Confirm Password" required/>
                         </div>
+                         
+
                         <!-- Submit btn-->
                         <div class="d-flex justify-content-center my-5">
                             <button class="btn" type="submit">Sign up</button>

@@ -55,9 +55,18 @@
         } else {
 
             // Annars körs denna kod
-            console.log("login not ok");
-
-            //todo! Vad händer vid misslyckat inlogg?
+            // console.log("login not ok");
+            document.querySelector(".login-alert-container").innerHTML = `
+            <div class="alert alert-danger container mt-2" role="alert">
+                <div class="row">
+                    <div class="col-auto">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="col">
+                        <p>Invalid email or password </p>
+                    </div>
+                </div>
+            </div>`
 
         }        
     }
@@ -96,14 +105,14 @@
         const fullName = document.querySelector('#FLName').value;
         console.log(fullName);
 
-        const email = document.querySelector('#email').value;
+        const email = document.querySelector('#email');
         console.log(email);
 
         const PWD = document.querySelector('#PWD').value;
         console.log(PWD);
     
         // Villkor för every()-metod Kollar så anv. email ej är samma som en redan reggad anv.
-        const checkUniqueUser = user => user.email !== email;
+        const checkUniqueUser = user => user.email !== email.value;
 
         // every() retunerar true / false
         console.log(userArr.every(checkUniqueUser));
@@ -117,6 +126,24 @@
 
             //todo! Något felmeddelande mot användare måste vi displaya
             console.log("mejlen finns redan reggad");
+
+            email.classList.toggle("error")
+
+            document.querySelector(".reg-alert-container").innerHTML = `
+            <div class="alert alert-danger container m-0 mt-3" role="alert">
+                <div class="row">
+                    <div class="col-auto">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="col">
+                        <p>This email is already registered</p>
+                    </div>
+                </div>
+            </div>
+            `
+
+            
+
 
         }
 
