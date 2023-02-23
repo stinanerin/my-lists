@@ -188,7 +188,7 @@ function createListAccordion(userListObj, recProductList) {
     h2Element.addEventListener('click', changeListName);
     h2Element.innerHTML = `${listName}`;
     let pElement = document.createElement('p');
-    pElement.className = "text-secondary text-start";
+    pElement.className = "text-secondary text-start pElement";
     pElement.innerHTML = `${listLength} items`;
     divText.appendChild(h2Element);
     divText.appendChild(pElement);
@@ -369,3 +369,4 @@ async function saveNewListName(target) {
     let parent = target.srcElement.parentElement;
     parent.replaceChild(h2, target.srcElement);
 }
+
