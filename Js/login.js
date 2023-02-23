@@ -63,31 +63,44 @@
                         <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                     <div class="col">
-                        <p>Invalid email or password </p>
+                        <span>Invalid email or password</span>
                     </div>
                 </div>
             </div>`
 
         }        
     }
+    //-------------------------------------------- RENDER LOGIN USER VIEW ---------------------------------------------------
 
+    const loginUserLink  = document.querySelector('#loginUserLink');
+
+    loginUserLink.addEventListener("click", () => {
+        
+        // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
+        document.querySelector(".register-form-container").classList.toggle("hide");
+        
+        document.querySelector(".log-in-form-container").classList.toggle("hide");
+        
+    })
+    
     //-------------------------------------------- RENDER REGISTER NEW USER VIEW ---------------------------------------------------
 
     const registerUserLink  = document.querySelector('#registerUserLink');
-    const PWDFeedback = document.querySelector(".password-feedback")
-    const emailAlert = document.querySelector(".reg-alert-container")
-
+    
     registerUserLink.addEventListener("click", () => {
-
+        
         // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
         document.querySelector(".register-form-container").classList.toggle("hide");
-
+        
         document.querySelector(".log-in-form-container").classList.toggle("hide");
         
     })
     
     //--------------------------------------------REGISTER NEW USER---------------------------------------------------
     
+    const PWDFeedback = document.querySelector(".password-feedback")
+    const emailAlert = document.querySelector(".reg-alert-container")
+
     // Om en user existerar i local - Hämta datan och assigna till userArr
     // Om user ej existerar i local - assigna tom arr till userArr
     let userArr = getitem("registeredUsers") ? getitem("registeredUsers") : [];
