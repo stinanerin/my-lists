@@ -66,6 +66,8 @@ function addItem(wrapper) {
             // let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
             let ulDone = wrapper.querySelector(".doneList");
             ulArray = [ulProgress, ulDone];
+
+            let pElement = wrapper.querySelector(".pElement")
            
             //! Behövs denna?
             isChecked = false;
@@ -81,6 +83,9 @@ function addItem(wrapper) {
                 const newItem = itemList.findLast(elem => elem)
 
                 // console.log(newItem);
+
+                //när ny vara lagts till anropas funktion som ändrar antal
+                changeItemCounterText(pElement, itemList);
 
                 // skapa productListItem elementet med nuvarande objektet
                     productListItem(
