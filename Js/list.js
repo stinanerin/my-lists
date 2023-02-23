@@ -372,26 +372,3 @@ async function saveNewListName(target) {
     parent.replaceChild(h2, target.srcElement);
 }
 
-
-//--------------------------------------------Funktion som ändrar antal i item-text under rubrik--------------------------------------------
-
-
-
-function changeItemCounterText(pElement, itemList) {
-    /* 
-    Vad behövs? 
-    - hämta p-elementet 
-        - träffa element i rätt lista
-    - listans fullständiga längd
-
-
-    vad ska göras?
-    - ändra innerHTML eller text i p-elementet
-
-
-    när ska ändringen göras? 
-    - varje gång något läggs till eller tas bort ur en lista via API
-    */
-    
-    pElement.innerHTML = `${itemList.length} items`
-}
