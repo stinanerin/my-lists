@@ -24,7 +24,7 @@
     function loginValidation(email, password) {
 
         // Hämta arr från local med alla reggade anv-objekt
-        const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers"));
+        const registeredUsers = getitem("registeredUsers");
 
         console.log(registeredUsers);
 
@@ -46,7 +46,8 @@
 
             // Spara det inloggade anv-obj i local storage
             // Under signedInUser
-            localStorage.setItem("signedInUser", JSON.stringify(user))
+            setItem("signedInUser", user);
+
 
             // Slussar anv vidare till list.html
             redirectUser("list.html")            
@@ -78,18 +79,18 @@
     
     // Om en user existerar i local - Hämta datan och assigna till userArr
     // Om user ej existerar i local - assigna tom arr till userArr
-    let userArr = localStorage.getItem("registeredUsers") ? JSON.parse(localStorage.getItem("registeredUsers")) : [];
+    let userArr = getitem("registeredUsers") ? getitem("registeredUsers") : [];
     console.log("userArr", userArr);
     // console.log("userArr", userArr[0].password);
     
     registerUserForm = document.querySelector('#registerUser');
     console.log(registerUserForm);
-
+   
     // Submit-EventListener på form
 
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        console.log("We inside addeventlistener");
+        console.log("We inside add-eventlistener");
 
         // Hämtar valuet från users inlogg-försök
         const fullName = document.querySelector('#FLName').value;
@@ -102,12 +103,12 @@
         console.log(PWD);
     
         // Villkor för every()-metod Kollar så anv. email ej är samma som en redan reggad anv.
-        const checkUser = user => user.email !== email;
+        const checkUniqueUser = user => user.email !== email;
 
         // every() retunerar true / false
-        console.log(userArr.every(checkUser));
+        console.log(userArr.every(checkUniqueUser));
 
-        if(userArr.every(checkUser)) {
+        if(userArr.every(checkUniqueUser)) {
 
             // Om user email ej finns reggad sedan tidigare --> Skapa ny user i local storage
             createUser(fullName, email, PWD);
@@ -117,7 +118,7 @@
             //todo! Något felmeddelande mot användare måste vi displaya
             console.log("mejlen finns redan reggad");
 
-        } 
+        }
 
     });
 
@@ -138,13 +139,14 @@
         userArr.push(userObj);
     
         console.log(userArr);
-    
-        // Lagrar uppdaterade userArr i local storage
-        localStorage.setItem("registeredUsers", JSON.stringify(userArr));
-    
-        // Sätter användaren som "inloggad" i local storage
-        localStorage.setItem("signedInUser", JSON.stringify(userObj));
 
+
+        // Lagrar uppdaterade userArr i local storage
+        setItem("registeredUsers", userArr);
+        
+        // Sätter användaren som "inloggad" i local storage
+        setItem("signedInUser", userObj);
+        
         // Slussar anv vidare till list.html
         redirectUser("list.html")            
 
