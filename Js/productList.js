@@ -22,8 +22,13 @@ function productListItem(listItemObject, ul, listId) {
 
     let progressList = ul[0];
     let doneList = ul[1];
-
+    let deleteItem = ul[2];
+    
     let itemId = listItemObject._id
+
+
+    let deleteX = document.createElement("button");
+    deleteX.innerHTML = '<i class="fa-solid fa-xmark"></i>';
 
     // skapar image placeholder med en font awesom icon class innehåll
     const imagePlaceholder = "fa-regular fa-face-sad-cry";
@@ -46,6 +51,12 @@ function productListItem(listItemObject, ul, listId) {
     //sätter klass för styling
     input.checked = listItemObject.checked;
     input.classList.add("doneCheckbox");
+    /* Raderar produkten i DOMEN och via api */
+    deleteX.addEventListener("click", () => {
+        listItemElement.remove()
+        deleteItemAPI(listId, itemId)
+    })
+
 
     listItemElement.innerHTML = `
     <div class="iconTitleWrapper">
@@ -59,12 +70,14 @@ function productListItem(listItemObject, ul, listId) {
     // kollar om item är checked i api och appendar antingen i In progress eller i Done
     if (listItemObject.checked) {
         doneList.appendChild(listItemElement);
-    } else {
-        progressList.appendChild(listItemElement);
+    } 
+    else {
+        progressList.appendChild(listItemElement);  
     }
-
+    
     //appendar checkbox i listItemElement (skapat här ovan)
     listItemElement.append(input);
+    listItemElement.append(deleteX);
     
     /*
     Lägger en eventlistener på varje checkbox som lyssnar efter förändring.
@@ -112,3 +125,14 @@ async function changeToCheckInAPI(listId, itemId, trueOrFalse) {
     });
     const { list } = await res.json();
 }
+/* Tar bort en produkt från en lista */
+async function deleteItemAPI(listId, itemId){
+    const res = await fetch (`https://nackademin-item-tracker.herokuapp.com/lists/${listId}/items/${itemId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+    const { list } = await res.json();
+}
+
