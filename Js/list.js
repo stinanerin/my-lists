@@ -268,7 +268,7 @@ function createListAccordion(userListObj, recProductList) {
     drawRecProd(divRecomendationBar, recProductList, listID);
 
     // Initerar addItem() för varje recommendation bar 
-    addItem(divRecomendationBar);
+    addItem(wrapperDiv);
 
 
 
@@ -282,21 +282,21 @@ function createListAccordion(userListObj, recProductList) {
 
                 if (event.target.classList.value === 'fa-regular fa-trash-can' && event.target.parentElement.id) {
                     // tar bort listan från DOMen
-                    event.target.parentElement.parentElement.parentElement.parentElement.remove();
+                    event.target.closest("div.wrapperDiv").remove();
                     // console.log(event.target.parentElement.id);
                     let deleteID = event.target.parentElement.id;
-                    
+
                     //!todo: radera id från local storage
-                    
+
                     // ta bort listan från API
                     async function deleteListFromAPI() {
 
                         const res = await fetch(
                             `https://nackademin-item-tracker.herokuapp.com/lists/${deleteID}`,
                             {
-                              method: "DELETE",
+                                method: "DELETE",
                             }
-                          );
+                        );
                     }
                     deleteListFromAPI()
 
