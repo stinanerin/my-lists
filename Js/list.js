@@ -190,7 +190,7 @@ function createListAccordion(userListObj, recProductList) {
     h2Element.addEventListener('click', changeListName);
     h2Element.innerHTML = `${listName}`;
     let pElement = document.createElement('p');
-    pElement.className = "text-secondary text-start";
+    pElement.className = "text-secondary text-start pElement";
     pElement.innerHTML = `${listLength} items`;
     divText.appendChild(h2Element);
     divText.appendChild(pElement);
@@ -370,4 +370,28 @@ async function saveNewListName(target) {
     h2.innerHTML = newListName;
     let parent = target.srcElement.parentElement;
     parent.replaceChild(h2, target.srcElement);
+}
+
+
+//--------------------------------------------Funktion som ändrar antal i item-text under rubrik--------------------------------------------
+
+
+
+function changeItemCounterText(pElement, itemList) {
+    /* 
+    Vad behövs? 
+    - hämta p-elementet 
+        - träffa element i rätt lista
+    - listans fullständiga längd
+
+
+    vad ska göras?
+    - ändra innerHTML eller text i p-elementet
+
+
+    när ska ändringen göras? 
+    - varje gång något läggs till eller tas bort ur en lista via API
+    */
+    
+    pElement.innerHTML = `${itemList.length} items`
 }
