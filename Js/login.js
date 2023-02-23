@@ -125,7 +125,7 @@
         // & lösen matchar varandra --> Skapa ny user i local storage
         if(userArr.every(checkUniqueUser) && PWD.value === confPWD.value) {
 
-            createUser(fullName, email, PWD);
+            createUser(fullName, email.value, PWD.value);
 
         // Annars om mejl redan finns reggad och lösen ej matchar
         } else if (!userArr.every(checkUniqueUser) && PWD.value !== confPWD.value) {
