@@ -1,15 +1,13 @@
-// localStorage.clear()
 
 
 //--------------------------------------------Hämta användarens list-IDn från local storage---------------------------------------------------
 
 
-//! Stina kom ihåg att ändra detta om du vill
-let sigUser = localStorage.getItem("signedInUser") ? JSON.parse(localStorage.getItem("signedInUser")) : [];
+let sigUser = getitem("signedInUser") ? getitem("signedInUser") : [];
 const sigUserList = sigUser.userList;
-//! Stina kom ihåg att ändra detta om du vill
 
-console.log("sigUserList rad 12, användarens sparade listor", sigUserList);
+console.log(getitem("signedInUser"));
+console.log("sigUserList, användarens sparade list-id:n", sigUserList);
 
 
 

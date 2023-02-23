@@ -73,6 +73,17 @@ body {
 .input {
   border-radius: 20px;
   padding: 24px 10px;
+  &:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px $p-white inset;
+    -webkit-box-shadow: 0 0 0px 1000px $p-white inset;
+  }
+  &:-webkit-autofill:focus, &:focus { 
+    border-color: $btn;
+    box-shadow: 0 0 0px 1000px hsla(195, 43%, 54%, 0.299) inset;
+    -webkit-box-shadow: 0 0 0px 1000px hsla(195, 43%, 54%, 0.299) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  
 }
 
 .input-design {

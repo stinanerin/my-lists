@@ -11,7 +11,7 @@ const getitem = key => JSON.parse(localStorage.getItem(key));
 
 
 // Funktion för att uppdatera local storage
-// Tar emot en key(sträng) och ett value
+// Tar emot en key(sträng) och ett value(t.ex. array / objekt)
 const setItem = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
 
