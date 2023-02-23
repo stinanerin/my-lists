@@ -119,10 +119,21 @@
     background-color: hsl(0deg, 0%, 80%);
     border-radius: 50px 50px 0 0;
   }
+  .login-main .alert-danger {
+    border-color: #b02a37;
+  }
   .login-main .alert-danger .fa-solid {
     color: #b02a37;
   }
-  .login-main .error:-webkit-autofill, .login-main .error:-webkit-autofill:focus, .login-main .error:focus {
+  .login-main .error {
+    color: #b02a37;
+    border-color: #b02a37;
+    -webkit-text-fill-color: #b02a37;
+    box-shadow: 0 0 0px 1000px #b02a37 inset;
+    -webkit-box-shadow: 0 0 0px 1000px hsl(355deg, 70%, 91%) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  .login-main .error:-webkit-autofill, .login-main .error:-webkit-autofill:focus {
     border-color: #b02a37;
     -webkit-text-fill-color: #b02a37;
     box-shadow: 0 0 0px 1000px #b02a37 inset;

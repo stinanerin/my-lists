@@ -131,19 +131,44 @@
                             <input class="form-control input" id="FLName" type="text" placeholder="Full Name" required/>
                         </div>
 
-                        <!-- Alert message-->
-                        <div class="reg-alert-container m-0">
-                            
-                        </div>
-                        
                         <!-- Email-->
                         <div class="form-group">
                             <input class="form-control input " id="email" type="email" placeholder="Email" required/>
                         </div>
 
+                        <!-- Alert message email-->
+                        <div class="reg-alert-container m-0 hidden">
+
+                            <div class="alert alert-danger container m-0 mt-3" role="alert">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p>This email is already registered</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
                         <!-- Password-->
                         <div class="form-group">
                             <input class="form-control input" id="PWD" type="password" placeholder="********" required/>
+                        </div>
+
+                        <!-- Alert message password does not match-->
+                        <div class="password-feedback m-0 hidden">
+                            <div class="alert alert-danger container m-0 mt-3" role="alert">
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <i class="fa-solid fa-triangle-exclamation"></i>
+                                    </div>
+                                    <div class="col">
+                                        <p class="error">The password confirmation does not match</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Conf. password-->

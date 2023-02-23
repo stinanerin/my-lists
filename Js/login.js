@@ -26,23 +26,23 @@
         // Hämta arr från local med alla reggade anv-objekt
         const registeredUsers = getitem("registeredUsers");
 
-        console.log(registeredUsers);
+        // console.log(registeredUsers);
 
         // Villkor för find()-metod
         // Hitta det anv objekt som har samma email och lösen som anv. input
         const validateUser = user => user.email === email && user.password === password;
 
         // find() Retunerar det första arr-elementet som uppfyller villkor, i vårt fall ett anv-obj - annars undefined
-        console.log(registeredUsers.find(validateUser));
+        // console.log(registeredUsers.find(validateUser));
         
         // find() Retunerar det första arr-elementet som uppfyller villkor - annars undefined
         if(registeredUsers.find(validateUser)) {
             // Om det finns en match körs denna kod
-            console.log("login ok");
+            // console.log("login ok");
 
             // Spara anv-obj till den inloggade anv i user-variabel
             const user = registeredUsers.find(validateUser);
-            console.log(user);
+            // console.log(user);
 
             // Spara det inloggade anv-obj i local storage
             // Under signedInUser
@@ -74,6 +74,8 @@
     //-------------------------------------------- RENDER REGISTER NEW USER VIEW ---------------------------------------------------
 
     const registerUserLink  = document.querySelector('#registerUserLink');
+    const PWDFeedback = document.querySelector(".password-feedback")
+    const emailAlert = document.querySelector(".reg-alert-container")
 
     registerUserLink.addEventListener("click", () => {
 
@@ -89,68 +91,90 @@
     // Om en user existerar i local - Hämta datan och assigna till userArr
     // Om user ej existerar i local - assigna tom arr till userArr
     let userArr = getitem("registeredUsers") ? getitem("registeredUsers") : [];
-    console.log("userArr", userArr);
+    // console.log("userArr", userArr);
     // console.log("userArr", userArr[0].password);
     
     registerUserForm = document.querySelector('#registerUser');
-    console.log(registerUserForm);
+    // console.log(registerUserForm);
    
     // Submit-EventListener på form
 
     registerUserForm && registerUserForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        console.log("We inside add-eventlistener");
 
-        // Hämtar valuet från users inlogg-försök
+        // Hämtar userns inlogg-försök
         const fullName = document.querySelector('#FLName').value;
-        console.log(fullName);
+        // console.log(fullName);
 
         const email = document.querySelector('#email');
-        console.log(email);
+        // console.log(email.value);
 
-        const PWD = document.querySelector('#PWD').value;
-        console.log(PWD);
-    
+        const PWD = document.querySelector('#PWD');
+        // console.log(PWD.value);
+        
+        const confPWD = document.querySelector('#confPWD');
+        // console.log(confPWD.value);
+
         // Villkor för every()-metod Kollar så anv. email ej är samma som en redan reggad anv.
         const checkUniqueUser = user => user.email !== email.value;
 
         // every() retunerar true / false
-        console.log(userArr.every(checkUniqueUser));
+        // console.log(userArr.every(checkUniqueUser));
+        
+        // Om user email ej finns reggad sedan tidigare
+        // & lösen matchar varandra --> Skapa ny user i local storage
+        if(userArr.every(checkUniqueUser) && PWD.value === confPWD.value) {
 
-        if(userArr.every(checkUniqueUser)) {
-
-            // Om user email ej finns reggad sedan tidigare --> Skapa ny user i local storage
             createUser(fullName, email, PWD);
 
+        // Annars om mejl redan finns reggad och lösen ej matchar
+        } else if (!userArr.every(checkUniqueUser) && PWD.value !== confPWD.value) {
+
+            // console.log("mejlen finns redan reggad och lösen matchar ej");
+
+            email.classList.add("error");
+            confPWD.classList.add("error");
+            PWD.classList.add("error");
+
+            emailAlert.classList.remove("hidden");
+           
+            PWDFeedback.classList.remove("hidden");
+
+        // Annars om mejl redan finns reggad - dvs ej unik
+        } else if(!userArr.every(checkUniqueUser)) {
+
+            // console.log("mejlen finns redan reggad");
+
+            if(PWDFeedback.style.display = "block") {
+                PWDFeedback.classList.add("hidden")
+                PWD.classList.remove("error")
+                confPWD.classList.remove("error")
+            }
+
+            email.classList.add("error");
+
+            emailAlert.classList.remove("hidden");
+
+        // Annars om lösen ej matchar
         } else {
 
-            //todo! Något felmeddelande mot användare måste vi displaya
-            console.log("mejlen finns redan reggad");
+            // console.log("lösen matchar ej");
 
-            email.classList.toggle("error")
+            if( emailAlert.style.display = "block") {
+                emailAlert.classList.add("hidden")
+                email.classList.remove("error")
+            }
+        
+            confPWD.classList.add("error");
+            PWD.classList.add("error");
 
-            document.querySelector(".reg-alert-container").innerHTML = `
-            <div class="alert alert-danger container m-0 mt-3" role="alert">
-                <div class="row">
-                    <div class="col-auto">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                    <div class="col">
-                        <p>This email is already registered</p>
-                    </div>
-                </div>
-            </div>
-            `
-
-            
-
-
+            PWDFeedback.classList.remove("hidden")
         }
 
     });
 
     function createUser (fullName, email, PWD) {
-        console.log("We are in create user func");
+        // console.log("We are in create user func");
 
         // Skapar anv-obj med anv-input
         const userObj = {
@@ -165,7 +189,7 @@
         // Pushar in den nya anv till userArr
         userArr.push(userObj);
     
-        console.log(userArr);
+        // console.log(userArr);
 
 
         // Lagrar uppdaterade userArr i local storage
