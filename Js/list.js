@@ -63,7 +63,7 @@ async function getListByID(listId) {
 
 
     // Funktion som skapar en accordion och displayar i browser
-    const ul = createListAccordion(sigUserObject, recProductList);
+    const wrapper = createListAccordion(sigUserObject, recProductList);
     // console.log("69", ul);
 
 
@@ -75,7 +75,7 @@ async function getListByID(listId) {
     // loopa igenon varorna och skickar in dem i productListItem (skriver ut listorna med varor)
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
-        productListItem(listItemObject, ul, sigUserObject._id);
+        productListItem(listItemObject, wrapper, sigUserObject._id);
 
     });
 }
@@ -270,55 +270,60 @@ function createListAccordion(userListObj, recProductList) {
 
 
 
-    // Funktion som ska ta bort listan från DOM:em, local storage och API:et (ej klar)
-    let trashList = (() => {
-        let listAccordion = document.querySelectorAll('div.list-accordion');
-
-        listAccordion.forEach(trashcan => {
-
-            trashcan.addEventListener('click', (event) => {
-
-                if (event.target.classList.value === 'fa-regular fa-trash-can' && event.target.parentElement.id) {
-                    // tar bort listan från DOMen
-                    event.target.closest("div.wrapperDiv").remove();
-                    // console.log(event.target.parentElement.id);
-                    let deleteID = event.target.parentElement.id;
-
-
-                    // console.log(sigUser.userList);
-                    console.log(deleteID);
-                    
-                    // Raderar id från local storage
-                    deleteIDLocalStorage(deleteID)
-
-
-
-                    
-                    // ta bort listan från API
-                    async function deleteListFromAPI() {
-
-                        const res = await fetch(
-                            `https://nackademin-item-tracker.herokuapp.com/lists/${deleteID}`,
-                            {
-                                method: "DELETE",
-                            }
-                        );
-                    }
-                    deleteListFromAPI()
-
-                }
-            });
-        });
-    });
-
+    // Funktion som tar bort listan från DOM:em, local storage och API:et
     trashList();
 
     //returnerar progress listan och done listan så att dessa kan användas utanför funktionen
-    return [ul, doneUL];
+    return wrapperDiv;
 }
 
 
 
+
+
+//--------------------------------------------TA BORT EN LISTA----------------------------------------------------------------------------
+
+
+let trashList = (() => {
+    let listAccordion = document.querySelectorAll('div.list-accordion');
+
+    listAccordion.forEach(trashcan => {
+
+        trashcan.addEventListener('click', (event) => {
+
+            if (event.target.classList.value === 'fa-regular fa-trash-can' && event.target.parentElement.id) {
+                // tar bort listan från DOMen
+                event.target.closest("div.wrapperDiv").remove();
+                // console.log(event.target.parentElement.id);
+                let deleteID = event.target.parentElement.id;
+
+
+                // console.log(sigUser.userList);
+                console.log(deleteID);
+
+                // Raderar id från local storage
+                deleteIDLocalStorage(deleteID);
+
+
+                deleteListFromAPI(deleteID);
+
+            }
+        });
+    });
+});
+
+
+
+// ta bort listan från API
+async function deleteListFromAPI(deleteID) {
+
+    const res = await fetch(
+        `https://nackademin-item-tracker.herokuapp.com/lists/${deleteID}`,
+        {
+            method: "DELETE",
+        }
+    );
+}
 
 
 //--------------------------------------------TOGGLA ACCORDION STÄNGD/ÖPPEN-----------------------------------------------------------------

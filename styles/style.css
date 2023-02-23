@@ -36,7 +36,7 @@
     display: none;
   }
   .fa-brands,
-.fa-solid {
+  .fa-solid {
     color: #000;
     pointer-events: none;
   }
@@ -53,12 +53,9 @@
     color: #fff;
   }
   .btn:hover {
-    -webkit-animation-name: switchClr;
-            animation-name: switchClr;
-    -webkit-animation-duration: 1.5s;
-            animation-duration: 1.5s;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
+    animation-name: switchClr;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
   }
   /*  */
   .input {
@@ -87,11 +84,6 @@
   }
   .heroImage {
     width: 100%;
-  }
-  @-webkit-keyframes switchClr {
-    100% {
-      background-color: #367185;
-    }
   }
   @keyframes switchClr {
     100% {
@@ -132,6 +124,12 @@
   }
   .logoutIconWhite {
     width: 22px;
+  }
+  .deleteX {
+    background-color: #eaeaea;
+    border: 0px solid;
+    border-radius: 4px;
+    margin-left: 1rem;
   }
   .login-main {
     background-color: hsl(0deg, 0%, 80%);
@@ -208,7 +206,6 @@
   /* footer */
   footer {
     background-color: hsl(210deg, 4%, 53%);
-    position: -webkit-sticky;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -238,7 +235,7 @@
     padding: 16px;
   }
   .producteItem .iconTitleWrapper,
-.producteItem .counterCheckboxWrapper {
+  .producteItem .counterCheckboxWrapper {
     display: flex;
     align-items: center;
   }
@@ -324,9 +321,5 @@
   }
   .toggleBtn {
     background-color: rgba(0, 0, 0, 0);
-  }
-  .arrow {
-    max-width: 17px;
-    pointer-events: none;
   }
 }/*# sourceMappingURL=style.css.map */

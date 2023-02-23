@@ -16,18 +16,20 @@ När du har skapat ditt dom element så retunera den.
 
 
 //skickar in listobjektet, en array som innehåller progressList och doneList, samt listans id
-function productListItem(listItemObject, ul, listId) {
-    
+function productListItem(listItemObject, wrapper, listId) {
+
     // console.log(listItemObject)
 
-    let progressList = ul[0];
-    let doneList = ul[1];
-    let deleteItem = ul[2];
-    
+    let progressList = wrapper.querySelector(".progressList");
+    let doneList = wrapper.querySelector(".doneList");
+    let pElement = wrapper.querySelector(".pElement");
+
+
     let itemId = listItemObject._id
 
 
     let deleteX = document.createElement("button");
+    deleteX.classList.add("deleteX");
     deleteX.innerHTML = '<i class="fa-solid fa-xmark"></i>';
 
     // skapar image placeholder med en font awesom icon class innehåll
@@ -51,10 +53,13 @@ function productListItem(listItemObject, ul, listId) {
     //sätter klass för styling
     input.checked = listItemObject.checked;
     input.classList.add("doneCheckbox");
+
+
+
     /* Raderar produkten i DOMEN och via api */
     deleteX.addEventListener("click", () => {
         listItemElement.remove()
-        deleteItemAPI(listId, itemId)
+        deleteItemAPI(listId, itemId, pElement)
     })
 
 
@@ -70,28 +75,23 @@ function productListItem(listItemObject, ul, listId) {
     // kollar om item är checked i api och appendar antingen i In progress eller i Done
     if (listItemObject.checked) {
         doneList.appendChild(listItemElement);
-    } 
-    else {
-        progressList.appendChild(listItemElement);  
     }
-    
+    else {
+        progressList.appendChild(listItemElement);
+    }
+
     //appendar checkbox i listItemElement (skapat här ovan)
     listItemElement.append(input);
     listItemElement.append(deleteX);
+
     
-    /*
-    Lägger en eventlistener på varje checkbox som lyssnar efter förändring.
-    Om man klickar i en checkbox så skickas följande till funktion som ändrar varan i API:
-    - id för listan den ligger i
-    - id för själva artikeln
-    - true eller false (beroende på state på item) 
-    appendar också i ny lista och ändrar checked i html element */
+    // Lägger en eventlistener på varje checkbox som lyssnar efter förändring.
     input.addEventListener("change", () => {
 
         // If sats för att kolla om checkboxen som användaren klickat i tillhör ett item som ligger i In Progress eller Done-lista
         // Om itemet var checkat innan användaren klickade så hamnar det i In Progress-lista och vise versa
         // Anropar även funktion som ändrar item från checked:true till checked:false i API (och och vise versa)
-        
+
         if (listItemObject.checked) {
             changeToCheckInAPI(listId, itemId, false);
             progressList.appendChild(listItemElement);
@@ -125,14 +125,20 @@ async function changeToCheckInAPI(listId, itemId, trueOrFalse) {
     });
     const { list } = await res.json();
 }
-/* Tar bort en produkt från en lista */
-async function deleteItemAPI(listId, itemId){
-    const res = await fetch (`https://nackademin-item-tracker.herokuapp.com/lists/${listId}/items/${itemId}`, {
+
+
+
+
+/* Tar bort en produkt från en lista, anropar räknare */
+async function deleteItemAPI(listId, itemId, pElement) {
+    const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${listId}/items/${itemId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
     });
     const { list } = await res.json();
+
+    changeItemCounterText(pElement, list.itemList);
 }
 

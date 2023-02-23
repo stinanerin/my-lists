@@ -59,22 +59,13 @@ function addItem(wrapper) {
             // console.log("Add listener")
             
             // console.log(item);
-            
-            // let ulProgress = wrapper.parentElement.nextElementSibling.nextElementSibling;
-            let ulProgress = wrapper.querySelector(".progressList");
-            
-            // let ulDone = wrapper.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
-            let ulDone = wrapper.querySelector(".doneList");
-            ulArray = [ulProgress, ulDone];
-
             let pElement = wrapper.querySelector(".pElement")
-           
-            //! Behövs denna?
-            isChecked = false;
-            
+
+
+
             // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
             // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
-            newItem(item.dataset.title, item.dataset.icon, item.dataset.listid, isChecked)
+            newItem(item.dataset.title, item.dataset.icon, item.dataset.listid)
             .then((list) => {
                 // console.log(list);
                 
@@ -90,7 +81,7 @@ function addItem(wrapper) {
                 // skapa productListItem elementet med nuvarande objektet
                     productListItem(
                         newItem,
-                        ulArray,                   
+                        wrapper,                   
                         list._id,
                     );
                     
@@ -110,7 +101,7 @@ function addItem(wrapper) {
 // Denna funktion lägger till varor i API 
 // Beroende på vilken knapp i recommended bar användaren klickat på
 
-async function newItem(title, icon, listID, isChecked) {
+async function newItem(title, icon, listID) {
     // Tar emot användarens klickade item, med titel och ikon och sparar det i API:et för att kunna renderas senare
     // console.log("59", isChecked);
 
@@ -125,7 +116,7 @@ async function newItem(title, icon, listID, isChecked) {
                 title: title,
                 image: icon,
                 qty: 1,
-                checked: isChecked
+                checked: false
             }),
         }
     );
