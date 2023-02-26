@@ -114,13 +114,14 @@ function productListItem(listItemObject, wrapper, listId) {
         
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
-        console.log("innan ökning", itemQtySpan);
-        console.log("you clicked", listItemObject.title , e.target);
+        // console.log("innan ökning", itemQtySpan);
+        // console.log("you clicked", listItemObject.title , e.target);
         let itemQty = +itemQtySpan.innerText;
-        console.log("innan ökning",itemQty);
+        // console.log("innan ökning",itemQty);
+
         // Ökar kvaniteten med ett
         let newitemQty = ++itemQty
-        console.log("efter ökning",newitemQty);
+        // console.log("efter ökning",newitemQty);
 
         // Async funktion för att ändra klickat items kvantitet i API
         changeQtyAPI(listId, itemId, newitemQty, listItemObject)
@@ -129,7 +130,7 @@ function productListItem(listItemObject, wrapper, listId) {
     
             // console.log("vi har inväntat api ändrign",  item);
             itemQtySpan.innerText = item.qty;
-            console.log("efter ökning", itemQtySpan);
+            // console.log("efter ökning", itemQtySpan);
 
         })
 
@@ -142,16 +143,16 @@ function productListItem(listItemObject, wrapper, listId) {
     // Klickevent på varje items (-) knapp
     decreaseBtn.addEventListener("click", (e) => {
 
-
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
-        console.log("innan minskning", itemQtySpan);
-        console.log("you clicked", listItemObject.title , e.target);
+        // console.log("innan minskning", itemQtySpan);
+        // console.log("you clicked", listItemObject.title , e.target);
         let itemQty = +itemQtySpan.innerText;
-        console.log("innan minskning",itemQty);
+        // console.log("innan minskning",itemQty);
+
         // Ökar kvaniteten med ett
         let newitemQty = --itemQty
-        console.log("efter minskning", newitemQty);
+        // console.log("efter minskning", newitemQty);
         
         // Om antalet är noll efter senaste minskningen --> radera itemet helt från DOM:en & API
         if(newitemQty === 0) {
@@ -168,7 +169,7 @@ function productListItem(listItemObject, wrapper, listId) {
         
                 // console.log("vi har inväntat api ändrign",  item);
                 itemQtySpan.innerText = item.qty;
-                console.log("efter minskning", itemQtySpan);
+                // console.log("efter minskning", itemQtySpan);
     
             })
 
