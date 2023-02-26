@@ -4,3 +4,21 @@
     border-radius: 4px;
     margin-left: 1rem;
 }
+
+/* Blåa knapparna */
+.btn {
+    border-radius: 10px;
+    background-color: $btn;
+    padding: 10px 68px;
+    color: $p-white;
+    &:hover {
+      @include animation(switchClr);		
+  
+    }
+  }
+
+  .fa-plus, .fa-minus, input[type="checkbox"] {
+    &:hover {
+        cursor: pointer;
+    }
+  }
