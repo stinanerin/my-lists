@@ -94,10 +94,6 @@ function productListItem(listItemObject, wrapper, listId) {
 
         if (listItemObject.checked) {
 
-            console.log(listItemElement);
-            console.log(listItemObject);
-            console.log("du checkade ur", listItemObject.title);
-
             //! NYTT
             // Aktuell listas progressList-UL
             let progressItemsList = wrapper.querySelector('.progressList');
