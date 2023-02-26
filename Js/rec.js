@@ -46,20 +46,20 @@ function drawRecProd(listDiv, arr, id) {
 
 // console.log([ul, doneUL]);
 function addItem(wrapper) {
-    
+
     // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
     let allRecProducts = wrapper.querySelectorAll(".rec-product");
     // console.log(allRecProducts);
 
-    
-    
+
+
     allRecProducts.forEach((item) => {
-        
+
         item.addEventListener("click", () => {
             // console.log("Add listener")
-            
+
             let pElement = wrapper.querySelector(".pElement")
-            
+
             // Aktuell listas progressList-UL
             let progressItemsList = wrapper.querySelector('.progressList');
             // Alla h4 taggar i progressList-UL
@@ -70,18 +70,18 @@ function addItem(wrapper) {
 
             // Om anv. försöker lägga till en produkt den redan har i sin lista 
             // Öka kvantiteten av produkten användaren redan har i sin lista
-            if(allItemsTitlesArr.find(elem => elem.innerText === item.dataset.title) ) {
+            if (allItemsTitlesArr.find(elem => elem.innerText === item.dataset.title)) {
 
                 let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === item.dataset.title)
                 // console.log(itemMatch);
-                
+
                 // Hittar <span> där kvantiteten renderas
                 let itemQtySpan = itemMatch.parentElement.parentElement.querySelector('.item-qty');
                 let itemQty = +itemQtySpan.innerText;
                 let newitemQty = ++itemQty
 
                 // Async funktion som uppdaterar existerande items kvantitet för aktuell lista
-                changeQtyAPI(item.dataset.listid, itemMatch.dataset.itemid, newitemQty)
+                changeQtyAPI(item.dataset.listid, itemMatch.dataset.itemid, newitemQty, pElement)
                 // Uppdaterar span i DOM:en
                 itemQtySpan.innerText = newitemQty;
 
@@ -91,36 +91,36 @@ function addItem(wrapper) {
                 // Vid varje klick på ett item kör vi newItem() som lägger till ny product i API:et
                 // newItem() tar emot dataseten från addItem så vi kan putta in de i APi:et 
                 newItem(item.dataset.title, item.dataset.icon, item.dataset.listid)
-                .then((list) => {
-                    // console.log(list);
-                    
-                    let itemList = list.itemList;
-    
-                    const newItem = itemList.findLast(elem => elem)
-    
-                    // console.log(newItem);
-    
-                    //när ny vara lagts till anropas funktion som ändrar antal
-                    changeItemCounterText(pElement, itemList);
-    
-                    // skapa productListItem elementet med nuvarande objektet
+                    .then((list) => {
+                        // console.log(list);
+
+                        let itemList = list.itemList;
+
+                        const newItem = itemList.findLast(elem => elem)
+
+                        // console.log(newItem);
+
+                        //när ny vara lagts till anropas funktion som ändrar antal
+                        changeItemCounterText(pElement, itemList);
+
+                        // skapa productListItem elementet med nuvarande objektet
                         productListItem(
                             newItem,
-                            wrapper,                   
-                            list._id,
+                            wrapper,
+                            list,
                         );
-                        
-                });
+
+                    });
             }
 
 
 
 
         })
-            // Här console-loggas vilket item anv. klickat på 
-            // console.log(item.dataset.title);
-            //! Här console-loggas vilket id listan anv lagt till ett item på är 
-            // console.log(item.dataset.listid);
+        // Här console-loggas vilket item anv. klickat på 
+        // console.log(item.dataset.title);
+        //! Här console-loggas vilket id listan anv lagt till ett item på är 
+        // console.log(item.dataset.listid);
     })
 
 }

@@ -16,16 +16,14 @@ När du har skapat ditt dom element så retunera den.
 
 
 //skickar in listobjektet, en array som innehåller progressList och doneList, samt listans id
-function productListItem(listItemObject, wrapper, listId) {
+function productListItem(listItemObject, wrapper, sigUserObject) {
 
     // console.log(listItemObject)
-
+    let listId = sigUserObject._id
+    let itemId = listItemObject._id
     let progressList = wrapper.querySelector(".progressList");
     let doneList = wrapper.querySelector(".doneList");
     let pElement = wrapper.querySelector(".pElement");
-
-
-    let itemId = listItemObject._id
 
 
     let deleteX = document.createElement("button");
@@ -84,7 +82,7 @@ function productListItem(listItemObject, wrapper, listId) {
     listItemElement.append(input);
     listItemElement.append(deleteX);
 
-    
+
     // Lägger en eventlistener på varje checkbox som lyssnar efter förändring.
     input.addEventListener("change", () => {
 
@@ -101,15 +99,15 @@ function productListItem(listItemObject, wrapper, listId) {
             // Alla h4 taggar i progressList-UL
             let allItemsTitles = progressItemsList.querySelectorAll('.titleItems');
             console.log(allItemsTitles);
-        
+
             let allItemsTitlesArr = [...allItemsTitles]
-        
+
             // Om anv. försöker checka ur ett item rån done och lägga till i progress, 
             // Men redan har en likadan i sin in progress
             // Radera itemet från done och addera dess kvantitet till existerande itemet i in progress listan
-            if(allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title) ) {
+            if (allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)) {
                 console.log("match");
-        
+
                 let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)
                 // console.log("itemMatch from progress", itemMatch);
                 // console.log("listItemElement you clicked in doneList", listItemElement);
@@ -117,7 +115,7 @@ function productListItem(listItemObject, wrapper, listId) {
                 // Hittar <span> där kvantiteten renderas för in item:et i progress-ul
                 let progressQtySpan = itemMatch.parentElement.parentElement.querySelector('.item-qty');
                 // console.log("qty for the 'in progress' item", progressQtySpan);
-                
+
                 // Hittar <span> där kvantiteten renderas för item:et i done-ul
                 let doneQtySpan = listItemElement.querySelector('.item-qty');
                 // console.log("qty for the 'done' item", doneQtySpan);
@@ -125,9 +123,10 @@ function productListItem(listItemObject, wrapper, listId) {
                 let totalQty = parseInt(progressQtySpan.innerText) + parseInt(doneQtySpan.innerText)
                 // Uppdaterar DOM:en med ny kvantitetten för itemet in progress
                 progressQtySpan.innerText = totalQty;
-        
+
+
                 // Async funktion som uppdaterar existerande items kvantitet för aktuell lista
-                changeQtyAPI(listId, itemMatch.dataset.itemid, totalQty)
+                changeQtyAPI(listId, itemMatch.dataset.itemid, totalQty, pElement)
                 // console.log("id på done match som ska raderas", itemId);
                 // console.log("id på in progress match", itemMatch.dataset.itemid);
 
@@ -160,11 +159,11 @@ function productListItem(listItemObject, wrapper, listId) {
 
     let increaseBtn = listItemElement.querySelector('.fa-plus');
     // console.log(increaseBtn);
-    
+
     // Klickevent på varje items (+) knapp
     increaseBtn.addEventListener("click", (e) => {
 
-        
+
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
         // console.log("innan ökning", itemQtySpan);
@@ -178,17 +177,17 @@ function productListItem(listItemObject, wrapper, listId) {
 
 
         // Async funktion för att ändra klickat items kvantitet i API
-        changeQtyAPI(listId, itemId, newitemQty, listItemObject)
+        changeQtyAPI(listId, itemId, newitemQty, pElement)
 
         // Uppdaterar kvanitet <span> i DOM.en
         itemQtySpan.innerText = newitemQty;
-    
+
     })
 
     //-------------------------------------------- Minus knapp - QTY ---------------------------------------------------
     let decreaseBtn = listItemElement.querySelector('.fa-minus');
     // console.log(decreaseBtn);
-    
+
     // Klickevent på varje items (-) knapp
     decreaseBtn.addEventListener("click", (e) => {
 
@@ -202,26 +201,25 @@ function productListItem(listItemObject, wrapper, listId) {
         // Ökar kvaniteten med ett
         let newitemQty = --itemQty
         // console.log("efter minskning", newitemQty);
-        
+
         // Om antalet är noll efter senaste minskningen --> radera itemet helt från DOM:en & API
-        if(newitemQty === 0) {
+        if (newitemQty === 0) {
 
             deleteItemAPI(listId, itemId, pElement)
             listItemElement.remove()
+            changeItemCounterText(pElement, sigUserObject.itemList);
+
+
 
         } else {
 
             // Async funktion för att ändra klickat items kvantitet i API 
-            changeQtyAPI(listId, itemId, newitemQty)
-            
+            changeQtyAPI(listId, itemId, newitemQty, pElement)
+
             // Uppdaterar kvanitet <span> i DOM.en
             itemQtySpan.innerText = newitemQty;
             // console.log("efter minskning", itemQtySpan);
-
-
         }
-
-
 
     })
 
@@ -253,6 +251,7 @@ async function changeToCheckInAPI(listId, itemId, trueOrFalse) {
 
 /* Tar bort en produkt från en lista, anropar räknare */
 async function deleteItemAPI(listId, itemId, pElement) {
+
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${listId}/items/${itemId}`, {
         method: "DELETE",
         headers: {
@@ -265,21 +264,24 @@ async function deleteItemAPI(listId, itemId, pElement) {
 }
 
 // Ändrar kvantiteten i API för klickat item 
-async function changeQtyAPI(listId, itemId, newitemQty, listItemObject) {
+async function changeQtyAPI(listId, itemId, newitemQty, pElement) {
+
+    // console.log("p element in changeQtyAPI", pElement)
 
     const res = await fetch(`https://nackademin-item-tracker.herokuapp.com/lists/${listId}/items/${itemId}`, {
-    method: "PUT",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-        qty: newitemQty,
-    }),
-});
-// Hämtar hela list-obj, för vilket item:et vi precisi uppdaterat kvantiteten för
-const { list } = await res.json();
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            qty: newitemQty,
+        }),
+    });
+    // Hämtar hela list-obj, för vilket item:et vi precisi uppdaterat kvantiteten för
+    const { list } = await res.json();
 
 
+    changeItemCounterText(pElement, list.itemList);
 
 }
 

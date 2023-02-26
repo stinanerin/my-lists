@@ -17,7 +17,7 @@ function changeItemCounterText(pElement, itemList) {
 
 
     //ändra antal items så att det matchar faktiska antalet, ej bara olika varor 
-    console.log("itemlist rad 17:", itemList);
+    // console.log("itemlist rad 17:", itemList);
     
     let counter = 0
     itemList.forEach(item => {
@@ -25,5 +25,4 @@ function changeItemCounterText(pElement, itemList) {
     });
     
     pElement.innerHTML = `${counter} items`
-    console.log(counter)
 }

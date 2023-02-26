@@ -75,7 +75,7 @@ async function getListByID(listId) {
     // loopa igenon varorna och skickar in dem i productListItem (skriver ut listorna med varor)
     itemList.forEach((listItemObject) => {
         // skapa productListItem elementet med nuvarande objektet
-        productListItem(listItemObject, wrapper, sigUserObject._id);
+        productListItem(listItemObject, wrapper, sigUserObject);
 
     });
 }
