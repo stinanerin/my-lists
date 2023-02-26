@@ -103,6 +103,14 @@ function productListItem(listItemObject, wrapper, listId) {
         }
     })
 
+    let increaseBtn = document.querySelector('.fa-plus');
+    console.log(increaseBtn);
+
+    increaseBtn.addEventListener("click", (e) => {
+        console.log("you clicked", e.target );
+
+    })
+
 }
 
 

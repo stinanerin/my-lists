@@ -61,17 +61,7 @@ body {
   border-top: 1px solid $p-black;
 }
 
-/* Röda knapparna */
-.btn {
-  border-radius: 10px;
-  background-color: $btn;
-  padding: 10px 68px;
-  color: $p-white;
-  &:hover {
-    @include animation(switchClr);		
 
-  }
-}
 
 /*  */
 .input {
