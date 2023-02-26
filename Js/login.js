@@ -36,7 +36,7 @@
         // console.log(registeredUsers.find(validateUser));
         
         // find() Retunerar det första arr-elementet som uppfyller villkor - annars undefined
-        if(registeredUsers.find(validateUser)) {
+        if(registeredUsers && registeredUsers.find(validateUser)) {
             // Om det finns en match körs denna kod
             // console.log("login ok");
 
@@ -55,7 +55,8 @@
         } else {
 
             // Annars körs denna kod
-            // console.log("login not ok");
+            console.log("login not ok");
+
             document.querySelector(".login-alert-container").innerHTML = `
             <div class="alert alert-danger container mt-2" role="alert">
                 <div class="row">

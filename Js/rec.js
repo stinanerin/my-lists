@@ -7,7 +7,6 @@ const fetchProductsJson = async function () {
     const response = await fetch("data/products.json");
     // console.log(response);
 
-    //! Kanske onödigt så länge filerna finns lokalt
     if (response.status !== 200) {
 
         throw new Error("Cannot fetch the data");
