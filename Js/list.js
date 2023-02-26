@@ -183,15 +183,19 @@ function createListAccordion(userListObj, recProductList) {
     divText.id = listID;
     textWrapper.append(divText);
 
+
     // Skapar listans rubrik och undertext
     let h2Element = document.createElement('h2');
     h2Element.addEventListener('click', changeListName);
     h2Element.innerHTML = `${listName}`;
     let pElement = document.createElement('p');
     pElement.className = "text-secondary text-start pElement";
-    pElement.innerHTML = `${listLength} items`;
+    // pElement.innerHTML = `${listLength} items`;
     divText.appendChild(h2Element);
     divText.appendChild(pElement);
+
+    //anropar funktion som skriver ut hur många items som finns i listan totalt
+    changeItemCounterText(pElement, userListObj.itemList)
 
     //skapar en osynlig div att lägga trashcan och toggelknapp i (för flex/layout) 
     let buttonDiv = document.createElement("div");
