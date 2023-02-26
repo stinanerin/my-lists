@@ -106,19 +106,21 @@ function productListItem(listItemObject, wrapper, listId) {
     let increaseBtn = listItemElement.querySelector('.fa-plus');
     // console.log(increaseBtn);
     
+    // Klickevent på varje items + knapp
     increaseBtn.addEventListener("click", (e) => {
+        // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
         console.log("innan ökning", itemQtySpan);
         console.log("you clicked", listItemObject.title , e.target);
         let itemQty = +itemQtySpan.innerText;
         console.log("innan ökning",itemQty);
-
+        // Ökar kvaniteten med ett
         let newitemQty = ++itemQty
         console.log("efter ökning",newitemQty);
 
         // Async funktion för att ändra klickat items kvantitet i API
         changeQtyAPI(listId, itemId, newitemQty, listItemObject)
-        // När ändringen har gjorts i API - Förändra DOM:en genom att ta ny kvantitetn från API.et och rendera det.
+        // När ändringen har gjorts i API - Förändra DOM:en genom att ta nya kvantiteten från API.et och rendera det mot användare
         .then((item) => {
     
             // console.log("vi har inväntat api ändrign",  item);
