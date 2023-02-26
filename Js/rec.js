@@ -51,6 +51,7 @@ function addItem(wrapper) {
     // Hämtar alla våra li-taggar i rec-bar för att loopa igenom och lägga till en eventListener på varje item vid klick
     let allRecProducts = wrapper.querySelectorAll(".rec-product");
     // console.log(allRecProducts);
+
     
     
     allRecProducts.forEach((item) => {
@@ -58,34 +59,64 @@ function addItem(wrapper) {
         item.addEventListener("click", () => {
             // console.log("Add listener")
             
-            // console.log(item);
             let pElement = wrapper.querySelector(".pElement")
+            
+            // Aktuell listas progressList-UL
+            let progressItemsList = wrapper.querySelector('.progressList');
+            // Alla h4 taggar i progressList-UL
+            let allItemsTitles = progressItemsList.querySelectorAll('.titleItems');
+            // console.log(allItemsTitles);
 
+            let allItemsTitlesArr = [...allItemsTitles]
 
+            // Om anv. försöker lägga till en produkt den redan ahr i sin lista 
+            // Öka kvantiteten av produkten användaren redan har i sin lista
+            if(allItemsTitlesArr.find(elem => elem.innerText === item.dataset.title) ) {
 
-            // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
-            // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
-            newItem(item.dataset.title, item.dataset.icon, item.dataset.listid)
-            .then((list) => {
-                // console.log(list);
+                let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === item.dataset.title)
+                // console.log(itemMatch);
                 
-                let itemList = list.itemList;
+                // Hittar <span> där kvantiteten renderas
+                let itemQtySpan = itemMatch.parentElement.parentElement.querySelector('.item-qty');
+                let itemQty = +itemQtySpan.innerText;
+                let newitemQty = ++itemQty
 
-                const newItem = itemList.findLast(elem => elem)
+                // Async funktion som uppdaterar existerande items kvantitet för aktuell lista
+                changeQtyAPI(item.dataset.listid, itemMatch.dataset.itemid, newitemQty)
+                // Uppdaterar span i DOM:en
+                itemQtySpan.innerText = newitemQty;
 
-                // console.log(newItem);
+            } else {
+                // Annars lägg till itemet i listan och API:et 
+                // 
 
-                //när ny vara lagts till anropas funktion som ändrar antal
-                changeItemCounterText(pElement, itemList);
-
-                // skapa productListItem elementet med nuvarande objektet
-                    productListItem(
-                        newItem,
-                        wrapper,                   
-                        list._id,
-                    );
+                // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
+                // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
+                newItem(item.dataset.title, item.dataset.icon, item.dataset.listid)
+                .then((list) => {
+                    // console.log(list);
                     
-            });
+                    let itemList = list.itemList;
+    
+                    const newItem = itemList.findLast(elem => elem)
+    
+                    // console.log(newItem);
+    
+                    //när ny vara lagts till anropas funktion som ändrar antal
+                    changeItemCounterText(pElement, itemList);
+    
+                    // skapa productListItem elementet med nuvarande objektet
+                        productListItem(
+                            newItem,
+                            wrapper,                   
+                            list._id,
+                        );
+                        
+                });
+            }
+
+
+
 
         })
             // Här console-loggas vilket item anv. klickat på 
