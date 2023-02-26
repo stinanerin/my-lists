@@ -67,7 +67,7 @@ function productListItem(listItemObject, wrapper, listId) {
     <div class="iconTitleWrapper">
     <div class="itemIcon">
     <i class="${listItemObject.image}"></i> 
-    </div> <h4 class="titleItems">${listItemObject.title}</h4> 
+    </div> <h4 class="titleItems" data-itemId="${itemId}" >${listItemObject.title}</h4> 
     </div>
     <div class="counterCheckboxWrapper">
     <div class="counter"> <i class="fa-solid fa-plus"></i> <span class="item-qty">${listItemObject.qty}</span> <i class="fa-solid fa-minus"></i> </div>`;
@@ -123,17 +123,13 @@ function productListItem(listItemObject, wrapper, listId) {
         let newitemQty = ++itemQty
         // console.log("efter ökning",newitemQty);
 
+
         // Async funktion för att ändra klickat items kvantitet i API
         changeQtyAPI(listId, itemId, newitemQty, listItemObject)
-        // När ändringen har gjorts i API - Förändra DOM:en genom att ta nya kvantiteten från API.et och rendera det mot användare
-        .then((item) => {
+
+        // Uppdaterar kvanitet <span> i DOM.en
+        itemQtySpan.innerText = newitemQty;
     
-            // console.log("vi har inväntat api ändrign",  item);
-            itemQtySpan.innerText = item.qty;
-            // console.log("efter ökning", itemQtySpan);
-
-        })
-
     })
 
     //-------------------------------------------- Minus knapp - QTY ---------------------------------------------------
@@ -162,16 +158,13 @@ function productListItem(listItemObject, wrapper, listId) {
 
         } else {
 
-            // Async funktion för att ändra klickat items kvantitet i API
-            changeQtyAPI(listId, itemId, newitemQty, listItemObject)
-            // När ändringen har gjorts i API - Förändra DOM:en genom att ta nya kvantiteten från API.et och rendera det mot användare
-            .then((item) => {
-        
-                // console.log("vi har inväntat api ändrign",  item);
-                itemQtySpan.innerText = item.qty;
-                // console.log("efter minskning", itemQtySpan);
-    
-            })
+            // Async funktion för att ändra klickat items kvantitet i API 
+            changeQtyAPI(listId, itemId, newitemQty)
+            
+            // Uppdaterar kvanitet <span> i DOM.en
+            itemQtySpan.innerText = newitemQty;
+            // console.log("efter minskning", itemQtySpan);
+
 
         }
 
@@ -233,8 +226,7 @@ async function changeQtyAPI(listId, itemId, newitemQty, listItemObject) {
 // Hämtar hela list-obj, för vilket item:et vi precisi uppdaterat kvantiteten för
 const { list } = await res.json();
 
-// Hittar det det list-objekt vi precis uppdaterat kvantiteten för & retunerar det för att rendera förändringen på DOM:en
-// console.log(list.itemList.find(elem => elem._id === listItemObject._id).qty);
-return list.itemList.find(elem => elem._id === listItemObject._id);
+
 
 }
+
