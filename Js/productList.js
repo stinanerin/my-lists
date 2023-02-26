@@ -93,15 +93,68 @@ function productListItem(listItemObject, wrapper, listId) {
         // Anropar även funktion som ändrar item från checked:true till checked:false i API (och och vise versa)
 
         if (listItemObject.checked) {
-            changeToCheckInAPI(listId, itemId, false);
-            progressList.appendChild(listItemElement);
-            listItemObject.checked = false
+
+            //! NYTT
+            // Aktuell listas progressList-UL
+            let progressItemsList = wrapper.querySelector('.progressList');
+            console.log(progressItemsList);
+            // Alla h4 taggar i progressList-UL
+            let allItemsTitles = progressItemsList.querySelectorAll('.titleItems');
+            console.log(allItemsTitles);
+        
+            let allItemsTitlesArr = [...allItemsTitles]
+        
+            // Om anv. försöker checka ur ett item rån done och lägga till i progress, 
+            // Men redan har en likadan i sin in progress
+            // Radera itemet från done och addera dess kvantitet till existerande itemet i in progress listan
+            if(allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title) ) {
+                console.log("match");
+        
+                let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)
+                // console.log("itemMatch from progress", itemMatch);
+                // console.log("listItemElement you clicked in doneList", listItemElement);
+
+                // Hittar <span> där kvantiteten renderas för in item:et i progress-ul
+                let progressQtySpan = itemMatch.parentElement.parentElement.querySelector('.item-qty');
+                // console.log("qty for the 'in progress' item", progressQtySpan);
+                
+                // Hittar <span> där kvantiteten renderas för item:et i done-ul
+                let doneQtySpan = listItemElement.querySelector('.item-qty');
+                // console.log("qty for the 'done' item", doneQtySpan);
+
+                let totalQty = parseInt(progressQtySpan.innerText) + parseInt(doneQtySpan.innerText)
+                // Uppdaterar DOM:en med ny kvantitetten för itemet in progress
+                progressQtySpan.innerText = totalQty;
+        
+                // Async funktion som uppdaterar existerande items kvantitet för aktuell lista
+                changeQtyAPI(listId, itemMatch.dataset.itemid, totalQty)
+                // console.log("id på done match som ska raderas", itemId);
+                // console.log("id på in progress match", itemMatch.dataset.itemid);
+
+                // Raderar det urcheckade item.et från API
+                deleteItemAPI(listId, itemId, pElement)
+                //Raderar det urcheckade från DOM:en
+                listItemElement.remove()
+                //! SLUT NYTT
+
+            } else {
+
+                changeToCheckInAPI(listId, itemId, false);
+                progressList.appendChild(listItemElement);
+                listItemObject.checked = false
+
+            }
+
         } else {
+
             changeToCheckInAPI(listId, itemId, true);
             doneList.appendChild(listItemElement);
             listItemObject.checked = true
+
         }
     })
+
+
 
     //-------------------------------------------- Plus knapp - QTY ---------------------------------------------------
 

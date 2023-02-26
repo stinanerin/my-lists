@@ -1,4 +1,3 @@
-/* --------------------------- RADERA ----------------------------*/
 
 h1, h2, h3, h4 {
   font-family: $heading-primary;
@@ -8,18 +7,6 @@ h1, h2, h3, h4 {
 .inListHeading {
   font-size: 1.5rem;
 }
-/* Stödhjul */
-
-// * {
-//     outline: 1px solid blue;
-//     main {
-//         outline: 3px solid red;
-
-//     }
-// }
-
-/* --------------------------- RADERA: SLUT----------------------------*/
-
 
 /* --------------------------- Headings ------------------------------ */
 
@@ -52,7 +39,7 @@ body {
 .fa-brands,
 .fa-solid {
   color: $p-black;
-  // pointer-events: none;
+  
 }
 
 .separator {

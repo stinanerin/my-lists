@@ -45,4 +45,7 @@
 
   .toggleBtn {
     background-color: rgba(0,0,0,0);
+    .fa-angle-down {
+      pointer-events: none;
+    }
   }

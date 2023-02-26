@@ -7,7 +7,6 @@
           background-color: pink;
       }
   */
-  /* --------------------------- RADERA ----------------------------*/
   h1, h2, h3, h4 {
     font-family: "Italiana", serif;
     margin: 0;
@@ -15,8 +14,6 @@
   .inListHeading {
     font-size: 1.5rem;
   }
-  /* Stödhjul */
-  /* --------------------------- RADERA: SLUT----------------------------*/
   /* --------------------------- Headings ------------------------------ */
   .subheading {
     font-family: "Inria Serif", serif;
@@ -333,5 +330,8 @@
   }
   .toggleBtn {
     background-color: rgba(0, 0, 0, 0);
+  }
+  .toggleBtn .fa-angle-down {
+    pointer-events: none;
   }
 }/*# sourceMappingURL=style.css.map */
