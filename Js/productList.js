@@ -103,10 +103,12 @@ function productListItem(listItemObject, wrapper, listId) {
         }
     })
 
+    //-------------------------------------------- Plus knapp - QTY ---------------------------------------------------
+
     let increaseBtn = listItemElement.querySelector('.fa-plus');
     // console.log(increaseBtn);
     
-    // Klickevent på varje items + knapp
+    // Klickevent på varje items (+) knapp
     increaseBtn.addEventListener("click", (e) => {
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
@@ -128,6 +130,37 @@ function productListItem(listItemObject, wrapper, listId) {
             console.log("efter ökning", itemQtySpan);
 
         })
+
+    })
+
+    //-------------------------------------------- Minus knapp - QTY ---------------------------------------------------
+    let decreaseBtn = listItemElement.querySelector('.fa-minus');
+    // console.log(decreaseBtn);
+    
+    // Klickevent på varje items (-) knapp
+    decreaseBtn.addEventListener("click", (e) => {
+
+        // Hämtar nuvarande kvantiteten för klickat item
+        let itemQtySpan = listItemElement.querySelector('.item-qty');
+        console.log("innan minskning", itemQtySpan);
+        console.log("you clicked", listItemObject.title , e.target);
+        let itemQty = +itemQtySpan.innerText;
+        console.log("innan minskning",itemQty);
+        // Ökar kvaniteten med ett
+        let newitemQty = --itemQty
+        console.log("efter minskning", newitemQty);
+
+        // Async funktion för att ändra klickat items kvantitet i API
+        changeQtyAPI(listId, itemId, newitemQty, listItemObject)
+        // När ändringen har gjorts i API - Förändra DOM:en genom att ta nya kvantiteten från API.et och rendera det mot användare
+        .then((item) => {
+    
+            // console.log("vi har inväntat api ändrign",  item);
+            itemQtySpan.innerText = item.qty;
+            console.log("efter minskning", itemQtySpan);
+
+        })
+
 
     })
 
