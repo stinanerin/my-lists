@@ -86,31 +86,28 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
     // Lägger en eventlistener på varje checkbox som lyssnar efter förändring.
     input.addEventListener("change", () => {
 
+
         // If sats för att kolla om checkboxen som användaren klickat i tillhör ett item som ligger i In Progress eller Done-lista
         // Om itemet var checkat innan användaren klickade så hamnar det i In Progress-lista och vise versa
         // Anropar även funktion som ändrar item från checked:true till checked:false i API (och och vise versa)
-
         if (listItemObject.checked) {
 
             //! NYTT
-            // Aktuell listas progressList-UL
-            let progressItemsList = wrapper.querySelector('.progressList');
-            console.log(progressItemsList);
-            // Alla h4 taggar i progressList-UL
-            let allItemsTitles = progressItemsList.querySelectorAll('.titleItems');
-            console.log(allItemsTitles);
 
+            // Alla h4 taggar i progressList-UL
+            let allItemsTitles = progressList.querySelectorAll('.titleItems');
+            console.log(allItemsTitles);
+            
             let allItemsTitlesArr = [...allItemsTitles]
 
             // Om anv. försöker checka ur ett item rån done och lägga till i progress, 
             // Men redan har en likadan i sin in progress
             // Radera itemet från done och addera dess kvantitet till existerande itemet i in progress listan
-            if (allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)) {
-                console.log("match");
+            let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)
 
-                let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)
-                // console.log("itemMatch from progress", itemMatch);
-                // console.log("listItemElement you clicked in doneList", listItemElement);
+            if (itemMatch) {
+
+                console.log("itemMatch from progress", itemMatch);
 
                 // Hittar <span> där kvantiteten renderas för in item:et i progress-ul
                 let progressQtySpan = itemMatch.parentElement.parentElement.querySelector('.item-qty');
@@ -121,14 +118,12 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
                 // console.log("qty for the 'done' item", doneQtySpan);
 
                 let totalQty = parseInt(progressQtySpan.innerText) + parseInt(doneQtySpan.innerText)
+                
                 // Uppdaterar DOM:en med ny kvantitetten för itemet in progress
                 progressQtySpan.innerText = totalQty;
 
-
                 // Async funktion som uppdaterar existerande items kvantitet för aktuell lista
                 changeQtyAPI(listId, itemMatch.dataset.itemid, totalQty, pElement)
-                // console.log("id på done match som ska raderas", itemId);
-                // console.log("id på in progress match", itemMatch.dataset.itemid);
 
                 // Raderar det urcheckade item.et från API
                 deleteItemAPI(listId, itemId, pElement)
@@ -146,9 +141,37 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
 
         } else {
 
-            changeToCheckInAPI(listId, itemId, true);
-            doneList.appendChild(listItemElement);
-            listItemObject.checked = true
+             // Alla h4 taggar i Done-UL
+            let allItemsTitles = doneList.querySelectorAll('.titleItems');
+
+            let allItemsTitlesArr = [...allItemsTitles]
+
+            let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)
+            
+            if(itemMatch) {
+                
+                let doneQtySpan = itemMatch.parentElement.parentElement.querySelector('.item-qty');
+
+                let progressQtySpan = listItemElement.querySelector('.item-qty');
+
+                let totalQty = parseInt(progressQtySpan.innerText) + parseInt(doneQtySpan.innerText)
+                
+                // Uppdaterar DOM:en med ny kvantiteten för itemet in progress
+                doneQtySpan.innerText = totalQty;
+
+                // Uppdaterar API med ny kvantitet för done-item, raderar progress-item från API + DOM:en
+                changeQtyAPI(listId, itemMatch.dataset.itemid, totalQty, pElement)
+                deleteItemAPI(listId, itemId, pElement)
+                listItemElement.remove()
+
+            } else {
+
+                changeToCheckInAPI(listId, itemId, true);
+                doneList.appendChild(listItemElement);
+                listItemObject.checked = true;
+
+            }
+            
 
         }
     })
@@ -158,16 +181,14 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
     //-------------------------------------------- Plus knapp - QTY ---------------------------------------------------
 
     let increaseBtn = listItemElement.querySelector('.fa-plus');
-    // console.log(increaseBtn);
 
     // Klickevent på varje items (+) knapp
     increaseBtn.addEventListener("click", (e) => {
 
-
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
         // console.log("innan ökning", itemQtySpan);
-        // console.log("you clicked", listItemObject.title , e.target);
+
         let itemQty = +itemQtySpan.innerText;
         // console.log("innan ökning",itemQty);
 
@@ -175,18 +196,17 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
         let newitemQty = ++itemQty
         // console.log("efter ökning",newitemQty);
 
-
         // Async funktion för att ändra klickat items kvantitet i API
         changeQtyAPI(listId, itemId, newitemQty, pElement)
 
-        // Uppdaterar kvanitet <span> i DOM.en
+        // Uppdaterar kvantitet-<span> i DOM.en
         itemQtySpan.innerText = newitemQty;
 
     })
 
     //-------------------------------------------- Minus knapp - QTY ---------------------------------------------------
+    
     let decreaseBtn = listItemElement.querySelector('.fa-minus');
-    // console.log(decreaseBtn);
 
     // Klickevent på varje items (-) knapp
     decreaseBtn.addEventListener("click", (e) => {
@@ -194,11 +214,10 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
         // console.log("innan minskning", itemQtySpan);
-        // console.log("you clicked", listItemObject.title , e.target);
         let itemQty = +itemQtySpan.innerText;
         // console.log("innan minskning",itemQty);
 
-        // Ökar kvaniteten med ett
+        // Minskar kvantiteten med ett
         let newitemQty = --itemQty
         // console.log("efter minskning", newitemQty);
 
@@ -209,20 +228,16 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
             listItemElement.remove()
             changeItemCounterText(pElement, sigUserObject.itemList);
 
-
-
         } else {
 
             // Async funktion för att ändra klickat items kvantitet i API 
             changeQtyAPI(listId, itemId, newitemQty, pElement)
 
-            // Uppdaterar kvanitet <span> i DOM.en
+            // Uppdaterar kvanitet-<span> i DOM.en
             itemQtySpan.innerText = newitemQty;
-            // console.log("efter minskning", itemQtySpan);
+
         }
-
     })
-
 }
 
 
