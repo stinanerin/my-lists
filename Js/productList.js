@@ -110,6 +110,8 @@ function productListItem(listItemObject, wrapper, listId) {
     
     // Klickevent på varje items (+) knapp
     increaseBtn.addEventListener("click", (e) => {
+
+        
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
         console.log("innan ökning", itemQtySpan);
@@ -140,6 +142,7 @@ function productListItem(listItemObject, wrapper, listId) {
     // Klickevent på varje items (-) knapp
     decreaseBtn.addEventListener("click", (e) => {
 
+
         // Hämtar nuvarande kvantiteten för klickat item
         let itemQtySpan = listItemElement.querySelector('.item-qty');
         console.log("innan minskning", itemQtySpan);
@@ -149,17 +152,28 @@ function productListItem(listItemObject, wrapper, listId) {
         // Ökar kvaniteten med ett
         let newitemQty = --itemQty
         console.log("efter minskning", newitemQty);
+        
+        // Om antalet är noll efter senaste minskningen --> radera itemet helt från DOM:en & API
+        if(newitemQty === 0) {
 
-        // Async funktion för att ändra klickat items kvantitet i API
-        changeQtyAPI(listId, itemId, newitemQty, listItemObject)
-        // När ändringen har gjorts i API - Förändra DOM:en genom att ta nya kvantiteten från API.et och rendera det mot användare
-        .then((item) => {
+            deleteItemAPI(listId, itemId, pElement)
+            listItemElement.remove()
+
+        } else {
+
+            // Async funktion för att ändra klickat items kvantitet i API
+            changeQtyAPI(listId, itemId, newitemQty, listItemObject)
+            // När ändringen har gjorts i API - Förändra DOM:en genom att ta nya kvantiteten från API.et och rendera det mot användare
+            .then((item) => {
+        
+                // console.log("vi har inväntat api ändrign",  item);
+                itemQtySpan.innerText = item.qty;
+                console.log("efter minskning", itemQtySpan);
     
-            // console.log("vi har inväntat api ändrign",  item);
-            itemQtySpan.innerText = item.qty;
-            console.log("efter minskning", itemQtySpan);
+            })
 
-        })
+        }
+
 
 
     })
