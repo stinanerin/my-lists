@@ -103,7 +103,7 @@ function productListItem(listItemObject, wrapper, listId) {
         }
     })
 
-    let increaseBtn = document.querySelector('.fa-plus');
+    let increaseBtn = listItemElement.querySelector('.fa-plus');
     console.log(increaseBtn);
 
     increaseBtn.addEventListener("click", (e) => {

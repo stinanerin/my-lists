@@ -38,7 +38,6 @@
   .fa-brands,
 .fa-solid {
     color: #000;
-    pointer-events: none;
   }
   .separator {
     width: 100%;
@@ -290,6 +289,7 @@
   }
   .counter i {
     font-size: 10px;
+    padding: 8px;
   }
   ul {
     padding-left: 0;
