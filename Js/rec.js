@@ -68,7 +68,7 @@ function addItem(wrapper) {
 
             let allItemsTitlesArr = [...allItemsTitles]
 
-            // Om anv. försöker lägga till en produkt den redan ahr i sin lista 
+            // Om anv. försöker lägga till en produkt den redan har i sin lista 
             // Öka kvantiteten av produkten användaren redan har i sin lista
             if(allItemsTitlesArr.find(elem => elem.innerText === item.dataset.title) ) {
 
@@ -87,10 +87,9 @@ function addItem(wrapper) {
 
             } else {
                 // Annars lägg till itemet i listan och API:et 
-                // 
 
-                // Vid varje klick på ett item tänker jag att vi kör en funktion som lägger till ny product i API:et
-                // New item tar emot dataseten från addItem så vi kan putta in de i APi:et 
+                // Vid varje klick på ett item kör vi newItem() som lägger till ny product i API:et
+                // newItem() tar emot dataseten från addItem så vi kan putta in de i APi:et 
                 newItem(item.dataset.title, item.dataset.icon, item.dataset.listid)
                 .then((list) => {
                     // console.log(list);
