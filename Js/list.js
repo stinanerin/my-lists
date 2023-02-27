@@ -154,119 +154,57 @@ function createListAccordion(userListObj, recProductList) {
 
     //variabler som ska användas i funktionen
     let listName = userListObj.listname;
-    let listLength = userListObj.itemList.length;
     let listID = userListObj._id;
 
     // huvuddiv för accorian och accordian-open
     let wrapperDiv = document.createElement('div');
     wrapperDiv.classList.add("wrapperDiv");
+    wrapperDiv.innerHTML = `
+    <div class="list-accordion d-flex justify-content-between mt-4 p-3 shadow">
+        <img class="img-fluid image" src="images/giorgio-trovato-fczCr7MdE7U-unsplash.jpg" />
+        <div class="d-flex flex-grow-1 ms-3 justify-content-between">
+            <div id="${listID}">
+                <h2 class="listHeading h2Element">${listName}</h2>
+                <p class="pElement text-secondary text-start pElement"></p>
+            </div>
+        </div>
+        <div class="d-flex flex-column justify-content-between">
+            <button id="${listID}" class="align-self-start border-0 bg-transparent deleteListBtn"><i class="fa-regular fa-trash-can"></i></button>
+            <button class="align-self-end rounded border border-secondary toggleBtn"><i class="fa-solid fa-angle-down"></i></button>
+        </div>
+    </div>
+    
+    <div class="list-accordian-open hidden shadow toggleDiv">
+        <ul class="recommendationUl">
+            <h2 class="subheading">Recommended for you</h2>
+            <div class="recProdContainer d-flex justify-content-between p-3">
+            </div>
+        </ul>
+        <h3 class="inListHeading">In Progress</h3>
+        <ul class="progressList"></ul>
+        <h3 class="inListHeading">Done</h3>
+        <ul class="doneList"></ul>
+    </div>`
+
     listsContainer.append(wrapperDiv);
 
-    //huvuddiven som allt ska ligga i
-    let div = document.createElement("div");
-    div.classList.add("list-accordion", "d-flex", "justify-content-between", "mt-4", "p-3", "shadow");
-    wrapperDiv.append(div);
-
-    //bilden 
-    let image = document.createElement("img");
-    image.setAttribute("class", "img-fluid image");
-    image.setAttribute("src", "images/giorgio-trovato-fczCr7MdE7U-unsplash.jpg")
-
-    //osynlig div att lägga textelementen i (för flex/layout) 
-    let textWrapper = document.createElement("div");
-    textWrapper.classList.add("d-flex", "flex-grow-1", "ms-3", "justify-content-between");
-
-    div.append(image, textWrapper);
-
-    let divText = document.createElement("div");
-    divText.id = listID;
-    textWrapper.append(divText);
-
-
-    // Skapar listans rubrik och undertext
-    let h2Element = document.createElement('h2');
+    let h2Element = wrapperDiv.querySelector(".h2Element")
     h2Element.addEventListener('click', changeListName);
-    h2Element.innerHTML = `${listName}`;
-    let pElement = document.createElement('p');
-    pElement.className = "text-secondary text-start pElement";
-    // pElement.innerHTML = `${listLength} items`;
-    divText.appendChild(h2Element);
-    divText.appendChild(pElement);
 
-    //anropar funktion som skriver ut hur många items som finns i listan totalt
+    let pElement = wrapperDiv.querySelector(".pElement")
     changeItemCounterText(pElement, userListObj.itemList)
 
-    //skapar en osynlig div att lägga trashcan och toggelknapp i (för flex/layout) 
-    let buttonDiv = document.createElement("div");
-    buttonDiv.classList.add("d-flex", "flex-column", "justify-content-between")
-    div.append(buttonDiv);
 
-
-    //trashcan
-    let trashBtn = document.createElement("button");
-    trashBtn.classList.add("align-self-start", "border-0", "bg-transparent", "deleteListBtn");
-    // sätter id för trashBtn till samma id som listan
-    trashBtn.setAttribute('id', listID);
-    trashBtn.innerHTML = `<i class="fa-regular fa-trash-can"></i>`;
-    buttonDiv.append(trashBtn);
-
-    //pil-knapp som togglar div
-    let toggleBtn = document.createElement("button");
-    toggleBtn.classList.add("align-self-end", "rounded", "border", "border-secondary", "toggleBtn")
-    toggleBtn.innerHTML = `<i class="fa-solid fa-angle-down"></i>`;
-    buttonDiv.append(toggleBtn);
-
-
-    //diven som togglar mellan synlig och osynlig
-    let toggleDiv = document.createElement("div");
-    toggleDiv.classList.add("list-accordian-open", "hidden", "shadow");
-    wrapperDiv.append(toggleDiv);
-
-    //lägger till eventlistener på toggle-knapp som anropar funktion
+    let toggleBtn = wrapperDiv.querySelector(".toggleBtn")
     toggleBtn.addEventListener("click", toggleArrow);
-
-
-    // Skapar listorna som varorna ska appendas i, samt rubriker
-    let ul = document.createElement("ul");
-    ul.classList.add("progressList");
-
-    let progressListTitle = document.createElement("h3");
-    progressListTitle.classList.add("inListHeading")
-    progressListTitle.innerText = "In Progress";
-
-    let doneUL = document.createElement("ul");
-    doneUL.classList.add("doneList");
-
-    let doneListTitle = document.createElement("h3");
-    doneListTitle.classList.add("inListHeading");
-    doneListTitle.innerText = "Done";
-
-
-    // RecommendationBar
-    let recommendationUL = document.createElement("ul");
-    recommendationUL.classList.add("recommendationUl")
-
-    toggleDiv.append(recommendationUL, progressListTitle, ul, doneListTitle, doneUL);
-
-    let h2 = document.createElement("h2");
-    h2.classList.add("subheading")
-    h2.innerText = "Recommended for you";
-
-    let divRecomendationBar = document.createElement("div");
-    divRecomendationBar.classList.add("recProdContainer", "d-flex", "justify-content-between", "p-3");
-
-    recommendationUL.append(h2, divRecomendationBar)
-
-    // console.log("rad152",recProductList);
-
 
 
 
     // ---------------------Funktioner som körs inne i accordion-funktion--------------------------
 
-
+    let recProdContainer = wrapperDiv.querySelector(".recProdContainer")
     // Renderar en redommendation bar till varje list-accordion
-    drawRecProd(divRecomendationBar, recProductList, listID);
+    drawRecProd(recProdContainer, recProductList, listID);
 
     // Initerar addItem() för varje recommendation bar 
     addItem(wrapperDiv);
@@ -334,8 +272,7 @@ async function deleteListFromAPI(deleteID) {
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
-    let toggleDiv = event.target.parentElement.parentElement.nextSibling;
-    // console.log(toggleDiv);
+    let toggleDiv = event.target.parentElement.parentElement.nextSibling.nextSibling;
     toggleDiv.classList.toggle("hidden")
 }
 
