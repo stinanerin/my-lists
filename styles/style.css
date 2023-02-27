@@ -231,7 +231,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px;
+    padding: 16px 8px;
   }
   .producteItem .iconTitleWrapper,
   .producteItem .counterCheckboxWrapper {
@@ -268,12 +268,15 @@
   }
   .counter {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-right: 35px;
   }
   .counter span {
-    margin-left: 10px;
-    margin-right: 10px;
+    text-align: center;
+    min-width: 20px;
+    margin-left: 4px;
+    margin-right: 4px;
   }
   .counter i {
     font-size: 10px;
