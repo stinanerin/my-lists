@@ -34,12 +34,12 @@
   }
   .fa-brands,
   .fa-solid {
-    color: #000;
+    color: hsl(0deg, 0%, 0%);
   }
   .separator {
     width: 100%;
     display: block;
-    border-top: 1px solid #000;
+    border-top: 1px solid hsl(0deg, 0%, 0%);
   }
   /*  */
   .input {
@@ -47,8 +47,8 @@
     padding: 24px 10px;
   }
   .input:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px #fff inset;
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px hsl(0deg, 0%, 100%) inset;
+    -webkit-box-shadow: 0 0 0px 1000px hsl(0deg, 0%, 100%) inset;
   }
   .input:-webkit-autofill:focus, .input:focus {
     border-color: #55a2bc;
@@ -94,7 +94,7 @@
   }
   header div.header a {
     text-decoration: none;
-    color: #fff;
+    color: hsl(0deg, 0%, 100%);
   }
   header div.header i.header {
     margin: 4px;
@@ -110,7 +110,7 @@
     width: 22px;
   }
   .deleteX {
-    background-color: #eaeaea;
+    background-color: hsl(0deg, 0%, 93%);
     border: 0px solid;
     border-radius: 4px;
     margin-left: 1rem;
@@ -120,7 +120,7 @@
     border-radius: 10px;
     background-color: #55a2bc;
     padding: 10px 68px;
-    color: #fff;
+    color: hsl(0deg, 0%, 100%);
   }
   .btn:hover {
     animation-name: switchClr;
@@ -135,23 +135,23 @@
     border-radius: 50px 50px 0 0;
   }
   .login-main .alert-danger {
-    border-color: #b02a37;
+    border-color: hsl(354deg, 62%, 43%);
   }
   .login-main .alert-danger .fa-solid {
-    color: #b02a37;
+    color: hsl(354deg, 62%, 43%);
   }
   .login-main .error {
-    color: #b02a37;
-    border-color: #b02a37;
-    -webkit-text-fill-color: #b02a37;
-    box-shadow: 0 0 0px 1000px #b02a37 inset;
+    color: hsl(354deg, 62%, 43%);
+    border-color: hsl(354deg, 62%, 43%);
+    -webkit-text-fill-color: hsl(354deg, 62%, 43%);
+    box-shadow: 0 0 0px 1000px hsl(354deg, 62%, 43%) inset;
     -webkit-box-shadow: 0 0 0px 1000px hsl(355deg, 70%, 91%) inset;
     transition: background-color 5000s ease-in-out 0s;
   }
   .login-main .error:-webkit-autofill, .login-main .error:-webkit-autofill:focus {
-    border-color: #b02a37;
-    -webkit-text-fill-color: #b02a37;
-    box-shadow: 0 0 0px 1000px #b02a37 inset;
+    border-color: hsl(354deg, 62%, 43%);
+    -webkit-text-fill-color: hsl(354deg, 62%, 43%);
+    box-shadow: 0 0 0px 1000px hsl(354deg, 62%, 43%) inset;
     -webkit-box-shadow: 0 0 0px 1000px hsl(355deg, 70%, 91%) inset;
     -webkit-transition: background-color 5000s ease-in-out 0s;
     transition: background-color 5000s ease-in-out 0s;
@@ -227,6 +227,19 @@
     white-space: nowrap;
   }
   /* för att styla scrollbar */
+  ::-webkit-scrollbar {
+    height: 6px;
+    width: 8px;
+    background: white;
+  }
+  ::-webkit-scrollbar-thumb:horizontal {
+    background: #55a2bc;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:vertical {
+    background: rgb(219, 219, 219);
+    border-radius: 10px;
+  }
   .producteItem {
     display: flex;
     align-items: center;
@@ -256,9 +269,9 @@
     display: flex;
     height: 50px;
     width: 50px;
-    background-color: #fff;
+    background-color: hsl(0deg, 0%, 100%);
     border-radius: 50%;
-    border: 1px solid #000;
+    border: 1px solid hsl(0deg, 0%, 0%);
     align-items: center;
     justify-content: center;
     margin-right: 15px;
@@ -321,7 +334,7 @@
     border-radius: 1rem;
   }
   .fa-trash-can {
-    color: #000;
+    color: hsl(0deg, 0%, 0%);
   }
   #listsContainer {
     max-width: 1200px;
