@@ -33,7 +33,7 @@
     display: none;
   }
   .fa-brands,
-  .fa-solid {
+.fa-solid {
     color: #000;
   }
   .separator {
@@ -68,6 +68,11 @@
   }
   .heroImage {
     width: 100%;
+  }
+  @-webkit-keyframes switchClr {
+    100% {
+      background-color: #367185;
+    }
   }
   @keyframes switchClr {
     100% {
@@ -123,9 +128,12 @@
     color: #fff;
   }
   .btn:hover {
-    animation-name: switchClr;
-    animation-duration: 1.5s;
-    animation-fill-mode: forwards;
+    -webkit-animation-name: switchClr;
+            animation-name: switchClr;
+    -webkit-animation-duration: 1.5s;
+            animation-duration: 1.5s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
   }
   .fa-plus:hover, .fa-minus:hover, input[type=checkbox]:hover {
     cursor: pointer;
@@ -205,6 +213,7 @@
   /* footer */
   footer {
     background-color: hsl(210deg, 4%, 53%);
+    position: -webkit-sticky;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -234,7 +243,7 @@
     padding: 16px 8px;
   }
   .producteItem .iconTitleWrapper,
-  .producteItem .counterCheckboxWrapper {
+.producteItem .counterCheckboxWrapper {
     display: flex;
     align-items: center;
   }
@@ -281,7 +290,8 @@
     text-align: center;
     min-width: 20px;
     margin-left: 4px;
-    margin-right: 4px;
+    margin-right:  .
+    4px;
   }
   .counter i {
     font-size: 10px;
