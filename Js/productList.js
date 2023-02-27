@@ -96,7 +96,7 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
 
             // Alla h4 taggar i progressList-UL
             let allItemsTitles = progressList.querySelectorAll('.titleItems');
-            console.log(allItemsTitles);
+            // console.log(allItemsTitles);
             
             let allItemsTitlesArr = [...allItemsTitles]
 
@@ -226,7 +226,7 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
 
             deleteItemAPI(listId, itemId, pElement)
             listItemElement.remove()
-            changeItemCounterText(pElement, sigUserObject.itemList);
+            
 
         } else {
 
@@ -294,7 +294,6 @@ async function changeQtyAPI(listId, itemId, newitemQty, pElement) {
     });
     // Hämtar hela list-obj, för vilket item:et vi precisi uppdaterat kvantiteten för
     const { list } = await res.json();
-
 
     changeItemCounterText(pElement, list.itemList);
 
