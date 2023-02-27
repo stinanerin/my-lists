@@ -295,7 +295,7 @@
     border-radius: 0 0 1rem 1rem;
     padding: 1rem;
     transition: max-height 1s ease-out !important;
-    max-height: 2500px;
+    max-height: 5000px;
     overflow: hidden;
   }
   .hidden {
