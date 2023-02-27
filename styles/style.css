@@ -346,8 +346,12 @@
   }
   .toggleBtn {
     background-color: rgba(0, 0, 0, 0);
+    transition: all 0.2s ease-out;
   }
   .toggleBtn .fa-angle-down {
     pointer-events: none;
+  }
+  .toggleBtnRotate {
+    transform: scaleY(-1);
   }
 }/*# sourceMappingURL=style.css.map */

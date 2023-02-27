@@ -272,6 +272,7 @@ async function deleteListFromAPI(deleteID) {
 
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
+    event.target.classList.toggle("toggleBtnRotate");
     let toggleDiv = event.target.parentElement.parentElement.nextSibling.nextSibling;
     toggleDiv.classList.toggle("hidden")
 }
