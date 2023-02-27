@@ -7,7 +7,6 @@ let sigUser = getitem("signedInUser") ? getitem("signedInUser") : [];
 const sigUserList = sigUser.userList;
 
 console.log(getitem("signedInUser"));
-console.log("sigUserList, användarens sparade list-id:n", sigUserList);
 
 
 
@@ -303,7 +302,7 @@ let trashList = (() => {
 
 
                 // console.log(sigUser.userList);
-                console.log(deleteID);
+                // console.log(deleteID);
 
                 // Raderar id från local storage
                 deleteIDLocalStorage(deleteID);
@@ -336,7 +335,7 @@ async function deleteListFromAPI(deleteID) {
 //funktion som togglar div i accordion (den utfällda delen) mellan hidden och ej hidden
 function toggleArrow(event) {
     let toggleDiv = event.target.parentElement.parentElement.nextSibling;
-    console.log(toggleDiv);
+    // console.log(toggleDiv);
     toggleDiv.classList.toggle("hidden")
 }
 
