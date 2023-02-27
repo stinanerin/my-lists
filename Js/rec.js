@@ -113,14 +113,8 @@ function addItem(wrapper) {
                     });
             }
 
-
-
-
         })
-        // Här console-loggas vilket item anv. klickat på 
-        // console.log(item.dataset.title);
-        //! Här console-loggas vilket id listan anv lagt till ett item på är 
-        // console.log(item.dataset.listid);
+        
     })
 
 }
