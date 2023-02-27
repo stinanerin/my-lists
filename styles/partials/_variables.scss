@@ -18,10 +18,9 @@ $xl: "width >= 1200px";
 
 // Färger
 $link: #18007A;
-$btn: #C66060;
 $btn: #55a2bc;
 $checkbox: #569771;
-$danger-500: #b02a37;
+$danger-500: hsl(354, 62%, 43%);
 $danger-50: hsl(355,70%,91%);
 // 50 shades of grey
 $grey-50: hsl(0, 0%, 97%);
@@ -32,8 +31,8 @@ $grey-400: hsl(210, 4%, 53%);
 $grey-500: hsl(0, 0%, 33%);
 $grey-700: hsl(0, 0%, 22%);
 // Persistant
-$p-black: #000;
-$p-white: #fff;
+$p-black: hsl(0, 0%, 0%);
+$p-white: hsl(0, 0%, 100%);
 
 
 
