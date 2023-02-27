@@ -177,7 +177,7 @@ function createListAccordion(userListObj, recProductList) {
     <div class="list-accordian-open hidden shadow toggleDiv">
         <ul class="recommendationUl">
             <h2 class="subheading">Recommended for you</h2>
-            <div class="recProdContainer d-flex justify-content-between p-3">
+            <div class="recProdContainer d-flex justify-content-between p-2">
             </div>
         </ul>
         <h3 class="inListHeading">In Progress</h3>
