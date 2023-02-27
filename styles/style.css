@@ -270,7 +270,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 35px;
+    margin-right: 10px;
+  }
+  @media (width >= 576px) {
+    .counter {
+      margin-right: 35px;
+    }
   }
   .counter span {
     text-align: center;

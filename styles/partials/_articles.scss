@@ -49,7 +49,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 35px;
+    margin-right: 10px;
+    
+    @media ($sm) {
+      margin-right: 35px;
+      
+    }
   
     span {
       text-align: center;
