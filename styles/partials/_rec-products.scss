@@ -26,10 +26,10 @@
     background: white;
 }
 ::-webkit-scrollbar-thumb:horizontal{
-    background: $btn;
+    background: $primary-300;
     border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:vertical{
-    background: rgb(219, 219, 219);
+    background: $grey-200;
     border-radius: 10px;
 }

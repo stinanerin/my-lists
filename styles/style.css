@@ -204,7 +204,7 @@
   }
   /* footer */
   footer {
-    background-color: hsl(210deg, 4%, 53%);
+    background-color: #367185;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -224,8 +224,8 @@
       width: 100%;
     }
   }
-  .ustom-styling:focus {
-    outline: 2px solid #55a2bc;
+  .custom-styling:focus {
+    outline: 2px solid #55A2BC;
     outline: none;
     color: black;
   }
@@ -268,11 +268,11 @@
     background: white;
   }
   ::-webkit-scrollbar-thumb:horizontal {
-    background: #55a2bc;
+    background: #55A2BC;
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:vertical {
-    background: rgb(219, 219, 219);
+    background: hsl(0deg, 0%, 88%);
     border-radius: 10px;
   }
   .producteItem {

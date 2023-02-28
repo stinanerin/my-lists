@@ -45,7 +45,7 @@ body{
   
 /* footer */
 footer {
-    background-color: $grey-400;
+    background-color: $primary-500;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -66,8 +66,8 @@ footer {
     }
 }
 
-.ustom-styling:focus {
-    outline: 2px solid $btn;
+.custom-styling:focus {
+    outline: 2px solid $primary-300;
     outline: none;
     color: black;
 }
