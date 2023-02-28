@@ -170,7 +170,7 @@ function createListAccordion(userListObj, recProductList) {
         </div>
         <div class="d-flex flex-column justify-content-between">
             <button id="${listID}" class="align-self-start border-0 bg-transparent deleteListBtn"><i class="fa-regular fa-trash-can"></i></button>
-            <button class="align-self-end rounded border border-secondary toggleBtn"><i class="fa-solid fa-angle-down"></i></button>
+            <button class="align-self-end  border-0 toggleBtn"><i class="fa-solid fa-angle-down"></i></button>
         </div>
     </div>
     

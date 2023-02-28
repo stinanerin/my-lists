@@ -10,7 +10,7 @@
     /* border: 1px solid; */
     border-radius: 0 0 1rem 1rem;
     padding: 1rem;  
-    transition: max-height 1s ease-out !important;
+    transition: max-height 2s ease-out !important;
     max-height: 5000px;
     overflow: hidden;
 
@@ -45,13 +45,13 @@
 
   .toggleBtn {
     background-color: rgba(0,0,0,0);
-    transition: all .2s ease-out;
+    transition: all .3s ease-out;
     .fa-angle-down {
       pointer-events: none;
     }
   }
 
   .toggleBtnRotate {
-    // transform: rotate(-180deg);
-    transform: scaleY(-1)
+    transform: rotate(-180deg);
+    // transform: scaleY(-1)
   }
