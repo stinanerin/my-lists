@@ -17,7 +17,11 @@
   /* --------------------------- Headings ------------------------------ */
   .subheading {
     font-family: "Inria Serif", serif;
-    font-size: 10px;
+    font-size: 12px;
+  }
+  .subheadingTitle {
+    font-family: "Inria Serif", serif;
+    font-size: 14px;
   }
   /* ---- Förslag globala komponenter som jag tror är återanvändnignsbara - eller blir det om projektet växer-------*/
   body {
@@ -33,7 +37,7 @@
     display: none;
   }
   .fa-brands,
-.fa-solid {
+  .fa-solid {
     color: hsl(0deg, 0%, 0%);
   }
   .separator {
@@ -68,11 +72,6 @@
   }
   .heroImage {
     max-width: 100%;
-  }
-  @-webkit-keyframes switchClr {
-    100% {
-      background-color: #367185;
-    }
   }
   @keyframes switchClr {
     100% {
@@ -128,12 +127,9 @@
     color: hsl(0deg, 0%, 100%);
   }
   .btn:hover {
-    -webkit-animation-name: switchClr;
-            animation-name: switchClr;
-    -webkit-animation-duration: 1.5s;
-            animation-duration: 1.5s;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards;
+    animation-name: switchClr;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
   }
   .fa-plus:hover, .fa-minus:hover, input[type=checkbox]:hover {
     cursor: pointer;
@@ -213,7 +209,6 @@
   /* footer */
   footer {
     background-color: #367185;
-    position: -webkit-sticky;
     position: sticky;
     top: 100%;
     border-top-right-radius: 5%;
@@ -291,7 +286,7 @@
     padding: 16px 8px;
   }
   .producteItem .iconTitleWrapper,
-.producteItem .counterCheckboxWrapper {
+  .producteItem .counterCheckboxWrapper {
     display: flex;
     align-items: center;
   }
