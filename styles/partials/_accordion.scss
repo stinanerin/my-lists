@@ -1,29 +1,25 @@
 /* klasser för accordion */
 
 .list-accordion {
-    background: $accordion-bg;
-    // border-radius: 1rem 1rem 0 0;
-  }
-  
-  .list-accordian-open {
-    background-color: $togglediv-bg;
-    /* border: 1px solid; */
-    border-radius: 0 0 1rem 1rem;
-    padding: 1rem;  
-    transition: max-height 2s ease-out !important;
-    max-height: 5000px;
-    overflow: hidden;
+  background: $accordion-bg;
 
-  }
+}
+
+.list-accordian-open {
+  background-color: $togglediv-bg;
+  /* border: 1px solid; */
+  border-radius: 0 0 1rem 1rem;
+  transition: max-height 2s ease !important;
+  max-height: 5000px;
+  overflow: hidden;
+
+}
+
+.hidden {
+  max-height: 0px;
+  transition: max-height 0.4s ease !important;
   
-  .hidden {
-    // display: none;
-    max-height: 0px;
-    padding:0px;
-    overflow: hidden;
-    transition: max-height 0s ease-out !important;
-    
-  }
+}
   .hide {
     display: none;
   }
