@@ -41,11 +41,9 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
     const listItemElement = document.createElement("div");
     listItemElement.classList.add("producteItem")
 
-
     //skapar ett input-element, type checkbox
     let input = document.createElement("input");
     input.type = "checkbox";
-
 
     //sätter "checked" på checkbox om isChecked är true
     //sätter klass för styling
@@ -100,14 +98,12 @@ function productListItem(listItemObject, wrapper, sigUserObject) {
             
             let allItemsTitlesArr = [...allItemsTitles]
 
-            // Om anv. försöker checka ur ett item rån done och lägga till i progress, 
+            // Om anv. försöker checka ur ett item från done och lägga till i progress, 
             // Men redan har en likadan i sin in progress
             // Radera itemet från done och addera dess kvantitet till existerande itemet i in progress listan
             let itemMatch = allItemsTitlesArr.find(elem => elem.innerText === listItemObject.title)
 
             if (itemMatch) {
-
-                console.log("itemMatch from progress", itemMatch);
 
                 // Hittar <span> där kvantiteten renderas för in item:et i progress-ul
                 let progressQtySpan = itemMatch.parentElement.parentElement.querySelector('.item-qty');
