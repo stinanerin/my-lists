@@ -55,7 +55,7 @@
         } else {
 
             // Annars körs denna kod
-            console.log("login not ok");
+            // console.log("login not ok");
 
             document.querySelector(".login-alert-container").innerHTML = `
             <div class="alert alert-danger container mt-2" role="alert">
@@ -150,9 +150,9 @@
             confPWD.classList.add("error");
             PWD.classList.add("error");
 
-            emailAlert.classList.remove("hidden");
+            emailAlert.classList.remove("hide");
            
-            PWDFeedback.classList.remove("hidden");
+            PWDFeedback.classList.remove("hide");
 
         // Annars om mejl redan finns reggad - dvs ej unik
         } else if(!userArr.every(checkUniqueUser)) {
@@ -160,14 +160,14 @@
             // console.log("mejlen finns redan reggad");
 
             if(PWDFeedback.style.display = "block") {
-                PWDFeedback.classList.add("hidden")
+                PWDFeedback.classList.add("hide")
                 PWD.classList.remove("error")
                 confPWD.classList.remove("error")
             }
 
             email.classList.add("error");
 
-            emailAlert.classList.remove("hidden");
+            emailAlert.classList.remove("hide");
 
         // Annars om lösen ej matchar
         } else {
@@ -175,14 +175,14 @@
             // console.log("lösen matchar ej");
 
             if( emailAlert.style.display = "block") {
-                emailAlert.classList.add("hidden")
+                emailAlert.classList.add("hide")
                 email.classList.remove("error")
             }
         
             confPWD.classList.add("error");
             PWD.classList.add("error");
 
-            PWDFeedback.classList.remove("hidden")
+            PWDFeedback.classList.remove("hide")
         }
 
     });
