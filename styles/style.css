@@ -17,6 +17,10 @@
   /* --------------------------- Headings ------------------------------ */
   .subheading {
     font-family: "Inria Serif", serif;
+    font-size: 12px;
+  }
+  .subheading1 {
+    font-family: "Inria Serif", serif;
     font-size: 14px;
   }
   /* ---- Förslag globala komponenter som jag tror är återanvändnignsbara - eller blir det om projektet växer-------*/
