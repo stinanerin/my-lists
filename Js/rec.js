@@ -1,4 +1,5 @@
 
+let talkingWithApi = false
 
 //---------------------------------------------------Hämtar products.json fil ---------------------------------------------------
 
@@ -51,12 +52,9 @@ function addItem(wrapper) {
     let allRecProducts = wrapper.querySelectorAll(".rec-product");
     // console.log(allRecProducts);
 
-
-
     allRecProducts.forEach((item) => {
 
         item.addEventListener("click", () => {
-            // console.log("Add listener")
 
             let pElement = wrapper.querySelector(".pElement")
 
@@ -87,36 +85,33 @@ function addItem(wrapper) {
 
             } else {
                 // Annars lägg till itemet i listan och API:et 
-
-                // Vid varje klick på ett item kör vi newItem() som lägger till ny product i API:et
-                // newItem() tar emot dataseten från addItem så vi kan putta in de i APi:et 
-                newItem(item.dataset.title, item.dataset.icon, item.dataset.listid)
+                if(!talkingWithApi) {
+                    // Vid varje klick på ett item kör vi newItem() som lägger till ny product i API:et
+                    // newItem() tar emot dataseten från addItem så vi kan putta in de i APi:et 
+                    newItem(item.dataset.title, item.dataset.icon, item.dataset.listid)
                     .then((list) => {
                         // console.log(list);
-
+                        talkingWithApi = false;
+    
                         let itemList = list.itemList;
-
                         const newItem = itemList.findLast(elem => elem)
-
                         // console.log(newItem);
-
+    
                         //när ny vara lagts till anropas funktion som ändrar antal
                         changeItemCounterText(pElement, itemList);
-
+    
                         // skapa productListItem elementet med nuvarande objektet
                         productListItem(
                             newItem,
                             wrapper,
                             list,
                         );
-
                     });
+                }
+                
             }
-
         })
-        
     })
-
 }
 
 //--------------------------------------------------- API funktion som lägger till klickat item i lista  --------------------------------------
@@ -127,6 +122,7 @@ function addItem(wrapper) {
 async function newItem(title, icon, listID) {
     // Tar emot användarens klickade item, med titel och ikon och sparar det i API:et för att kunna renderas senare
     // console.log("59", isChecked);
+    talkingWithApi = true
 
     const res = await fetch(
         `https://nackademin-item-tracker.herokuapp.com/lists/${listID}/items`,
