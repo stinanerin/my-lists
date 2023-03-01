@@ -67,7 +67,7 @@
     max-height: 50vh;
   }
   .heroImage {
-    width: 100%;
+    max-width: 100%;
   }
   @-webkit-keyframes switchClr {
     100% {
@@ -358,16 +358,13 @@
     background-color: white;
     /* border: 1px solid; */
     border-radius: 0 0 1rem 1rem;
-    padding: 1rem;
-    transition: max-height 2s ease-out !important;
+    transition: max-height 2s ease !important;
     max-height: 5000px;
     overflow: hidden;
   }
   .hidden {
     max-height: 0px;
-    padding: 0px;
-    overflow: hidden;
-    transition: max-height 0s ease-out !important;
+    transition: max-height 0.4s ease !important;
   }
   .hide {
     display: none;
