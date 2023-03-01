@@ -14,7 +14,6 @@ h1, h2, h3, h4 {
 .subheading {
     font-family: $heading-secondary;
     font-size: 10px;
-
 }
 
 
@@ -77,7 +76,7 @@ body {
   max-height: 50vh;
 }
 .heroImage {
-  width:100%
+  max-width:100%
 }
 
 @keyframes switchClr {

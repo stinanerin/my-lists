@@ -28,7 +28,12 @@
 <body>
     <!--! Bör denna vara i header -->
     <div class="imageContainer d-flex justify-content-center align-items-center">
-        <img class="heroImage" src="images/list.jpg" alt="">           
+        <!-- <img class="heroImage" src="images/list.jpg" alt="">          -->
+        <picture>
+            <source media="(max-width: 849px)" srcset="images/portrait.jpg" class="heroImage"/>
+            <source media="(min-width: 850px)" srcset="images/landscape.jpg" class="heroImage"/>
+            <img src="images/landscape.jpg" class="heroImage" alt="Chris standing up holding his daughter Elva" />
+          </picture>
         <!-- <img class="img-fluid" src="images/list.jpg" alt="">            -->
     </div>
 
@@ -191,7 +196,7 @@
             </div>
 
         </div>
-
+        
 
     </main>
 
