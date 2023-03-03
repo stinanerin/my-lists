@@ -32,7 +32,6 @@
       
         // find() Retunerar det första arr-elementet som uppfyller villkor - annars undefined
         if(registeredUsers && registeredUsers.find(validateUser)) {
-            // console.log("login ok");
 
             // Spara anv-obj till den inloggade anv i user-variabel
             const user = registeredUsers.find(validateUser);
@@ -44,7 +43,6 @@
             redirectUser("list.html")   
         } else {
             // Annars körs denna kod
-            // console.log("login not ok");
             document.querySelector(".login-alert-container").innerHTML = `
             <div class="alert alert-danger container mt-2" role="alert">
                 <div class="row">
@@ -59,26 +57,27 @@
 
         }        
     }
+
     //-------------------------------------------- RENDER LOGIN USER VIEW ---------------------------------------------------
+    
     const loginUserLink  = document.querySelector('#loginUserLink');
+    const registerUserLink  = document.querySelector('#registerUserLink');
+    const registerContainer = document.querySelector(".register-form-container")
+    const loginContainer =  document.querySelector(".log-in-form-container")
 
     loginUserLink.addEventListener("click", () => {
         
-        // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
-        document.querySelector(".register-form-container").classList.toggle("hide");
-        document.querySelector(".log-in-form-container").classList.toggle("hide");
+        registerContainer.classList.toggle("hide");
+        loginContainer.classList.toggle("hide");
         
     })
     
     //-------------------------------------------- RENDER REGISTER NEW USER VIEW ---------------------------------------------------
 
-    const registerUserLink  = document.querySelector('#registerUserLink');
-    
     registerUserLink.addEventListener("click", () => {
         
-        // Hämtar contianer för login resp. register form och togglar klassen "hide" som sätter de till display:none respektive display:block ebroende på utgångsläge
-        document.querySelector(".register-form-container").classList.toggle("hide");
-        document.querySelector(".log-in-form-container").classList.toggle("hide");
+        registerContainer.classList.toggle("hide");
+        loginContainer.classList.toggle("hide");
         
     })
     
@@ -158,7 +157,6 @@
         
         // Pushar in den nya anv till userArr
         userArr.push(userObj);
-        // console.log(userArr);
 
         // Lagrar userArr i local storage & sätter användaren som "inloggad" i local storage
         setItem("registeredUsers", userArr);
