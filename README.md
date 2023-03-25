@@ -19,7 +19,7 @@ Finally, I used some somewhat repetitive if-statements to add the functionality 
 
 It was an incredibly challenging project, knowing nothing about APIs before - but all the more rewarding in the end!
 
-I will certainly keep improving the code as a stomach flu kept me from doing all the features we planned to have the time to do! Most notably having mixed data flows.
+I will certainly keep improving the code as a stomach flu kept me from doing all the features we planned to have the time to do! Most notably streamlining the data flow.
 
 ### Developer - Shopping List
 
