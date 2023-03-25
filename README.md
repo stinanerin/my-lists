@@ -14,6 +14,9 @@ I was also responsible for creating the product bar (which we called rec bar) an
 
 Finally, I used some somewhat repetitive if-statements to add the functionality of automatically combining the quantity of an item when moved to a list that already has a duplicate. See below.
 
+![Demonstrating video](images/ezgif.com-video-to-gif.gif)
+
+
 It was an incredibly challenging project, knowing nothing about APIs before - but all the more rewarding in the end!
 
 I will certainly keep improving the code as a stomach flu kept me from doing all the features we planned to have the time to do! Most notably having mixed data flows.
